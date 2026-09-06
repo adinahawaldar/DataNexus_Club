@@ -169,7 +169,7 @@ function NexathonFlipClockTimer({ timeLeft, onRegisterClick }) {
   const secUnits = secStr[1];
 
   return (
-    <div className="w-full mt-1 sm:mt-6 mb-4 sm:mb-6 select-none">
+    <div className="w-full mt-4 sm:mt-6 mb-8 sm:mb-10 select-none">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
@@ -339,7 +339,7 @@ export default function Hero({ isSplashDone = true }) {
       {/* Main Container */}
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto">
         {/* Hero Central Section */}
-        <section className="flex flex-col items-center justify-center text-center mt-2 sm:mt-6 mb-3 sm:mb-12 min-h-0 sm:min-h-[64vh] w-full">
+        <section className="flex flex-col items-center justify-center text-center mt-3 sm:mt-6 mb-6 sm:mb-12 min-h-[62vh] sm:min-h-[64vh] w-full">
           {/* Masterpiece Title Layout */}
           <div className="relative flex flex-col items-center justify-center select-none my-4 sm:my-8 w-full">
             {/* Grid & Atmospheric Multicolor Aura Texture */}
