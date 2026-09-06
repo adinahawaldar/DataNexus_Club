@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from 'react';
 
-export default function SplashScreen({ onFinish }) {
+export default function SplashScreen({ onStartFade, onFinish }) {
   const [isFading, setIsFading] = useState(false);
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    // Start fade out transition after 2.2 seconds
+    // Start fade out transition after 1.8 seconds
     const fadeTimer = setTimeout(() => {
       setIsFading(true);
-    }, 2200);
+      if (onStartFade) onStartFade();
+    }, 1800);
 
-    // Completely unmount splash screen after transition (2.8 seconds)
+    // Completely unmount splash screen after transition (2.4 seconds)
     const finishTimer = setTimeout(() => {
       setIsDone(true);
       if (onFinish) onFinish();
-    }, 2800);
+    }, 2400);
 
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(finishTimer);
     };
-  }, [onFinish]);
+  }, [onStartFade, onFinish]);
 
   if (isDone) return null;
 

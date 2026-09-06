@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Navbar() {
   const [activeTab, setActiveTab] = useState('Home');
@@ -91,37 +92,58 @@ export default function Navbar() {
     },
   ];
 
+  const handleNavClick = (id) => {
+    setActiveTab(id);
+    const targetId = id.toLowerCase();
+    const elem = document.getElementById(targetId);
+    if (elem) {
+      elem.scrollIntoView({ behavior: 'smooth' });
+    } else if (id === 'Home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <header className="w-full flex items-center justify-between pt-6 pb-8 pl-4 sm:pl-8 lg:pl-12 pr-2 sm:pr-4 lg:pr-6">
+    <motion.header
+      initial={{ opacity: 0, y: -24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className="w-full flex items-center justify-between pt-6 pb-8 pl-4 sm:pl-8 lg:pl-12 pr-2 sm:pr-4 lg:pr-6 select-none"
+    >
       {/* Brand Logo */}
-      <a href="#" className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 flex items-center gap-2 select-none">
+      <a href="#" className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 flex items-center gap-2">
         DataNexus
       </a>
 
-      {/* Glassmorphic Floating Pill Nav Bar - Blended with Background */}
-      <nav className="ml-auto inline-flex items-center gap-1 p-1.5 rounded-full bg-white/20 backdrop-blur-2xl border border-white/50 shadow-[0_8px_32px_0_rgba(131,56,236,0.08)] transition-all duration-300">
+      {/* Glassmorphic Floating Pill Nav Bar with Framer Motion Animated Slider */}
+      <nav className="ml-auto inline-flex items-center gap-1 p-1.5 rounded-full bg-white/20 backdrop-blur-2xl border border-white/50 shadow-[0_8px_32px_0_rgba(131,56,236,0.08)]">
         {navItems.map((item) => {
           const isActive = activeTab === item.id;
           return (
             <button
               key={item.id}
-              onClick={() => setActiveTab(item.id)}
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer select-none ${
-                isActive
-                  ? 'bg-white/75 backdrop-blur-md text-zinc-950 shadow-[0_2px_12px_rgba(0,0,0,0.06)] border border-white/80 scale-[1.02]'
-                  : 'text-zinc-700/80 hover:text-zinc-950 hover:bg-white/30'
+              onClick={() => handleNavClick(item.id)}
+              className={`relative flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-200 cursor-pointer select-none ${
+                isActive ? 'text-zinc-950' : 'text-zinc-700/80 hover:text-zinc-950'
               }`}
             >
-              <span className={`transition-transform duration-200 ${isActive ? 'scale-110 text-zinc-950' : 'text-zinc-600/80'}`}>
+              {isActive && (
+                <motion.div
+                  layoutId="activeTabPill"
+                  className="absolute inset-0 bg-white/80 backdrop-blur-md rounded-full shadow-[0_2px_12px_rgba(0,0,0,0.08)] border border-white/90 z-0"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className={`relative z-10 transition-transform duration-200 ${isActive ? 'scale-110 text-zinc-950' : 'text-zinc-600/80'}`}>
                 {item.icon}
               </span>
-              <span className={isActive ? 'inline' : 'hidden sm:inline'}>
+              <span className={`relative z-10 ${isActive ? 'inline' : 'hidden sm:inline'}`}>
                 {item.label}
               </span>
             </button>
           );
         })}
       </nav>
-    </header>
+    </motion.header>
   );
 }
