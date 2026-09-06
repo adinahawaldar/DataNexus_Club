@@ -12,6 +12,13 @@ export default function LandingPage() {
   const [isSplashDone, setIsSplashDone] = useState(false);
 
   useEffect(() => {
+    // Disable browser automatic scroll restoration on page reload
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    // Always force scroll to top (Hero section) on initial page load
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
     // Initialize Lenis Smooth Momentum Scrolling
     const lenis = new Lenis({
       duration: 1.2,
@@ -20,6 +27,8 @@ export default function LandingPage() {
       wheelMultiplier: 1.0,
       touchMultiplier: 1.2,
     });
+
+    lenis.scrollTo(0, { immediate: true });
 
     let rafId;
     function raf(time) {
@@ -35,9 +44,15 @@ export default function LandingPage() {
     };
   }, []);
 
+  // When splash screen finishes, ensure view is centered at the top Hero section
+  const handleSplashDone = () => {
+    setIsSplashDone(true);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  };
+
   return (
     <main className="relative w-full min-h-screen">
-      <SplashScreen onStartFade={() => setIsSplashDone(true)} />
+      <SplashScreen onStartFade={handleSplashDone} />
       <Hero isSplashDone={isSplashDone} />
       <Events />
       <About />
