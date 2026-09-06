@@ -13,11 +13,6 @@ export default function Events() {
       badge: 'Every Saturday',
       bgImage:
         'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80',
-      thumbImage:
-        'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=300&q=80',
-      btnColor: 'bg-[#fefae0] text-[#1a073f] hover:bg-yellow-200',
-      badgeColor: 'bg-[#1a073f] text-white border border-purple-800',
-      isPinned: true,
     },
     {
       id: 2,
@@ -27,11 +22,6 @@ export default function Events() {
       badge: '15-16 Aug 2026',
       bgImage:
         'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
-      thumbImage:
-        'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=300&q=80',
-      btnColor: 'bg-white text-[#1a073f] hover:bg-purple-50 border border-purple-100',
-      badgeColor: 'bg-[#1a073f] text-white border border-purple-800',
-      isPinned: false,
     },
     {
       id: 3,
@@ -41,69 +31,64 @@ export default function Events() {
       badge: 'Sept 2026',
       bgImage:
         'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80',
-      thumbImage:
-        'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=300&q=80',
-      btnColor: 'bg-purple-700 text-white hover:bg-purple-800',
-      badgeColor: 'bg-[#1a073f] text-white border border-purple-800',
-      isPinned: false,
-    },
-    {
-      id: 4,
-      title: 'Speaker Sessions & Industry Tech Talks',
-      description:
-        'Industry leaders and alumni share insights on emerging technologies, career paths and building impactful products.',
-      badge: 'Monthly',
-      bgImage:
-        'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=80',
-      thumbImage:
-        'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=300&q=80',
-      btnColor: 'bg-[#1a073f] text-white hover:bg-purple-950',
-      badgeColor: 'bg-purple-800 text-white border border-purple-700',
-      isPinned: false,
     },
   ];
 
   return (
-    <section id="events" className="relative w-full py-16 sm:py-24 px-4 sm:px-8 lg:px-12 bg-white text-zinc-900 select-none overflow-hidden">
-      <div className="max-w-[1440px] mx-auto">
-        {/* Section Header - Sleek, Compact & Crisp */}
-        <div className="flex flex-col items-start text-left w-full mb-8 sm:mb-10">
+    <section id="events" className="relative w-full py-14 sm:py-20 px-2 sm:px-3 lg:px-4 bg-white text-zinc-900 select-none overflow-hidden">
+      <div className="w-full">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 w-full mb-8 sm:mb-10 px-2 sm:px-1">
+          {/* Left Side: Clean Heading & Professional Subtitle */}
+          <div className="max-w-2xl">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-3xl sm:text-4xl lg:text-[3.2rem] font-sans font-bold text-[#1a073f] tracking-tight leading-tight"
+            >
+              Shape the Data Science Future.{' '}
+              <span className="font-script text-purple-600 text-3xl sm:text-4xl lg:text-[3.2rem] font-normal italic inline-block ml-1">
+                Build with us:
+              </span>
+            </motion.h2>
+            <p className="text-zinc-600 font-medium text-xs sm:text-sm lg:text-base mt-2 leading-relaxed">
+              Explore our upcoming hackathons, hands-on bootcamps, and technical speaker sessions.
+            </p>
+          </div>
 
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-2xl sm:text-4xl lg:text-[2.75rem] font-sans font-bold text-[#1a073f] tracking-tight leading-snug"
-          >
-            Shape the Data Science Future.{' '}
-            <span className="font-script text-purple-600 text-2xl sm:text-4xl lg:text-[2.75rem] font-normal italic inline-block ml-1">
-              Build with us:
-            </span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="text-zinc-600 font-medium text-xs sm:text-sm lg:text-base mt-2 max-w-xl leading-relaxed"
-          >
-            Free hands-on workshops, 24-hour hackathons, and real-world tech bootcamps open to every student.
-          </motion.p>
+          {/* Right Side: See All Events Pill & Circular Arrow Button in Constant Brand Purple */}
+          <div className="flex items-center gap-2 flex-shrink-0 self-start sm:self-end">
+            <button
+              onClick={() => {
+                const joinElem = document.getElementById('join');
+                if (joinElem) joinElem.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="bg-[#1a073f] text-white rounded-full px-6 py-3 text-xs sm:text-sm font-semibold shadow-md hover:bg-[#1a073f] active:scale-95 transition-all duration-200 cursor-pointer"
+            >
+              See All Events
+            </button>
+            <div className="w-10 h-10 rounded-full bg-[#1a073f] text-white flex items-center justify-center shadow-md hover:bg-[#1a073f] transition-all">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="4" y1="12" x2="12" y2="4" />
+                <polyline points="5,4 12,4 12,11" />
+              </svg>
+            </div>
+          </div>
         </div>
 
-        {/* 2x2 Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
+        {/* 3 Columns Full Width Cards Grid - Matching Hero Section Card Dimensions */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-3 w-full">
           {eventsData.map((event, index) => (
             <motion.div
               key={event.id}
+              onClick={() => setSelectedEvent(event)}
               initial={{ opacity: 0, y: 40, scale: 0.96 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: false, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="relative group rounded-3xl overflow-hidden min-h-[340px] sm:min-h-[380px] lg:min-h-[420px] p-6 sm:p-8 flex flex-col justify-between border border-zinc-200/80 shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer"
+              className="relative group rounded-xl overflow-hidden h-[300px] sm:h-[360px] lg:h-[400px] w-full p-5 sm:p-6 flex flex-col justify-between border border-zinc-200/80 shadow-xs hover:shadow-2xl transition-all duration-500 cursor-pointer bg-zinc-950"
             >
               {/* Background Image with Zoom */}
               <div
@@ -111,50 +96,15 @@ export default function Events() {
                 style={{ backgroundImage: `url(${event.bgImage})` }}
               />
 
-              {/* Dark Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/35 group-hover:from-black/90 transition-colors duration-500" />
+              {/* Gradient Overlay for Text Legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 group-hover:from-black/95 transition-colors duration-500" />
 
-              {/* Top Row: Pin Badge if Pinned */}
-              <div className="relative z-20 flex justify-between items-start w-full">
-                {event.isPinned ? (
-                  <div className="bg-[#1a073f] text-white border border-purple-700 rounded-xl p-2.5 shadow-lg flex items-center justify-center -mt-2 -ml-2">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z" />
-                    </svg>
-                  </div>
-                ) : (
-                  <div />
-                )}
-
-                {/* Center Square Thumbnail */}
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 border-white/90 shadow-2xl mx-auto group-hover:scale-110 transition-transform duration-500">
-                  <img
-                    src={event.thumbImage}
-                    alt={event.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <div className="w-8" />
-              </div>
-
-              {/* Middle Description */}
-              <div className="relative z-20 my-auto text-center px-2 sm:px-4 py-4">
-                <p className="text-white text-base sm:text-lg lg:text-xl font-medium leading-relaxed drop-shadow-md max-w-md mx-auto">
-                  {event.description}
-                </p>
-              </div>
-
-              {/* Bottom Row: Register Now & Date Badge */}
-              <div className="relative z-20 flex items-center justify-between w-full pt-4">
-                <button
-                  onClick={() => setSelectedEvent(event)}
-                  className={`rounded-full px-5 py-2.5 sm:px-7 sm:py-3 text-xs sm:text-sm font-semibold shadow-xl transition-all duration-200 active:scale-95 hover:scale-105 inline-flex items-center gap-2 cursor-pointer ${event.btnColor}`}
-                >
-                  Register Now
+              {/* Top-Right Floating Circle Arrow Button */}
+              <div className="relative z-20 flex justify-end w-full">
+                <div className="w-10 h-10 rounded-full bg-white/95 text-zinc-950 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-[#1a073f] group-hover:text-white transition-all duration-300">
                   <svg
-                    width="14"
-                    height="14"
+                    width="16"
+                    height="16"
                     viewBox="0 0 16 16"
                     fill="none"
                     stroke="currentColor"
@@ -162,14 +112,21 @@ export default function Events() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
-                    <line x1="3" y1="8" x2="13" y2="8" />
-                    <polyline points="9 4 13 8 9 12" />
+                    <line x1="4" y1="12" x2="12" y2="4" />
+                    <polyline points="5,4 12,4 12,11" />
                   </svg>
-                </button>
+                </div>
+              </div>
 
-                <span className={`font-semibold text-xs sm:text-sm px-3.5 py-2 sm:px-4 sm:py-2 rounded-xl shadow-md tracking-tight ${event.badgeColor}`}>
+              {/* Bottom-Left Title & Subtitle Stack */}
+              <div className="relative z-20 mt-auto text-left pr-2">
+                <h3 className="text-white text-xl sm:text-2xl font-bold tracking-tight leading-snug drop-shadow-md">
+                  {event.title}
+                </h3>
+                <p className="text-zinc-300 text-xs sm:text-sm font-medium mt-1.5 drop-shadow-xs flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-purple-400 inline-block" />
                   {event.badge}
-                </span>
+                </p>
               </div>
             </motion.div>
           ))}
@@ -220,7 +177,7 @@ export default function Events() {
                   Event Highlights
                 </h4>
                 <ul className="text-xs text-purple-900 space-y-1 list-disc list-inside">
-                  <li>Free registration for all students & enthusiasts</li>
+                  <li>Open to all students & tech enthusiasts</li>
                   <li>Certificate of participation & networking opportunities</li>
                   <li>Mentorship from senior AI & Data Science members</li>
                 </ul>

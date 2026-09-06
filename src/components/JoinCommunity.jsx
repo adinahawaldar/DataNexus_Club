@@ -50,7 +50,7 @@ export default function JoinCommunity() {
         <motion.div
           initial={{ opacity: 0, y: 40, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: false, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="w-full bg-white/95 backdrop-blur-2xl rounded-[32px] p-8 sm:p-12 border border-white/90 shadow-[0_25px_60px_rgba(26,7,63,0.18)] text-center flex flex-col items-center"
         >

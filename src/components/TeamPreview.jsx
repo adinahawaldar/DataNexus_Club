@@ -61,7 +61,7 @@ export default function TeamPreview() {
                 key={leader.id}
                 initial={{ opacity: 0, scale: 0.85, y: 30 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.7, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ scale: 1.08, rotate: 0, zIndex: 40 }}
                 className={`relative w-full aspect-[4/5] rounded-[32px] overflow-visible shadow-2xl bg-zinc-900 border-4 border-white ${leader.rotate} ${leader.yOffset} transition-all duration-300 hover:shadow-[0_25px_60px_rgba(0,0,0,0.25)]`}
@@ -96,7 +96,7 @@ export default function TeamPreview() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="mt-6 sm:mt-10 group flex items-center justify-center w-full max-w-full px-2 sm:px-4 mx-auto select-none overflow-hidden"
         >
