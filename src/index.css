@@ -8,6 +8,10 @@
   --font-display: 'Bebas Neue', cursive, sans-serif;
 }
 
+body {
+  font-family: var(--font-sans);
+}
+
 @keyframes splashTextSlideUp {
   0% {
     opacity: 0;

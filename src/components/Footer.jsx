@@ -73,7 +73,7 @@ export default function Footer() {
           {/* Left Section: Logo, Society for Data Science, AIKTC Campus & Social Icons */}
           <div className="flex flex-col items-start space-y-4 max-w-xl">
             {/* Brand Logo */}
-            <a href="#" className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-[#1a073f] flex items-center gap-2">
+            <a href="#" className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-[#1a073f] flex items-center gap-2">
               <span className="w-8 h-8 rounded-full bg-[#1a073f] text-white flex items-center justify-center text-sm font-sans font-bold shadow-sm">
                 DN
               </span>

@@ -66,18 +66,20 @@ export default function Events() {
   return (
     <section id="events" className="relative w-full py-16 sm:py-24 px-4 sm:px-8 lg:px-12 bg-white text-zinc-900 select-none overflow-hidden">
       <div className="max-w-[1440px] mx-auto">
-        {/* Section Header */}
-        <div className="flex flex-col items-end text-right w-full mb-10 sm:mb-14">
+        {/* Section Header - Sleek, Compact & Crisp */}
+        <div className="flex flex-col items-start text-left w-full mb-8 sm:mb-10">
+
+
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#1a073f] tracking-tight leading-tight"
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-2xl sm:text-4xl lg:text-[2.75rem] font-sans font-bold text-[#1a073f] tracking-tight leading-snug"
           >
-            Imagine a world where{' '}
-            <span className="font-script text-purple-600 text-3xl sm:text-5xl lg:text-6xl font-normal italic inline-block ml-1">
-              you were here:
+            Shape the Data Science Future.{' '}
+            <span className="font-script text-purple-600 text-2xl sm:text-4xl lg:text-[2.75rem] font-normal italic inline-block ml-1">
+              Build with us:
             </span>
           </motion.h2>
 
@@ -85,10 +87,10 @@ export default function Events() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="text-zinc-700 font-medium text-sm sm:text-base lg:text-lg mt-3 sm:mt-4 max-w-xl leading-relaxed"
+            transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+            className="text-zinc-600 font-medium text-xs sm:text-sm lg:text-base mt-2 max-w-xl leading-relaxed"
           >
-            Every event below is free, open to any student, and happening right now. Yes, you can go.
+            Free hands-on workshops, 24-hour hackathons, and real-world tech bootcamps open to every student.
           </motion.p>
         </div>
 

@@ -111,7 +111,7 @@ export default function Navbar() {
       className="w-full flex items-center justify-between pt-6 pb-8 pl-4 sm:pl-8 lg:pl-12 pr-2 sm:pr-4 lg:pr-6 select-none"
     >
       {/* Brand Logo */}
-      <a href="#" className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 flex items-center gap-2">
+      <a href="#" className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 flex items-center gap-2">
         DataNexus
       </a>
 

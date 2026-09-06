@@ -54,16 +54,13 @@ export default function JoinCommunity() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="w-full bg-white/95 backdrop-blur-2xl rounded-[32px] p-8 sm:p-12 border border-white/90 shadow-[0_25px_60px_rgba(26,7,63,0.18)] text-center flex flex-col items-center"
         >
-          {/* Headline matching screenshot & theme */}
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#1a073f] tracking-tight leading-tight mb-4">
-            Imagine a world where{' '}
-            <span className="font-script text-purple-600 text-3xl sm:text-5xl lg:text-6xl font-normal italic inline-block ml-1">
-              you joined DataNexus:
-            </span>
+          {/* Clean, Compact Headline in Purple font-sans */}
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-sans font-bold text-purple-700 tracking-tight leading-tight mb-3">
+            Ready to shape the future of AI & Data Science?
           </h2>
 
           <p className="text-zinc-700 font-medium text-base sm:text-lg max-w-lg mx-auto mb-8 leading-relaxed">
-            Ready to build real AI projects, attend free hackathons, and join a passionate student community?
+            Join DataNexus Club today to build real projects, participate in hackathons, and connect with fellow developers.
           </p>
 
           {/* Email Subscription Input Box */}
@@ -87,7 +84,7 @@ export default function JoinCommunity() {
                   />
                   <button
                     type="submit"
-                    className="w-full sm:w-auto bg-[#1a073f] text-white rounded-full px-7 py-3.5 text-sm font-semibold whitespace-nowrap shadow-lg hover:bg-purple-950 transition-colors duration-200 cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto bg-[#1a073f] text-white rounded-full px-7 py-3.5 text-sm font-semibold whitespace-nowrap shadow-lg hover:bg-[#1a073f] active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
                   >
                     Join Community
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">

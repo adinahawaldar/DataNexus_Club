@@ -57,15 +57,17 @@ export default function Hero({ isSplashDone = true }) {
             
             {/* Grid & Atmospheric Multicolor Aura Texture matching reference screenshot */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[450px] sm:h-[550px] pointer-events-none z-0 overflow-hidden">
-              {/* Technical Grid Pattern with Higher Visibility */}
+              {/* Technical Grid Pattern Blended Seamlessly on All 4 Sides */}
               <div
-                className="absolute inset-0 opacity-80 sm:opacity-90"
+                className="absolute inset-0 opacity-80 sm:opacity-85"
                 style={{
                   backgroundImage:
                     'linear-gradient(to right, rgba(161, 161, 170, 0.45) 1px, transparent 1px), linear-gradient(to bottom, rgba(161, 161, 170, 0.45) 1px, transparent 1px)',
                   backgroundSize: '48px 48px',
-                  maskImage: 'radial-gradient(ellipse 75% 65% at 50% 50%, #000 70%, transparent 100%)',
-                  WebkitMaskImage: 'radial-gradient(ellipse 75% 65% at 50% 50%, #000 70%, transparent 100%)',
+                  maskImage:
+                    'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.15) 75%, transparent 100%)',
+                  WebkitMaskImage:
+                    'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.15) 75%, transparent 100%)',
                 }}
               />
 
@@ -102,7 +104,7 @@ export default function Hero({ isSplashDone = true }) {
               whileInView={{ y: 0, opacity: 1, scale: 1 }}
               viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display font-extrabold text-7xl sm:text-[9.5rem] md:text-[11.8rem] lg:text-[13.8rem] xl:text-[15.2rem] tracking-[0.02em] sm:tracking-[0.09em] uppercase leading-none text-center text-[#1a073f] w-full max-w-full z-10"
+              className="font-sans font-black text-6xl sm:text-[8rem] md:text-[10rem] lg:text-[11.8rem] xl:text-[13rem] tracking-tight uppercase leading-none text-center text-[#1a073f] w-full max-w-full z-10"
               style={{
                 filter: 'drop-shadow(0px 8px 24px rgba(168, 85, 247, 0.25))',
               }}
@@ -110,33 +112,20 @@ export default function Hero({ isSplashDone = true }) {
               DATANEXUS
             </motion.h1>
 
-            {/* Overlapping Solid Cream Cursive Script "Club" */}
+            {/* Overlapping Solid Cream Cursive Script "Club" - Static & Constant */}
             <motion.span
               initial={{ opacity: 0, scale: 0.75, y: 30 }}
               animate={isSplashDone ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.75, y: 30 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="font-script text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] font-bold tracking-normal transform -rotate-4 -mt-10 sm:-mt-14 md:-mt-18 lg:-mt-24 z-20 text-[#fefae0]"
+              className="font-script text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] font-bold tracking-normal transform -rotate-4 -mt-10 sm:-mt-14 md:-mt-18 lg:-mt-24 z-20 text-[#fefae0] inline-block select-none"
               style={{
                 filter:
                   'drop-shadow(2px 3px 0px #1e0538) drop-shadow(0px 6px 16px rgba(46, 16, 101, 0.4))',
               }}
             >
-              <motion.span
-                animate={{
-                  y: [0, -8, 0],
-                  rotate: [-4, -2, -4],
-                }}
-                transition={{
-                  duration: 4.5,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-                className="inline-block"
-              >
-                Club
-              </motion.span>
+              Club
             </motion.span>
           </div>
 
