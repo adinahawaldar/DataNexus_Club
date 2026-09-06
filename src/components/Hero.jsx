@@ -169,7 +169,7 @@ function NexathonFlipClockTimer({ timeLeft, onRegisterClick }) {
   const secUnits = secStr[1];
 
   return (
-    <div className="w-full mt-8 sm:mt-14 mb-6 sm:mb-10 select-none">
+    <div className="w-full mt-3 sm:mt-6 mb-4 sm:mb-6 select-none">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
@@ -339,28 +339,28 @@ export default function Hero({ isSplashDone = true }) {
       {/* Main Container */}
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto">
         {/* Hero Central Section */}
-        <section className="flex flex-col items-center justify-center text-center mt-4 sm:mt-8 mb-16 sm:mb-24 min-h-[65vh] sm:min-h-[72vh] w-full">
+        <section className="flex flex-col items-center justify-center text-center mt-3 sm:mt-6 mb-8 sm:mb-12 min-h-[58vh] sm:min-h-[64vh] w-full">
           {/* Masterpiece Title Layout */}
           <div className="relative flex flex-col items-center justify-center select-none my-4 sm:my-8 w-full">
             {/* Grid & Atmospheric Multicolor Aura Texture */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[450px] sm:h-[550px] pointer-events-none z-0 overflow-hidden">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[320px] sm:h-[550px] pointer-events-none z-0 overflow-hidden">
               {/* Technical Grid Pattern */}
               <div
-                className="absolute inset-0 opacity-80 sm:opacity-85"
+                className="absolute inset-0 opacity-60 sm:opacity-85"
                 style={{
                   backgroundImage:
-                    'linear-gradient(to right, rgba(161, 161, 170, 0.45) 1px, transparent 1px), linear-gradient(to bottom, rgba(161, 161, 170, 0.45) 1px, transparent 1px)',
-                  backgroundSize: '48px 48px',
+                    'linear-gradient(to right, rgba(161, 161, 170, 0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(161, 161, 170, 0.4) 1px, transparent 1px)',
+                  backgroundSize: '28px 28px',
                   maskImage:
-                    'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.15) 75%, transparent 100%)',
+                    'radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.35) 40%, transparent 70%)',
                   WebkitMaskImage:
-                    'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.15) 75%, transparent 100%)',
+                    'radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.35) 40%, transparent 70%)',
                 }}
               />
 
               {/* Soft Coral Left Accent Glow */}
               <div
-                className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[420px] h-[280px] rounded-full opacity-40 blur-[85px]"
+                className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[420px] h-[160px] sm:h-[280px] rounded-full opacity-30 sm:opacity-40 blur-[50px] sm:blur-[85px]"
                 style={{
                   background: 'radial-gradient(circle, rgba(251, 146, 60, 0.24) 0%, transparent 75%)',
                 }}
@@ -368,7 +368,7 @@ export default function Hero({ isSplashDone = true }) {
 
               {/* Soft Purple Center Primary Glow */}
               <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] sm:w-[580px] h-[340px] rounded-full opacity-55 blur-[95px]"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] sm:w-[580px] h-[200px] sm:h-[340px] rounded-full opacity-40 sm:opacity-55 blur-[60px] sm:blur-[95px]"
                 style={{
                   background:
                     'radial-gradient(ellipse at center, rgba(168, 85, 247, 0.32) 0%, rgba(192, 132, 252, 0.14) 50%, transparent 75%)',
@@ -377,7 +377,7 @@ export default function Hero({ isSplashDone = true }) {
 
               {/* Soft Pink Right Accent Glow */}
               <div
-                className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[420px] h-[280px] rounded-full opacity-40 blur-[85px]"
+                className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[420px] h-[160px] sm:h-[280px] rounded-full opacity-30 sm:opacity-40 blur-[50px] sm:blur-[85px]"
                 style={{
                   background: 'radial-gradient(circle, rgba(236, 72, 153, 0.22) 0%, transparent 75%)',
                 }}
