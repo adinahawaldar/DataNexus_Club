@@ -286,7 +286,7 @@ function NexathonFlipClockTimer({ timeLeft, onRegisterClick }) {
   );
 }
 
-export default function Hero({ isSplashDone = true }) {
+export default function Hero({ isSplashDone = false }) {
   const [isNexathonModalOpen, setIsNexathonModalOpen] = useState(false);
   const [activeModalTab, setActiveModalTab] = useState('overview'); // 'overview' | 'register'
   const [registered, setRegistered] = useState(false);
@@ -386,11 +386,10 @@ export default function Hero({ isSplashDone = true }) {
 
             {/* DATANEXUS Title */}
             <motion.h1
-              initial={{ y: 50, opacity: 0, scale: 0.94 }}
-              animate={isSplashDone ? { y: 0, opacity: 1, scale: 1 } : { y: 50, opacity: 0, scale: 0.94 }}
-              whileInView={{ y: 0, opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              key={isSplashDone ? 'hero-title-active' : 'hero-title-init'}
+              initial={{ y: 65, opacity: 0, scale: 0.92 }}
+              animate={isSplashDone ? { y: 0, opacity: 1, scale: 1 } : { y: 65, opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
               className="font-sans font-black text-6xl sm:text-[8rem] md:text-[10rem] lg:text-[11.8rem] xl:text-[13rem] tracking-tight uppercase leading-none text-center text-[#1a073f] w-full max-w-full z-10"
               style={{
                 filter: 'drop-shadow(0px 8px 24px rgba(168, 85, 247, 0.25))',
@@ -401,11 +400,10 @@ export default function Hero({ isSplashDone = true }) {
 
             {/* Overlapping Solid Cursive Script "Club" */}
             <motion.span
-              initial={{ opacity: 0, scale: 0.75, y: 30 }}
-              animate={isSplashDone ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.75, y: 30 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              key={isSplashDone ? 'hero-club-active' : 'hero-club-init'}
+              initial={{ opacity: 0, scale: 0.7, y: 35 }}
+              animate={isSplashDone ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.7, y: 35 }}
+              transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="font-script text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] font-bold tracking-normal transform -rotate-4 -mt-10 sm:-mt-14 md:-mt-18 lg:-mt-24 z-20 text-[#fefae0] inline-block select-none"
               style={{
                 filter:
@@ -418,11 +416,10 @@ export default function Hero({ isSplashDone = true }) {
 
           {/* Subtitle Description */}
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={isSplashDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            key={isSplashDone ? 'hero-desc-active' : 'hero-desc-init'}
+            initial={{ opacity: 0, y: 35 }}
+            animate={isSplashDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }}
+            transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="font-sans text-base sm:text-xl font-medium text-zinc-700 leading-relaxed max-w-2xl mx-auto mt-5 sm:mt-6 tracking-tight px-2 sm:px-0"
           >
             Explore AI, data, and innovation through a community that learns by building.
@@ -430,11 +427,10 @@ export default function Hero({ isSplashDone = true }) {
 
           {/* CTA Button */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isSplashDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            key={isSplashDone ? 'hero-cta-active' : 'hero-cta-init'}
+            initial={{ opacity: 0, y: 35 }}
+            animate={isSplashDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }}
+            transition={{ duration: 0.85, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 sm:mt-8"
           >
             <motion.a

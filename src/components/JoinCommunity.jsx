@@ -24,7 +24,7 @@ export default function JoinCommunity() {
   };
 
   return (
-    <section id="join" className="relative w-full py-24 sm:py-32 bg-white text-zinc-900 select-none overflow-hidden">
+    <section id="join" className="relative w-full pt-32 sm:pt-44 pb-24 sm:pb-32 bg-white text-zinc-900 select-none overflow-hidden">
       {/* Highly Visible Event Photo Collage Background */}
       <div className="absolute inset-0 z-0 overflow-hidden opacity-95 sm:opacity-100">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 h-full w-full">
