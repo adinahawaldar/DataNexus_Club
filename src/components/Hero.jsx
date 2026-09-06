@@ -330,7 +330,7 @@ export default function Hero({ isSplashDone = true }) {
   ];
 
   return (
-    <div className="relative w-full pb-14 sm:pb-20 bg-white text-zinc-900 overflow-hidden select-none">
+    <div className="relative w-full pb-4 sm:pb-8 bg-white text-zinc-900 overflow-hidden select-none">
       {/* Header / Navbar Container */}
       <div className="relative z-20 w-full">
         <Navbar />

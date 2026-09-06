@@ -35,7 +35,7 @@ export default function Events() {
   ];
 
   return (
-    <section id="events" className="relative w-full py-14 sm:py-20 px-2 sm:px-3 lg:px-4 bg-white text-zinc-900 select-none overflow-hidden">
+    <section id="events" className="relative w-full pt-4 sm:pt-8 pb-14 sm:pb-20 px-2 sm:px-3 lg:px-4 bg-white text-zinc-900 select-none overflow-hidden">
       <div className="w-full">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 w-full mb-8 sm:mb-10 px-2 sm:px-1">
