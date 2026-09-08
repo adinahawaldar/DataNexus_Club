@@ -42,7 +42,7 @@ export default function Navbar() {
             e.preventDefault();
             handleNavClick('Home');
           }}
-          className="font-sans text-2xl sm:text-3xl font-black tracking-tight text-[#1a073f] flex items-center gap-2"
+          className="font-sans text-2xl sm:text-3xl font-black tracking-tight text-white drop-shadow-md flex items-center gap-2"
         >
           DataNexus
         </a>
@@ -55,9 +55,8 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`relative flex items-center px-5 py-2 rounded-full text-sm font-semibold transition-colors duration-200 cursor-pointer select-none ${
-                  isActive ? 'text-[#1a073f]' : 'text-zinc-700 hover:text-[#1a073f]'
-                }`}
+                className={`relative flex items-center px-5 py-2 rounded-full text-sm font-semibold transition-colors duration-200 cursor-pointer select-none ${isActive ? 'text-[#1a073f]' : 'text-zinc-700 hover:text-[#1a073f]'
+                  }`}
               >
                 {isActive && (
                   <motion.div
@@ -111,11 +110,10 @@ export default function Navbar() {
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`flex items-center w-full px-4 py-3 rounded-xl text-sm font-bold transition-all ${
-                    isActive
-                      ? 'bg-purple-50 text-[#1a073f] border border-purple-200/80 shadow-2xs'
-                      : 'text-zinc-700 hover:bg-zinc-100/70 hover:text-zinc-950'
-                  }`}
+                  className={`flex items-center w-full px-4 py-3 rounded-xl text-sm font-bold transition-all ${isActive
+                    ? 'bg-purple-50 text-[#1a073f] border border-purple-200/80 shadow-2xs'
+                    : 'text-zinc-700 hover:bg-zinc-100/70 hover:text-zinc-950'
+                    }`}
                 >
                   <span>{item.label}</span>
                   {isActive && (

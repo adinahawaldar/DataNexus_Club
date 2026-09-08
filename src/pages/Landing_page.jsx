@@ -19,13 +19,14 @@ export default function LandingPage() {
     // Always force scroll to top (Hero section) on initial page load
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
-    // Initialize Lenis Smooth Momentum Scrolling
+    // Initialize Lenis Smooth Momentum Scrolling (Mobile & Desktop)
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.2,
+      touchMultiplier: 1.8,
+      infinite: false,
     });
 
     lenis.scrollTo(0, { immediate: true });
