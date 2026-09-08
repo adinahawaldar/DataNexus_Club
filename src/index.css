@@ -1,7 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&family=Bebas+Neue&family=Dancing+Script:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
+  --font-grotesk: 'Space Grotesk', sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
   --font-serif: 'Newsreader', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-script: 'Dancing Script', cursive;

@@ -54,7 +54,7 @@ export default function Footer() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.15 }}
+        viewport={{ once: false, amount: 0.05 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 max-w-[1440px] mx-auto bg-white rounded-[32px] sm:rounded-[40px] p-7 sm:p-12 lg:p-14 shadow-[0_30px_80px_rgba(26,7,63,0.14)]"
       >
@@ -64,9 +64,7 @@ export default function Footer() {
           <div className="flex flex-col items-start space-y-4 max-w-xl">
             {/* Brand Logo */}
             <a href="#" className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-[#1a073f] flex items-center gap-2">
-              <span className="w-8 h-8 rounded-full bg-[#1a073f] text-white flex items-center justify-center text-sm font-sans font-bold shadow-sm">
-                DN
-              </span>
+             
               DataNexus Club
             </a>
 
@@ -105,7 +103,7 @@ export default function Footer() {
                 href={link.href}
                 target={link.href.startsWith('http') ? '_blank' : '_self'}
                 rel={link.href.startsWith('http') ? 'noopener noreferrer' : ''}
-                className="text-sm sm:text-base font-semibold text-zinc-700 hover:text-[#1a073f] transition-colors duration-200"
+                className="text-sm sm:text-base font-semibold text-purple-600 hover:text-[#1a073f] transition-colors duration-200 font-poppins"
               >
                 {link.label}
               </a>
