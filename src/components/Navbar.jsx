@@ -20,39 +20,45 @@ export default function Navbar({ variant }) {
     setActiveTab(id);
     setIsMobileOpen(false);
 
-    // Achievements is a separate page
-    if (id === "Achievements") {
-      window.location.href = "/achievements";
-      return;
-    }
+    const isCurrentPageAchievements =
+      window.location.pathname.toLowerCase().includes("achievements") ||
+      window.location.hash.toLowerCase().includes("achievements");
 
-    // Home is the main landing page
-    if (id === "Home") {
-      if (window.location.pathname !== "/") {
-        window.location.href = "/";
+    // Achievements page navigation
+    if (id === "Achievements") {
+      if (isCurrentPageAchievements) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
+        window.location.hash = "#/achievements";
       }
       return;
     }
 
-    // Teams / Events remain sections on the landing page
-    const targetId = id.toLowerCase();
-    const elem = document.getElementById(targetId);
+    // Home navigation
+    if (id === "Home") {
+      if (isCurrentPageAchievements) {
+        window.location.hash = "#/";
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      return;
+    }
 
+    // Teams / Events sections navigation
+    const targetId = id.toLowerCase();
+    if (isCurrentPageAchievements) {
+      window.location.hash = `#/${targetId}`;
+      return;
+    }
+
+    const elem = document.getElementById(targetId);
     if (elem) {
       elem.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     } else {
-      // If currently on another page, return home first
-      if (window.location.pathname !== "/") {
-        window.location.href = `/#${targetId}`;
-      }
+      window.location.hash = `#/${targetId}`;
     }
   };
 

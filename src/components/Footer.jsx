@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 
 export default function Footer({ variant = "dark" }) {
     const navLinks = [
-        { label: "Home", href: "/" },
-        { label: "Teams", href: "/#teams" },
-        { label: "Events", href: "/#events" },
-        { label: "Achievements", href: "/achievements" },
-        { label: "About", href: "/#about" },
+        { label: "Home", href: "#/" },
+        { label: "Teams", href: "#/teams" },
+        { label: "Events", href: "#/events" },
+        { label: "Achievements", href: "#/achievements" },
+        { label: "About", href: "#/about" },
         { label: "S4DS Chapter", href: "https://s4ds.org/" },
     ];
 
