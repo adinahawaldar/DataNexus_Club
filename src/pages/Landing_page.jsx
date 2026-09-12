@@ -7,9 +7,11 @@ import TeamPreview from '../components/TeamPreview';
 import JoinCommunity from '../components/JoinCommunity';
 import Footer from '../components/Footer';
 import SplashScreen from '../components/SplashScreen';
+import { ThemeProvider, useTheme } from '../context/ThemeContext';
 
-export default function LandingPage() {
+function MainLayout() {
   const [isSplashDone, setIsSplashDone] = useState(false);
+  const { isDark } = useTheme();
 
   useEffect(() => {
     // Disable browser automatic scroll restoration on page reload
@@ -52,7 +54,13 @@ export default function LandingPage() {
   };
 
   return (
-    <main className="relative w-full min-h-screen">
+    <main
+      className={`relative w-full min-h-screen transition-colors duration-500 overflow-hidden ${
+        isDark
+          ? 'bg-[#07050e] text-white selection:bg-purple-500 selection:text-white'
+          : 'bg-white text-zinc-900 selection:bg-purple-200 selection:text-purple-950'
+      }`}
+    >
       <SplashScreen onStartFade={handleSplashDone} />
       <Hero isSplashDone={isSplashDone} />
       <Events />
@@ -61,5 +69,13 @@ export default function LandingPage() {
       <JoinCommunity />
       <Footer />
     </main>
+  );
+}
+
+export default function LandingPage() {
+  return (
+    <ThemeProvider>
+      <MainLayout />
+    </ThemeProvider>
   );
 }

@@ -1,30 +1,61 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView, animate } from 'framer-motion';
+import { useTheme } from '../context/ThemeContext';
 
 // Sub-component for individual Flip Clock Card Box
-function FlipClockCard({ value, label }) {
+function FlipClockCard({ value, label, isDark }) {
   const formattedVal = String(value).padStart(2, '0');
 
   return (
     <div className="flex flex-col items-center group flex-shrink-0">
       {/* Flip Clock Card Box */}
-      <div className="relative w-14 h-18 sm:w-20 sm:h-24 md:w-24 md:h-26 lg:w-28 lg:h-30 bg-white border border-zinc-200/90 rounded-lg sm:rounded-xl shadow-md flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:shadow-lg group-hover:scale-[1.03]">
+      <div
+        className={`relative w-20 h-24 sm:w-26 sm:h-32 md:w-32 md:h-38 lg:w-38 lg:h-44 rounded-xl sm:rounded-2xl flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:scale-[1.03] ${
+          isDark
+            ? 'bg-[#18132e] border border-purple-400/18 shadow-lg group-hover:border-purple-400/35'
+            : 'bg-white border border-purple-200/50 shadow-md group-hover:shadow-lg'
+        }`}
+      >
         {/* Top Half Highlight Surface */}
-        <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white via-zinc-50/80 to-zinc-100/60 pointer-events-none border-b border-zinc-200/60" />
+        <div
+          className={`absolute top-0 inset-x-0 h-1/2 pointer-events-none border-b ${
+            isDark
+              ? 'bg-gradient-to-b from-white/5 to-transparent border-purple-500/15'
+              : 'bg-gradient-to-b from-white via-zinc-50/80 to-zinc-100/60 border-zinc-200/60'
+          }`}
+        />
 
         {/* Bottom Half Shadow Surface */}
-        <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-b from-zinc-100/90 via-zinc-100 to-zinc-200/70 pointer-events-none" />
+        <div
+          className={`absolute bottom-0 inset-x-0 h-1/2 pointer-events-none ${
+            isDark
+              ? 'bg-gradient-to-b from-black/40 to-black/70'
+              : 'bg-gradient-to-b from-zinc-100/90 via-zinc-100 to-zinc-200/70'
+          }`}
+        />
 
         {/* Center Split Horizontal Line */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1.5px] bg-zinc-300/90 z-20 shadow-xs" />
+        <div
+          className={`absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1.5px] z-20 ${
+            isDark ? 'bg-purple-500/20' : 'bg-zinc-300/90 shadow-xs'
+          }`}
+        />
 
         {/* Left Side Hinge Notch */}
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 bg-zinc-300/90 rounded-r-sm border-r border-y border-zinc-400/40 z-30 shadow-inner" />
+        <div
+          className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 rounded-r-sm z-30 ${
+            isDark ? 'bg-purple-900/40 border-r border-y border-purple-500/25' : 'bg-zinc-300/90 border-r border-y border-zinc-400/40 shadow-inner'
+          }`}
+        />
 
         {/* Right Side Hinge Notch */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 bg-zinc-300/90 rounded-l-sm border-l border-y border-zinc-400/40 z-30 shadow-inner" />
+        <div
+          className={`absolute right-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 rounded-l-sm z-30 ${
+            isDark ? 'bg-purple-900/40 border-l border-y border-purple-500/25' : 'bg-zinc-300/90 border-l border-y border-zinc-400/40 shadow-inner'
+          }`}
+        />
 
-        {/* Number in Purple font with Framer Motion flip animation */}
+        {/* Number with Framer Motion flip animation */}
         <AnimatePresence mode="popLayout">
           <motion.span
             key={formattedVal}
@@ -32,7 +63,9 @@ function FlipClockCard({ value, label }) {
             animate={{ rotateX: 0, opacity: 1 }}
             exit={{ rotateX: 80, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg sm:text-3xl md:text-4xl lg:text-5xl font-black font-mono tracking-tight text-[#1a073f] z-10 select-none drop-shadow-xs"
+            className={`text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-mono tracking-tight z-10 select-none drop-shadow-xs ${
+              isDark ? 'text-[#fffdfa]' : 'text-zinc-800'
+            }`}
           >
             {formattedVal}
           </motion.span>
@@ -40,7 +73,11 @@ function FlipClockCard({ value, label }) {
       </div>
 
       {/* Label Text Underneath */}
-      <span className="text-[8px] sm:text-[10px] md:text-xs font-extrabold text-purple-600 tracking-[0.15em] sm:tracking-[0.22em] uppercase mt-1.5 sm:mt-2 font-poppins">
+      <span
+        className={`text-[10px] sm:text-xs md:text-sm font-extrabold tracking-[0.18em] sm:tracking-[0.25em] uppercase mt-2.5 sm:mt-3.5 font-poppins ${
+          isDark ? 'text-[#e2e8f0]' : 'text-zinc-600'
+        }`}
+      >
         {label}
       </span>
     </div>
@@ -48,7 +85,7 @@ function FlipClockCard({ value, label }) {
 }
 
 // Sub-component for Nexathon Flip Clock Timer Banner integrated inside Events section
-function NexathonFlipClockTimer({ onRegisterClick }) {
+function NexathonFlipClockTimer({ onRegisterClick, isDark }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.15, once: false });
 
@@ -135,7 +172,13 @@ function NexathonFlipClockTimer({ onRegisterClick }) {
   const displaySec = isIntroDone ? liveSeconds : animatingSec;
 
   return (
-    <div className="w-full bg-gradient-to-r from-purple-50/70 via-white to-purple-50/70 border border-purple-200/80 rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8 shadow-lg relative overflow-hidden select-none mb-12 sm:mb-16">
+    <div
+      className={`w-full rounded-2xl sm:rounded-3xl py-14 sm:py-18 md:py-20 px-6 sm:px-12 md:px-16 min-h-[280px] sm:min-h-[340px] md:min-h-[380px] flex items-center relative overflow-hidden select-none mb-14 sm:mb-20 transition-colors duration-500 ${
+        isDark
+          ? 'bg-gradient-to-r from-[#0d091e] via-[#120e29] to-[#0d091e] border border-purple-500/15 shadow-2xl'
+          : 'bg-gradient-to-r from-purple-50/70 via-white to-purple-50/70 border border-purple-200/50 shadow-lg'
+      }`}
+    >
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 15 }}
@@ -146,35 +189,53 @@ function NexathonFlipClockTimer({ onRegisterClick }) {
       >
         {/* Left Side: Flagship Tag + Title + Description */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-lg lg:max-w-xl">
-          <div className="inline-flex items-center gap-2 bg-purple-100/90 border border-purple-200 px-3.5 py-1 rounded-full mb-2 shadow-2xs">
-            <span className="w-2 h-2 rounded-full bg-purple-600 animate-pulse" />
-            <span className="text-[10px] sm:text-xs font-extrabold tracking-widest text-[#1a073f] uppercase font-poppins">
+          <div
+            className={`inline-flex items-center gap-2 px-3.5 py-1 rounded-full mb-2 shadow-2xs ${
+              isDark
+                ? 'bg-purple-950/80 border border-purple-500/40'
+                : 'bg-purple-100/90 border border-purple-200'
+            }`}
+          >
+            <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
+            <span
+              className={`text-[10px] sm:text-xs font-extrabold tracking-widest uppercase font-poppins ${
+                isDark ? 'text-purple-300' : 'text-[#1a073f]'
+              }`}
+            >
               FLAGSHIP HACKATHON • OCT 15-16, 2026
             </span>
           </div>
 
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1a073f] tracking-tight leading-tight font-poppins">
+          <h3
+            className={`text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight font-poppins ${
+              isDark ? 'text-white' : 'text-[#1a073f]'
+            }`}
+          >
             NEXATHON '26
           </h3>
 
-          <p className="text-[#1a073f]/90 text-xs sm:text-sm font-medium mt-1.5 leading-relaxed font-poppins">
+          <p
+            className={`text-xs sm:text-sm font-medium mt-1.5 leading-relaxed font-poppins ${
+              isDark ? 'text-[#e2e8f0]' : 'text-zinc-600'
+            }`}
+          >
             24 Hours of AI & Data Science. Build real-world solutions, compete for prize pools, and learn directly from industry mentors.
           </p>
         </div>
 
         {/* Center: 4 Flip Clock Cards */}
         <div className="flex items-center justify-center gap-2 sm:gap-3 lg:gap-4 flex-shrink-0">
-          <FlipClockCard value={daysDisplay} label="DAYS" />
-          <FlipClockCard value={hoursDisplay} label="HOURS" />
-          <FlipClockCard value={minsDisplay} label="MINUTES" />
-          <FlipClockCard value={displaySec} label="SECONDS" />
+          <FlipClockCard value={daysDisplay} label="DAYS" isDark={isDark} />
+          <FlipClockCard value={hoursDisplay} label="HOURS" isDark={isDark} />
+          <FlipClockCard value={minsDisplay} label="MINUTES" isDark={isDark} />
+          <FlipClockCard value={displaySec} label="SECONDS" isDark={isDark} />
         </div>
 
         {/* Right Side: Register CTA Button */}
         <div className="flex flex-col items-center md:items-end flex-shrink-0">
           <button
             onClick={onRegisterClick}
-            className="bg-[#1a073f] hover:bg-purple-900 text-white font-bold text-xs sm:text-sm lg:text-base px-6 sm:px-8 py-3 sm:py-3.5 rounded-full shadow-lg shadow-purple-950/20 hover:shadow-purple-950/30 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-2 font-poppins"
+            className="font-bold text-xs sm:text-sm lg:text-base px-6 sm:px-8 py-3 sm:py-3.5 rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-2 font-poppins bg-gradient-to-r from-[#5b21b6] via-[#9333ea] to-[#5b21b6] backdrop-blur-xl border border-white/30 text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.45)] hover:brightness-115"
           >
             <span>Register Now</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -192,6 +253,8 @@ export default function Events() {
   const [isNexathonModalOpen, setIsNexathonModalOpen] = useState(false);
   const [activeModalTab, setActiveModalTab] = useState('overview');
   const [registered, setRegistered] = useState(false);
+  const { isDark } = useTheme();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -254,10 +317,16 @@ export default function Events() {
   };
 
   return (
-    <section id="events" className="relative w-full pt-8 sm:pt-12 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 bg-white text-zinc-900 select-none overflow-hidden">
+    <section
+      id="events"
+      className={`relative w-full pt-8 sm:pt-12 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 select-none overflow-hidden transition-colors duration-500 ${
+        isDark ? 'bg-[#07050e] text-white' : 'bg-white text-zinc-900'
+      }`}
+    >
       <div className="w-full max-w-[1440px] mx-auto">
         {/* Integrated Nexathon Countdown Flip Clock Banner */}
         <NexathonFlipClockTimer
+          isDark={isDark}
           onRegisterClick={() => {
             setActiveModalTab('register');
             setIsNexathonModalOpen(true);
@@ -273,14 +342,24 @@ export default function Events() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.05 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-3xl sm:text-4xl lg:text-[3.2rem] font-sans font-bold text-[#1a073f] tracking-tight leading-tight"
+              className={`text-3xl sm:text-4xl lg:text-[3.2rem] font-sans font-bold tracking-tight leading-tight ${
+                isDark ? 'text-white' : 'text-[#1a073f]'
+              }`}
             >
               Shape the Data Science Future.{' '}
-              <span className="font-script text-purple-600 text-3xl sm:text-4xl lg:text-[3.2rem] font-normal italic inline-block ml-1">
+              <span
+                className={`font-script text-3xl sm:text-4xl lg:text-[3.2rem] font-normal italic inline-block ml-1 ${
+                  isDark ? 'text-purple-400' : 'text-purple-600'
+                }`}
+              >
                 Build with us:
               </span>
             </motion.h2>
-            <p className="text-zinc-600 font-medium text-xs sm:text-sm lg:text-base mt-2 leading-relaxed">
+            <p
+              className={`font-medium text-xs sm:text-sm lg:text-base mt-2 leading-relaxed ${
+                isDark ? 'text-zinc-400' : 'text-zinc-600'
+              }`}
+            >
               Explore our upcoming hackathons, hands-on bootcamps, and technical speaker sessions.
             </p>
           </div>
@@ -292,11 +371,11 @@ export default function Events() {
                 const joinElem = document.getElementById('join');
                 if (joinElem) joinElem.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="bg-[#1a073f] text-white rounded-full px-6 py-3 text-xs sm:text-sm font-semibold shadow-md hover:bg-purple-900 active:scale-95 transition-all duration-200 cursor-pointer"
+              className="rounded-full px-6 py-3 text-xs sm:text-sm font-semibold active:scale-95 transition-all duration-300 cursor-pointer bg-gradient-to-r from-[#5b21b6] via-[#9333ea] to-[#5b21b6] backdrop-blur-xl border border-white/30 text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.45)] hover:brightness-115 hover:scale-105"
             >
               See All Events
             </button>
-            <div className="w-10 h-10 rounded-full bg-[#1a073f] text-white flex items-center justify-center shadow-md hover:bg-purple-900 transition-all">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer bg-gradient-to-r from-[#5b21b6] via-[#9333ea] to-[#5b21b6] backdrop-blur-xl border border-white/30 text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.45)] hover:brightness-115 hover:scale-105">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="4" y1="12" x2="12" y2="4" />
                 <polyline points="5,4 12,4 12,11" />
@@ -315,7 +394,9 @@ export default function Events() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: false, amount: 0.05 }}
               transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="relative group rounded-2xl overflow-hidden h-[320px] sm:h-[360px] lg:h-[400px] w-full p-5 sm:p-6 flex flex-col justify-between border border-zinc-200/80 shadow-xs hover:shadow-2xl transition-all duration-500 cursor-pointer bg-zinc-950"
+              className={`relative group rounded-2xl overflow-hidden h-[320px] sm:h-[360px] lg:h-[400px] w-full p-5 sm:p-6 flex flex-col justify-between border shadow-xs hover:shadow-2xl transition-all duration-500 cursor-pointer bg-zinc-950 ${
+                isDark ? 'border-purple-500/20' : 'border-zinc-200/80'
+              }`}
             >
               {/* Background Image with Zoom */}
               <div
@@ -328,7 +409,7 @@ export default function Events() {
 
               {/* Top-Right Floating Circle Arrow Button */}
               <div className="relative z-20 flex justify-end w-full">
-                <div className="w-10 h-10 rounded-full bg-white/95 text-zinc-950 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-[#1a073f] group-hover:text-white transition-all duration-300">
+                <div className="w-10 h-10 rounded-full bg-white/95 text-zinc-950 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
                   <svg
                     width="16"
                     height="16"
@@ -435,7 +516,7 @@ export default function Events() {
 
                   <button
                     onClick={() => setActiveModalTab('register')}
-                    className="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3.5 rounded-full shadow-lg transition-all"
+                    className="w-full bg-gradient-to-r from-[#5b21b6] via-[#9333ea] to-[#5b21b6] backdrop-blur-xl border border-white/30 text-white font-bold py-3.5 rounded-full shadow-[inset_0_1px_2px_rgba(255,255,255,0.45)] hover:brightness-115 active:scale-95 transition-all duration-300 cursor-pointer"
                   >
                     Proceed to Registration
                   </button>
@@ -458,7 +539,7 @@ export default function Events() {
                           setRegistered(false);
                           setIsNexathonModalOpen(false);
                         }}
-                        className="bg-purple-600 hover:bg-purple-500 text-white font-bold px-8 py-3 rounded-full shadow-lg"
+                        className="bg-gradient-to-r from-[#5b21b6] via-[#9333ea] to-[#5b21b6] backdrop-blur-xl border border-white/30 text-white font-bold px-8 py-3 rounded-full shadow-[inset_0_1px_2px_rgba(255,255,255,0.45)] hover:brightness-115 active:scale-95 transition-all duration-300 cursor-pointer"
                       >
                         Done
                       </button>
@@ -529,7 +610,7 @@ export default function Events() {
 
                       <button
                         type="submit"
-                        className="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3.5 rounded-full shadow-lg transition-all mt-4"
+                        className="w-full bg-gradient-to-r from-[#5b21b6] via-[#9333ea] to-[#5b21b6] backdrop-blur-xl border border-white/30 text-white font-bold py-3.5 rounded-full shadow-[inset_0_1px_2px_rgba(255,255,255,0.45)] hover:brightness-115 active:scale-95 transition-all duration-300 cursor-pointer mt-4"
                       >
                         Submit Nexathon Registration
                       </button>
@@ -557,11 +638,17 @@ export default function Events() {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl border border-zinc-100 text-left select-text"
+              className={`rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl border text-left select-text ${
+                isDark
+                  ? 'bg-[#0f0b24] border-purple-500/30 text-white'
+                  : 'bg-white border-zinc-100 text-zinc-900'
+              }`}
             >
               <button
                 onClick={() => setSelectedEvent(null)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-zinc-100 text-zinc-600 hover:bg-zinc-200 transition-colors"
+                className={`absolute top-4 right-4 p-2 rounded-full transition-colors ${
+                  isDark ? 'bg-white/10 text-zinc-300 hover:bg-white/20' : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
+                }`}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="18" y1="6" x2="6" y2="18" />
@@ -569,23 +656,35 @@ export default function Events() {
                 </svg>
               </button>
 
-              <div className="inline-block bg-purple-100 text-purple-950 font-semibold text-xs px-3.5 py-1.5 rounded-full mb-3 border border-purple-200">
+              <div
+                className={`inline-block font-semibold text-xs px-3.5 py-1.5 rounded-full mb-3 border ${
+                  isDark ? 'bg-purple-950/80 text-purple-300 border-purple-500/30' : 'bg-purple-100 text-purple-950 border-purple-200'
+                }`}
+              >
                 {selectedEvent.badge}
               </div>
 
-              <h3 className="text-2xl font-bold text-[#1a073f] mb-2">
+              <h3 className={`text-2xl font-bold mb-2 ${isDark ? 'text-white' : 'text-[#1a073f]'}`}>
                 {selectedEvent.title}
               </h3>
 
-              <p className="text-zinc-600 text-sm leading-relaxed mb-6">
+              <p className={`text-sm leading-relaxed mb-6 ${isDark ? 'text-zinc-300' : 'text-zinc-600'}`}>
                 {selectedEvent.description}
               </p>
 
-              <div className="bg-purple-50/80 border border-purple-100 rounded-2xl p-4 mb-6">
-                <h4 className="font-semibold text-purple-950 text-xs uppercase tracking-wider mb-1">
+              <div
+                className={`rounded-2xl p-4 mb-6 border ${
+                  isDark ? 'bg-purple-950/40 border-purple-500/30' : 'bg-purple-50/80 border-purple-100'
+                }`}
+              >
+                <h4
+                  className={`font-semibold text-xs uppercase tracking-wider mb-1 ${
+                    isDark ? 'text-purple-300' : 'text-purple-950'
+                  }`}
+                >
                   Event Highlights
                 </h4>
-                <ul className="text-xs text-purple-900 space-y-1 list-disc list-inside">
+                <ul className={`text-xs space-y-1 list-disc list-inside ${isDark ? 'text-purple-200/90' : 'text-purple-900'}`}>
                   <li>Open to all students & tech enthusiasts</li>
                   <li>Certificate of participation & networking opportunities</li>
                   <li>Mentorship from senior AI & Data Science members</li>
@@ -598,7 +697,7 @@ export default function Events() {
                     alert(`Thank you for registering for "${selectedEvent.title}"! A confirmation has been logged.`);
                     setSelectedEvent(null);
                   }}
-                  className="w-full bg-[#1a073f] text-white rounded-full py-3.5 text-sm font-semibold shadow-lg hover:bg-purple-950 transition-colors"
+                  className="w-full rounded-full py-3.5 text-sm font-semibold active:scale-95 transition-all duration-300 cursor-pointer bg-gradient-to-r from-[#5b21b6] via-[#9333ea] to-[#5b21b6] backdrop-blur-xl border border-white/30 text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.45)] hover:brightness-115"
                 >
                   Confirm Registration
                 </button>
