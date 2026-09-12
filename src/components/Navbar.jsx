@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 
-export default function Navbar({ variant = "light" }) {
+export default function Navbar({ variant }) {
   const [activeTab, setActiveTab] = useState('Home');
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark: isDarkContext, toggleTheme } = useTheme();
+
+  const isDark = variant ? variant === "dark" : isDarkContext;
 
   const navItems = [
     { id: 'Home', label: 'Home' },
@@ -53,8 +55,6 @@ export default function Navbar({ variant = "light" }) {
       }
     }
   };
-
-  const isDark = variant === "dark";
 
   return (
     <motion.header

@@ -75,8 +75,8 @@ export default function JoinCommunity() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className={`w-full rounded-[32px] p-8 sm:p-12 text-center flex flex-col items-center backdrop-blur-2xl transition-colors ${
             isDark
-              ? 'bg-[#120e26]/90 border border-purple-500/30 shadow-[0_25px_60px_rgba(0,0,0,0.5)]'
-              : 'bg-white/95 border border-white/90 shadow-[0_25px_60px_rgba(26,7,63,0.18)]'
+              ? 'bg-[#120e26]/90 border border-purple-400/20 shadow-[0_25px_60px_rgba(0,0,0,0.5)]'
+              : 'bg-white/95 border border-purple-200/50 shadow-[0_25px_60px_rgba(26,7,63,0.18)]'
           }`}
         >
           {/* Headline */}
@@ -115,7 +115,7 @@ export default function JoinCommunity() {
                     placeholder="Enter your college email address..."
                     className={`w-full rounded-full px-5 py-3.5 text-sm transition-all shadow-sm focus:outline-none ${
                       isDark
-                        ? 'bg-[#0a0716] border border-purple-500/30 text-white placeholder-zinc-500 focus:border-purple-400'
+                        ? 'bg-[#0a0716] border border-purple-400/20 text-white placeholder-zinc-500 focus:border-purple-400/60'
                         : 'bg-white border border-purple-200 text-zinc-900 placeholder-zinc-400 focus:border-purple-600 focus:ring-2 focus:ring-purple-200'
                     }`}
                   />
