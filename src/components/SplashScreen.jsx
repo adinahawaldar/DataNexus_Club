@@ -32,7 +32,7 @@ export default function SplashScreen({ onStartFade, onFinish }) {
 
   return (
     <div
-      className={`fixed inset-0 w-full h-full min-h-screen h-[100dvh] bg-white z-[999999] flex items-center justify-center p-2 sm:p-8 box-border select-none overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      className={`fixed inset-0 w-full h-full min-h-screen h-[100dvh] bg-[#07050e] z-[999999] flex items-center justify-center p-2 sm:p-8 box-border select-none overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         isFading ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100 pointer-events-auto'
       }`}
     >
@@ -48,17 +48,17 @@ export default function SplashScreen({ onStartFade, onFinish }) {
           }}
         >
           <span
-            className="font-sans font-black text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] tracking-tight uppercase leading-none text-[#1a073f] select-none pr-6 sm:pr-8"
+            className="font-sans font-black text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] tracking-tight uppercase leading-none text-white select-none pr-6 sm:pr-8"
             style={{
-              filter: 'drop-shadow(0px 8px 24px rgba(168, 85, 247, 0.25))',
+              filter: 'drop-shadow(0px 0px 35px rgba(168, 85, 247, 0.45))',
             }}
           >
             {marqueeText}
           </span>
           <span
-            className="font-sans font-black text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] tracking-tight uppercase leading-none text-[#1a073f] select-none pr-6 sm:pr-8"
+            className="font-sans font-black text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] tracking-tight uppercase leading-none text-white select-none pr-6 sm:pr-8"
             style={{
-              filter: 'drop-shadow(0px 8px 24px rgba(168, 85, 247, 0.25))',
+              filter: 'drop-shadow(0px 0px 35px rgba(168, 85, 247, 0.45))',
             }}
           >
             {marqueeText}

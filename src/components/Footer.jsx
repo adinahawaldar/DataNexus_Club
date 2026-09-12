@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Footer() {
+  const { isDark } = useTheme();
+
   const navLinks = [
     { label: 'Home', href: '#' },
     { label: 'Teams', href: '#teams' },
@@ -46,34 +49,51 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative w-full py-12 sm:py-16 px-4 sm:px-8 lg:px-12 bg-white text-zinc-900 select-none overflow-hidden">
+    <footer
+      className={`relative w-full py-12 sm:py-16 px-4 sm:px-8 lg:px-12 select-none overflow-hidden transition-colors duration-500 ${
+        isDark ? 'bg-[#07050e] text-white' : 'bg-white text-zinc-900'
+      }`}
+    >
       {/* Subtle Atmospheric Backdrop Tint */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-purple-50/30 to-purple-100/50 pointer-events-none" />
+      <div
+        className={`absolute inset-0 pointer-events-none ${
+          isDark
+            ? 'bg-gradient-to-b from-[#07050e] via-[#0b0818] to-[#0d091f]'
+            : 'bg-gradient-to-b from-white via-purple-50/30 to-purple-100/50'
+        }`}
+      />
 
-      {/* Floating Box Container matching reference screenshot */}
+      {/* Floating Box Container */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.05 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 max-w-[1440px] mx-auto bg-white rounded-[32px] sm:rounded-[40px] p-7 sm:p-12 lg:p-14 shadow-[0_30px_80px_rgba(26,7,63,0.14)]"
+        className={`relative z-10 max-w-[1440px] mx-auto rounded-[32px] sm:rounded-[40px] p-7 sm:p-12 lg:p-14 transition-colors ${
+          isDark
+            ? 'bg-[#0f0b20] border border-purple-500/12 shadow-[0_20px_50px_rgba(0,0,0,0.5)] text-white'
+            : 'bg-white border border-purple-100/60 shadow-[0_30px_80px_rgba(26,7,63,0.12)] text-zinc-900'
+        }`}
       >
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
-          
-          {/* Left Section: Logo, Society for Data Science, AIKTC Campus & Social Icons */}
+          {/* Left Section */}
           <div className="flex flex-col items-start space-y-4 max-w-xl">
             {/* Brand Logo */}
-            <a href="#" className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-[#1a073f] flex items-center gap-2">
-             
+            <a
+              href="#"
+              className={`font-sans text-2xl sm:text-3xl font-bold tracking-tight flex items-center gap-2 ${
+                isDark ? 'text-white' : 'text-[#1a073f]'
+              }`}
+            >
               DataNexus Club
             </a>
 
             {/* Campus & Society Details */}
             <div className="space-y-1 text-left">
-              <p className="text-zinc-900 font-bold text-base sm:text-lg tracking-tight">
+              <p className={`font-bold text-base sm:text-lg tracking-tight ${isDark ? 'text-zinc-100' : 'text-zinc-900'}`}>
                 Society for Data Science (S4DS) Student Chapter
               </p>
-              <p className="text-zinc-600 font-medium text-xs sm:text-sm">
+              <p className={`font-medium text-xs sm:text-sm ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 Anjuman-I-Islam's Kalsekar Technical Campus (AIKTC)
               </p>
             </div>
@@ -87,7 +107,11 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={handle.name}
-                  className="w-10 h-10 rounded-full bg-neutral-100 text-[#1a073f] flex items-center justify-center shadow-sm hover:bg-[#1a073f] hover:text-white transition-all duration-300 hover:scale-110"
+                  className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 ${
+                    isDark
+                      ? 'bg-[#1b1535] text-purple-300 border border-purple-500/15 hover:bg-purple-600 hover:text-white shadow-md'
+                      : 'bg-neutral-100 text-[#1a073f] border border-purple-100/50 shadow-sm hover:bg-[#1a073f] hover:text-white'
+                  }`}
                 >
                   {handle.icon}
                 </a>
@@ -103,17 +127,22 @@ export default function Footer() {
                 href={link.href}
                 target={link.href.startsWith('http') ? '_blank' : '_self'}
                 rel={link.href.startsWith('http') ? 'noopener noreferrer' : ''}
-                className="text-sm sm:text-base font-semibold text-purple-600 hover:text-[#1a073f] transition-colors duration-200 font-poppins"
+                className={`text-sm sm:text-base font-semibold transition-colors duration-200 font-poppins ${
+                  isDark ? 'text-purple-300 hover:text-white' : 'text-purple-600 hover:text-[#1a073f]'
+                }`}
               >
                 {link.label}
               </a>
             ))}
           </div>
-
         </div>
 
         {/* Bottom Inner Copyright Line */}
-        <div className="pt-8 mt-10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500 font-medium">
+        <div
+          className={`pt-8 mt-10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-medium ${
+            isDark ? 'text-zinc-500 border-t border-purple-500/10' : 'text-zinc-500 border-t border-zinc-200/40'
+          }`}
+        >
           <p>© 2026 DataNexus Club • AIKTC. All rights reserved.</p>
           <p>Built with ❤️ by DataNexus Student Developers</p>
         </div>
