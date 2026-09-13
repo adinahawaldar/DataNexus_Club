@@ -173,7 +173,7 @@ function NexathonFlipClockTimer({ onRegisterClick, isDark }) {
 
   return (
     <div
-      className={`w-full rounded-2xl sm:rounded-3xl py-14 sm:py-18 md:py-20 px-6 sm:px-12 md:px-16 min-h-[280px] sm:min-h-[340px] md:min-h-[380px] flex items-center relative overflow-hidden select-none mb-14 sm:mb-20 transition-colors duration-500 ${
+      className={`w-full rounded-2xl sm:rounded-3xl py-14 sm:py-18 md:py-20 px-6 sm:px-12 md:px-16 min-h-[280px] sm:min-h-[340px] md:min-h-[380px] flex items-center relative overflow-hidden select-none mb-24 sm:mb-36 md:mb-44 transition-colors duration-500 ${
         isDark
           ? 'bg-gradient-to-r from-[#0d091e] via-[#120e29] to-[#0d091e] border border-purple-500/15 shadow-2xl'
           : 'bg-gradient-to-r from-purple-50/70 via-white to-purple-50/70 border border-purple-200/50 shadow-lg'
@@ -320,7 +320,7 @@ export default function Events() {
     <section
       id="events"
       className={`relative w-full pt-8 sm:pt-12 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 select-none overflow-hidden transition-colors duration-500 ${
-        isDark ? 'bg-[#07050e] text-white' : 'bg-white text-zinc-900'
+        isDark ? 'bg-[#07050e] text-white' : 'bg-[#faf8fd] text-zinc-900'
       }`}
     >
       <div className="w-full max-w-[1440px] mx-auto">

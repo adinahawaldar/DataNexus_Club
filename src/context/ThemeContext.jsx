@@ -3,13 +3,9 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem('dnc_theme');
-    return saved ? saved === 'dark' : true;
-  });
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem('dnc_theme', isDark ? 'dark' : 'light');
     if (isDark) {
       document.documentElement.classList.add('dark');
     } else {

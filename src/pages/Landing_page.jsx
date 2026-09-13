@@ -58,7 +58,7 @@ function MainLayout() {
       className={`relative w-full min-h-screen transition-colors duration-500 overflow-hidden ${
         isDark
           ? 'bg-[#07050e] text-white selection:bg-purple-500 selection:text-white'
-          : 'bg-white text-zinc-900 selection:bg-purple-200 selection:text-purple-950'
+          : 'bg-[#faf8fd] text-zinc-900 selection:bg-purple-200 selection:text-purple-950'
       }`}
     >
       <SplashScreen onStartFade={handleSplashDone} />

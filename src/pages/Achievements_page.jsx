@@ -34,7 +34,7 @@ function AchievementsPage() {
         <div className="min-h-screen bg-[#0b0813] text-white">
 
             {/* NAVBAR */}
-            <Navbar variant="dark" />
+            <Navbar />
 
             {/* HERO */}
             <AchievementsHero />

@@ -83,7 +83,7 @@ export default function TeamPreview() {
   return (
     <section
       id="teams"
-      className={`relative w-full py-20 sm:py-28 select-none overflow-hidden transition-colors duration-500 ${isDark ? 'bg-[#07050e] text-white' : 'bg-white text-zinc-900'
+      className={`relative w-full py-20 sm:py-28 select-none overflow-hidden transition-colors duration-500 ${isDark ? 'bg-[#07050e] text-white' : 'bg-[#faf8fd] text-zinc-900'
         }`}
     >
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto text-center flex flex-col items-center">

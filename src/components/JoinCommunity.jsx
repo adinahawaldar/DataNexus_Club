@@ -29,7 +29,7 @@ export default function JoinCommunity() {
     <section
       id="join"
       className={`relative w-full pt-32 sm:pt-44 pb-24 sm:pb-32 select-none overflow-hidden transition-colors duration-500 ${
-        isDark ? 'bg-[#07050e] text-white' : 'bg-white text-zinc-900'
+        isDark ? 'bg-[#07050e] text-white' : 'bg-[#faf8fd] text-zinc-900'
       }`}
     >
       {/* Highly Visible Event Photo Collage Background */}
@@ -52,7 +52,7 @@ export default function JoinCommunity() {
           className={`absolute top-0 inset-x-0 h-28 sm:h-40 pointer-events-none z-10 bg-gradient-to-b ${
             isDark
               ? 'from-[#07050e] via-[#07050e]/70 to-transparent'
-              : 'from-white via-white/60 to-transparent'
+              : 'from-[#faf8fd] via-[#faf8fd]/60 to-transparent'
           }`}
         />
         {/* Seamless Blend: Bottom Fade */}
@@ -60,7 +60,7 @@ export default function JoinCommunity() {
           className={`absolute bottom-0 inset-x-0 h-28 sm:h-40 pointer-events-none z-10 bg-gradient-to-t ${
             isDark
               ? 'from-[#07050e] via-[#07050e]/70 to-transparent'
-              : 'from-white via-white/60 to-transparent'
+              : 'from-[#faf8fd] via-[#faf8fd]/60 to-transparent'
           }`}
         />
       </div>
