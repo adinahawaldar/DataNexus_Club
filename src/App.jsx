@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LandingPage from "./pages/Landing_page";
 import AchievementsPage from "./pages/Achievements_page";
+import TeamPage from "./pages/Team_page";
 
 function App() {
   const getPath = () =>
@@ -23,9 +24,14 @@ function App() {
   }, []);
 
   const isAchievements = currentPath.includes("achievements");
+  const isTeams = currentPath.includes("teams");
 
   if (isAchievements) {
     return <AchievementsPage />;
+  }
+
+  if (isTeams) {
+    return <TeamPage />;
   }
 
   return <LandingPage />;
