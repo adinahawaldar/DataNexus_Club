@@ -202,12 +202,14 @@ export default function TeamPreview() {
         </div>
 
         {/* "Meet the Team ↗" Title */}
-        <motion.div
+        <motion.a
+          href="#/teams"
+          aria-label="Meet the DataNexus team"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.05 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-14 sm:mt-20 group flex items-center justify-center w-full max-w-full px-2 sm:px-4 mx-auto select-none overflow-hidden"
+          className="mt-14 sm:mt-20 group flex items-center justify-center w-full max-w-full px-2 sm:px-4 mx-auto select-none overflow-hidden cursor-pointer"
         >
           <h2
             className={`font-sans font-bold text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[7.5rem] tracking-tight leading-none whitespace-nowrap flex items-center justify-center gap-2 sm:gap-4 w-full transition-colors ${isDark ? 'text-white' : 'text-[#1a073f]'
@@ -228,7 +230,7 @@ export default function TeamPreview() {
               <polyline points="7,7 17,7 17,17" />
             </svg>
           </h2>
-        </motion.div>
+        </motion.a>
       </div>
     </section>
   );

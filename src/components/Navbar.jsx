@@ -3,8 +3,25 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import dncLogo from '../assets/DNC_Logo.png';
 
+const getCurrentPath = () =>
+  (window.location.pathname + window.location.hash).toLowerCase();
+
+function scrollToLandingSection(sectionId) {
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      document.getElementById(sectionId)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    });
+  });
+}
+
 export default function Navbar({ variant }) {
-  const [activeTab, setActiveTab] = useState('Home');
+  const [activeTab, setActiveTab] = useState(() => {
+    const currentPath = getCurrentPath();
+    return currentPath.includes('teams') ? 'Teams' : currentPath.includes('achievements') ? 'Achievements' : 'Home';
+  });
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { isDark: isDarkContext, toggleTheme } = useTheme();
 
@@ -21,9 +38,11 @@ export default function Navbar({ variant }) {
     setActiveTab(id);
     setIsMobileOpen(false);
 
+    const currentPath = getCurrentPath();
+    const isCurrentPageTeams = currentPath.includes('teams');
     const isCurrentPageAchievements =
-      window.location.pathname.toLowerCase().includes("achievements") ||
-      window.location.hash.toLowerCase().includes("achievements");
+      currentPath.includes("achievements");
+    const isLandingPage = !isCurrentPageTeams && !isCurrentPageAchievements;
 
     // Achievements page navigation
     if (id === "Achievements") {
@@ -35,10 +54,18 @@ export default function Navbar({ variant }) {
       return;
     }
 
+    // Navigate to the landing page section when leaving a secondary page.
+    if (["Teams", "Events"].includes(id) && !isLandingPage) {
+      window.location.hash = "#/";
+      scrollToLandingSection(id.toLowerCase());
+      return;
+    }
+
     // Home navigation
     if (id === "Home") {
-      if (isCurrentPageAchievements) {
+      if (!isLandingPage) {
         window.location.hash = "#/";
+        window.requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "smooth" }));
       } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
@@ -47,11 +74,6 @@ export default function Navbar({ variant }) {
 
     // Teams / Events sections navigation
     const targetId = id.toLowerCase();
-    if (isCurrentPageAchievements) {
-      window.location.hash = `#/${targetId}`;
-      return;
-    }
-
     const elem = document.getElementById(targetId);
     if (elem) {
       elem.scrollIntoView({
@@ -59,7 +81,8 @@ export default function Navbar({ variant }) {
         block: "start",
       });
     } else {
-      window.location.hash = `#/${targetId}`;
+      window.location.hash = "#/";
+      scrollToLandingSection(targetId);
     }
   };
 
