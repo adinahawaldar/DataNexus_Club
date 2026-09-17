@@ -1,10 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, animate, useInView } from 'framer-motion';
+import { motion, AnimatePresence, animate, useInView } from 'framer-motion';
 
-/* =========================================================
-   FEATURED EVENT DATA
-   ========================================================= */
-
+/* Featured event content */
 const featuredEvent = {
   title: 'PREPIT',
   date: '18 APRIL 2026',
@@ -16,10 +13,7 @@ const featuredEvent = {
 };
 
 
-/* =========================================================
-   ANIMATED NUMBER
-   ========================================================= */
-
+/* Animates numeric values when they enter the viewport */
 function AnimatedNumber({ value }) {
   const ref = useRef(null);
 
@@ -60,89 +54,164 @@ function AnimatedNumber({ value }) {
 }
 
 
-/* =========================================================
-   FEATURED EVENT COMPONENT
-   ========================================================= */
+/* Individual flip-clock card used for days, hours, minutes, and seconds */
+function FlipClockCard({ value, label }) {
+  const formattedVal = String(value).padStart(2, '0');
+
+  return (
+    <div className="flex flex-col items-center group flex-shrink-0">
+
+      <div className="relative w-14 h-18 sm:w-20 sm:h-24 md:w-24 md:h-26 lg:w-28 lg:h-30 bg-white border border-zinc-200/90 rounded-lg sm:rounded-xl shadow-md flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:shadow-lg group-hover:scale-[1.03]">
+
+        {/* Top half highlight */}
+        <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white via-zinc-50/80 to-zinc-100/60 pointer-events-none border-b border-zinc-200/60" />
+
+        {/* Bottom half shadow */}
+        <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-b from-zinc-100/90 via-zinc-100 to-zinc-200/70 pointer-events-none" />
+
+        {/* Split line between the two halves */}
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1.5px] bg-zinc-300/90 z-20 shadow-xs" />
+
+        {/* Left hinge notch */}
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 bg-zinc-300/90 rounded-r-sm border-r border-y border-zinc-400/40 z-30 shadow-inner" />
+
+        {/* Right hinge notch */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 bg-zinc-300/90 rounded-l-sm border-l border-y border-zinc-400/40 z-30 shadow-inner" />
+
+        {/* Animated timer value */}
+        <AnimatePresence mode="popLayout">
+          <motion.span
+            key={formattedVal}
+            initial={{ rotateX: -80, opacity: 0 }}
+            animate={{ rotateX: 0, opacity: 1 }}
+            exit={{ rotateX: 80, opacity: 0 }}
+            transition={{
+              duration: 0.35,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="text-lg sm:text-3xl md:text-4xl lg:text-5xl font-black font-mono tracking-tight text-[#1a073f] z-10 select-none drop-shadow-xs"
+          >
+            {formattedVal}
+          </motion.span>
+        </AnimatePresence>
+      </div>
+
+      {/* Unit label */}
+      <span className="text-[8px] sm:text-[10px] md:text-xs font-extrabold text-purple-600 tracking-[0.15em] sm:tracking-[0.22em] uppercase mt-1.5 sm:mt-2 font-poppins">
+        {label}
+      </span>
+    </div>
+  );
+}
+
 
 function FeaturedEvent() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
+  const [daysDisplay, setDaysDisplay] = useState(0);
+  const [hoursDisplay, setHoursDisplay] = useState(0);
+  const [minsDisplay, setMinsDisplay] = useState(0);
+  const [liveSeconds, setLiveSeconds] = useState(0);
+  const [animatingSec, setAnimatingSec] = useState(0);
+  const [isIntroDone, setIsIntroDone] = useState(true);
+
+  const ref = useRef(null);
+
+  const isInView = useInView(ref, {
+    amount: 0.15,
+    once: false,
   });
 
-  const [isExpired, setIsExpired] = useState(false);
+  /* Initial countdown values */
+  const targetD = 18;
+  const targetH = 14;
+  const targetM = 22;
+  const targetS = 45;
 
-  /* ---------------------------------------------------------
-     EVENT DATE
-     --------------------------------------------------------- */
-
-  const eventDate = new Date('2026-09-25T09:00:00');
-
-  /* ---------------------------------------------------------
-     COUNTDOWN
-     --------------------------------------------------------- */
-
+  /* Keeps the countdown running every second */
   useEffect(() => {
-    const calculateTimeLeft = () => {
-      const difference = eventDate.getTime() - Date.now();
-
-      if (difference <= 0) {
-        setTimeLeft({
-          days: 0,
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-        });
-
-        setIsExpired(true);
-        return;
-      }
-
-      const days = Math.floor(
-        difference / (1000 * 60 * 60 * 24)
-      );
-
-      const hours = Math.floor(
-        (difference / (1000 * 60 * 60)) % 24
-      );
-
-      const minutes = Math.floor(
-        (difference / (1000 * 60)) % 60
-      );
-
-      const seconds = Math.floor(
-        (difference / 1000) % 60
-      );
-
-      setTimeLeft({
-        days,
-        hours,
-        minutes,
-        seconds,
-      });
-
-      setIsExpired(false);
-    };
-
-    calculateTimeLeft();
-
-    const interval = setInterval(calculateTimeLeft, 1000);
-
-    return () => clearInterval(interval);
+    setDaysDisplay(targetD);
+    setHoursDisplay(targetH);
+    setMinsDisplay(targetM);
+    setLiveSeconds(targetS);
+    setAnimatingSec(targetS);
   }, []);
 
-  /* ---------------------------------------------------------
-     SECONDS FORMAT
-     --------------------------------------------------------- */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setLiveSeconds((prev) => {
+        if (prev <= 0) {
+          setMinsDisplay((m) => {
+            if (m <= 0) {
+              setHoursDisplay((h) => {
+                if (h <= 0) {
+                  setDaysDisplay((d) => (d <= 0 ? 0 : d - 1));
+                  return 23;
+                }
 
-  const seconds = String(timeLeft.seconds).padStart(2, '0');
+                return h - 1;
+              });
 
-  /* ---------------------------------------------------------
-     KNOW MORE
-     --------------------------------------------------------- */
+              return 59;
+            }
 
+            return m - 1;
+          });
+
+          return 59;
+        }
+
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  /* Animates the timer values when the countdown enters the viewport */
+  useEffect(() => {
+    if (isInView) {
+      setDaysDisplay(0);
+      setHoursDisplay(0);
+      setMinsDisplay(0);
+      setAnimatingSec(0);
+      setIsIntroDone(false);
+
+      const dControls = animate(0, targetD, {
+        duration: 1.8,
+        ease: 'easeOut',
+        onUpdate: (v) => setDaysDisplay(Math.round(v)),
+      });
+
+      const hControls = animate(0, targetH, {
+        duration: 1.8,
+        ease: 'easeOut',
+        onUpdate: (v) => setHoursDisplay(Math.round(v)),
+      });
+
+      const mControls = animate(0, targetM, {
+        duration: 1.8,
+        ease: 'easeOut',
+        onUpdate: (v) => setMinsDisplay(Math.round(v)),
+      });
+
+      const sControls = animate(0, liveSeconds, {
+        duration: 1.8,
+        ease: 'easeOut',
+        onUpdate: (v) => setAnimatingSec(Math.round(v)),
+        onComplete: () => setIsIntroDone(true),
+      });
+
+      return () => {
+        dControls.stop();
+        hControls.stop();
+        mControls.stop();
+        sControls.stop();
+      };
+    }
+  }, [isInView]);
+
+  const displaySec = isIntroDone ? liveSeconds : animatingSec;
+
+  /* Scrolls to the upcoming events section */
   const handleKnowMore = () => {
     const upcomingSection =
       document.getElementById('upcomingevents');
@@ -158,32 +227,26 @@ function FeaturedEvent() {
   return (
     <section
       id="featuredevent"
-      className="relative px-4 sm:px-8 lg:px-12 pb-16 sm:pb-20"
+      className="relative px-4 sm:px-8 lg:px-12 pb-8 sm:pb-10"
     >
-      {/* =====================================================
-          MAIN FEATURED EVENT CONTAINER
-          ===================================================== */}
-
+      {/* Featured event card */}
       <div
         className="
           relative
           mx-auto
-          max-w-6xl
+          max-w-3xl
           overflow-hidden
           rounded-[1.75rem]
           sm:rounded-[2.5rem]
-          min-h-[590px]
-          sm:min-h-[680px]
+          min-h-[400px]
+          sm:min-h-[500px]
           flex
           items-center
           justify-center
         "
       >
 
-        {/* ---------------------------------------------------
-            BACKGROUND IMAGE
-            --------------------------------------------------- */}
-
+        {/* Event background image */}
         <img
           src={featuredEvent.image}
           alt={featuredEvent.title}
@@ -197,10 +260,7 @@ function FeaturedEvent() {
           "
         />
 
-        {/* ---------------------------------------------------
-            DARK OVERLAY
-            --------------------------------------------------- */}
-
+        {/* Image overlays for text readability */}
         <div className="absolute inset-0 bg-[#1a073f]/70" />
 
         <div
@@ -214,10 +274,7 @@ function FeaturedEvent() {
           "
         />
 
-        {/* ---------------------------------------------------
-            CONTENT
-            --------------------------------------------------- */}
-
+        {/* Event content */}
         <div
           className="
             relative
@@ -233,24 +290,15 @@ function FeaturedEvent() {
           "
         >
 
-          {/* EVENT LABEL */}
+          {/* Featured event label */}
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full">
+            <span className="w-1.5 h-1.5 rounded-full bg-purple-300" />
 
-          <p
-            className="
-              font-sans
-              text-[10px]
-              sm:text-xs
-              font-semibold
-              tracking-[0.16em]
-              uppercase
-              text-white/70
-            "
-          >
-            Featured Event
-          </p>
+            <span className="font-sans text-[10px] sm:text-xs font-semibold tracking-[0.16em] uppercase text-white/80">
+              Featured Event
+            </span>
+          </div>
 
-
-          {/* EVENT TITLE */}
 
           <h2
             className="
@@ -270,8 +318,6 @@ function FeaturedEvent() {
           </h2>
 
 
-          {/* EVENT DATE */}
-
           <p
             className="
               mt-3
@@ -287,8 +333,6 @@ function FeaturedEvent() {
             {featuredEvent.date}
           </p>
 
-
-          {/* EVENT DESCRIPTION */}
 
           <p
             className="
@@ -306,11 +350,9 @@ function FeaturedEvent() {
           </p>
 
 
-          {/* =================================================
-              COUNTDOWN
-              ================================================= */}
-
+          {/* Countdown clock */}
           <div
+            ref={ref}
             className="
               w-full
               mt-5
@@ -321,338 +363,103 @@ function FeaturedEvent() {
             "
           >
 
-            {/* DAYS / HOURS / MINUTES */}
-
             <div
               className="
                 flex
                 items-center
                 justify-center
-                gap-4
-                sm:gap-8
+                gap-2
+                sm:gap-3
+                lg:gap-4
+              "
+            >
+
+              <FlipClockCard
+                value={daysDisplay}
+                label="DAYS"
+              />
+
+              <FlipClockCard
+                value={hoursDisplay}
+                label="HOURS"
+              />
+
+              <FlipClockCard
+                value={minsDisplay}
+                label="MINUTES"
+              />
+
+              <FlipClockCard
+                value={displaySec}
+                label="SECONDS"
+              />
+
+            </div>
+
+          </div>
+
+
+          {/* Event registration CTA */}
+          <div className="flex justify-center mt-5 sm:mt-6">
+
+            <motion.a
+              whileHover={{
+                scale: 1.05,
+                y: -2,
+              }}
+              whileTap={{
+                scale: 0.97,
+              }}
+              href={featuredEvent.registrationLink || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                bg-zinc-950
                 text-white
-              "
-            >
-
-              {/* DAYS */}
-
-              <div className="text-center">
-
-                <div
-                  className="
-                    text-3xl
-                    sm:text-4xl
-                    md:text-5xl
-                    font-bold
-                    leading-none
-                  "
-                >
-                  <AnimatedNumber value={timeLeft.days} />
-                </div>
-
-                <p
-                  className="
-                    mt-1.5
-                    text-[9px]
-                    sm:text-[10px]
-                    tracking-[0.15em]
-                    uppercase
-                    text-white/55
-                  "
-                >
-                  Days
-                </p>
-
-              </div>
-
-
-              <span className="text-xl sm:text-2xl text-white/40">
-                :
-              </span>
-
-
-              {/* HOURS */}
-
-              <div className="text-center">
-
-                <div
-                  className="
-                    text-3xl
-                    sm:text-4xl
-                    md:text-5xl
-                    font-bold
-                    leading-none
-                  "
-                >
-                  <AnimatedNumber value={timeLeft.hours} />
-                </div>
-
-                <p
-                  className="
-                    mt-1.5
-                    text-[9px]
-                    sm:text-[10px]
-                    tracking-[0.15em]
-                    uppercase
-                    text-white/55
-                  "
-                >
-                  Hours
-                </p>
-
-              </div>
-
-
-              <span className="text-xl sm:text-2xl text-white/40">
-                :
-              </span>
-
-
-              {/* MINUTES */}
-
-              <div className="text-center">
-
-                <div
-                  className="
-                    text-3xl
-                    sm:text-4xl
-                    md:text-5xl
-                    font-bold
-                    leading-none
-                  "
-                >
-                  <AnimatedNumber value={timeLeft.minutes} />
-                </div>
-
-                <p
-                  className="
-                    mt-1.5
-                    text-[9px]
-                    sm:text-[10px]
-                    tracking-[0.15em]
-                    uppercase
-                    text-white/55
-                  "
-                >
-                  Minutes
-                </p>
-
-              </div>
-
-            </div>
-
-
-            {/* =================================================
-                SECONDS
-                ================================================= */}
-
-            <div
-              className="
-                relative
-                flex
+                rounded-full
+                px-5
+                py-2.5
+                sm:px-7
+                sm:py-3
+                text-xs
+                sm:text-sm
+                font-semibold
+                inline-flex
                 items-center
-                justify-center
-                mt-5
-                sm:mt-6
+                gap-2
+                shadow-xl
+                hover:bg-purple-950
+                transition-colors
+                duration-200
+                cursor-pointer
               "
             >
+              Enroll Now
 
-              <div
-                className="
-                  flex
-                  items-center
-                  justify-center
-                  gap-2.5
-                  sm:gap-4
-                "
+              <motion.svg
+                animate={{
+                  x: [0, 3, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
               >
+                <path
+                  d="M5 12H19M19 12L13 6M19 12L13 18"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </motion.svg>
 
-                {/* FIRST SECOND DIGIT */}
-
-                <div
-                  className="
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-10
-                    sm:h-16
-                    sm:w-14
-                    rounded-lg
-                    sm:rounded-xl
-                    bg-white
-                    text-[#1a073f]
-                    shadow-xl
-                  "
-                >
-                  <span
-                    className="
-                      text-2xl
-                      sm:text-4xl
-                      font-bold
-                    "
-                  >
-                    {seconds[0]}
-                  </span>
-                </div>
-
-
-                {/* SECOND SECOND DIGIT */}
-
-                <div
-                  className="
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-10
-                    sm:h-16
-                    sm:w-14
-                    rounded-lg
-                    sm:rounded-xl
-                    bg-white
-                    text-[#1a073f]
-                    shadow-xl
-                  "
-                >
-                  <span
-                    className="
-                      text-2xl
-                      sm:text-4xl
-                      font-bold
-                    "
-                  >
-                    {seconds[1]}
-                  </span>
-                </div>
-
-              </div>
-
-
-              {/* COMING */}
-
-              <span
-                className="
-                  absolute
-                  right-[calc(50%+68px)]
-                  sm:right-[calc(50%+90px)]
-                  md:right-[calc(50%+105px)]
-                  flex
-                  items-center
-                  h-12
-                  sm:h-16
-                  text-sm
-                  sm:text-2xl
-                  md:text-3xl
-                  font-bold
-                  tracking-[0.05em]
-                  sm:tracking-[0.07em]
-                  uppercase
-                  text-white/10
-                  whitespace-nowrap
-                "
-              >
-                {isExpired ? 'EVENT' : 'COMING'}
-              </span>
-
-
-              {/* SOON */}
-
-              <span
-                className="
-                  absolute
-                  left-[calc(50%+68px)]
-                  sm:left-[calc(50%+90px)]
-                  md:left-[calc(50%+105px)]
-                  flex
-                  items-center
-                  h-12
-                  sm:h-16
-                  text-sm
-                  sm:text-2xl
-                  md:text-3xl
-                  font-bold
-                  tracking-[0.05em]
-                  sm:tracking-[0.07em]
-                  uppercase
-                  text-white/10
-                  whitespace-nowrap
-                "
-              >
-                {isExpired ? 'OVER' : 'SOON'}
-              </span>
-
-            </div>
-
-
-            {/* =================================================
-                ENROLL BUTTON
-                ================================================= */}
-
-            {!isExpired && (
-              <div className="flex justify-center mt-5 sm:mt-6">
-
-                <motion.a
-                  whileHover={{
-                    scale: 1.05,
-                    y: -2,
-                  }}
-                  whileTap={{
-                    scale: 0.97,
-                  }}
-                  href={featuredEvent.registrationLink || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    bg-zinc-950
-                    text-white
-                    rounded-full
-                    px-5
-                    py-2.5
-                    sm:px-7
-                    sm:py-3
-                    text-xs
-                    sm:text-sm
-                    font-semibold
-                    inline-flex
-                    items-center
-                    gap-2
-                    shadow-xl
-                    hover:bg-purple-950
-                    transition-colors
-                    duration-200
-                    cursor-pointer
-                  "
-                >
-                  Enroll Now
-
-                  <motion.svg
-                    animate={{
-                      x: [0, 3, 0],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path
-                      d="M5 12H19M19 12L13 6M19 12L13 18"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </motion.svg>
-
-                </motion.a>
-
-              </div>
-            )}
+            </motion.a>
 
           </div>
 
@@ -661,10 +468,7 @@ function FeaturedEvent() {
       </div>
 
 
-      {/* =====================================================
-          KNOW MORE
-          ===================================================== */}
-
+      {/* Scroll prompt for upcoming events */}
       <motion.div
         initial={{
           opacity: 0,
@@ -701,12 +505,12 @@ function FeaturedEvent() {
             cursor-pointer
           "
         >
+
           <span>
             Know More
           </span>
 
-          {/* Continuously animated down chevron */}
-
+          {/* Animated down arrow */}
           <motion.svg
             animate={{
               y: [0, 4, 0],
