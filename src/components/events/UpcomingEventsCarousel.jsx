@@ -6,6 +6,16 @@ import { AnimatePresence, motion } from 'framer-motion';
   UPCOMING EVENTS DATA
   ============================================================
 
+  This array stores all upcoming events.
+
+  Each event contains:
+  - id: Unique identifier for the event.
+  - name: Event name.
+  - status: Status shown on the event card.
+  - image: Image displayed as the card background.
+  - description: Complete event description.
+  - registrationLink: Link used for event registration.
+
   Keep the nearest upcoming event first.
 
   Images can have ANY resolution or aspect ratio.
@@ -59,6 +69,21 @@ const upcomingEvents = [
   },
 ];
 
+/*
+  ============================================================
+  UPCOMING EVENTS CAROUSEL COMPONENT
+  ============================================================
+
+  This component handles:
+  - Horizontal event carousel.
+  - Active event tracking.
+  - Previous / Next navigation.
+  - Dot navigation.
+  - Mouse dragging on desktop.
+  - View Details expansion.
+  - Automatic scrolling to the description.
+  - Framer Motion animations.
+*/
 function UpcomingEventsCarousel() {
   /*
     ============================================================
@@ -66,8 +91,20 @@ function UpcomingEventsCarousel() {
     ============================================================
   */
 
+  /*
+    Stores the index of the event currently positioned
+    in the center of the carousel.
+
+    Example:
+    activeIndex = 0 → first event is active.
+    activeIndex = 1 → second event is active.
+  */
   const [activeIndex, setActiveIndex] = useState(0);
 
+  /*
+    Controls whether the complete description of the
+    currently active event is visible.
+  */
   const [showDetails, setShowDetails] = useState(false);
 
   /*
@@ -76,8 +113,20 @@ function UpcomingEventsCarousel() {
     ============================================================
   */
 
+  /*
+    Reference to the main horizontal carousel element.
+
+    useRef allows us to directly access the DOM element
+    without causing a React re-render.
+  */
   const carouselRef = useRef(null);
 
+  /*
+    Stores references to every individual event card.
+
+    These references are used to calculate which card
+    is closest to the center of the carousel.
+  */
   const cardRefs = useRef([]);
 
   /*
@@ -89,15 +138,37 @@ function UpcomingEventsCarousel() {
   const descriptionRef = useRef(null);
 
   /*
-    Desktop mouse dragging.
+    ============================================================
+    DESKTOP MOUSE DRAG REFS
+    ============================================================
+
+    These values are stored in refs instead of state because
+    they change frequently while dragging and do not need
+    to trigger React re-renders.
   */
 
+  /*
+    True while the user is currently dragging
+    the carousel with the mouse.
+  */
   const isMouseDragging = useRef(false);
 
+  /*
+    Stores the horizontal mouse position when
+    the drag begins.
+  */
   const mouseStartX = useRef(0);
 
+  /*
+    Stores the carousel's scroll position when
+    the drag begins.
+  */
   const mouseStartScrollLeft = useRef(0);
 
+  /*
+    Used to determine whether the mouse movement
+    was an actual drag rather than a normal click.
+  */
   const hasDragged = useRef(false);
 
   /*
@@ -106,6 +177,13 @@ function UpcomingEventsCarousel() {
     ============================================================
   */
 
+  /*
+    Runs whenever showDetails changes.
+
+    When the description opens, the page automatically
+    scrolls down so that the complete description box
+    becomes visible.
+  */
   useEffect(() => {
     if (!showDetails || !descriptionRef.current) {
       return;
@@ -113,8 +191,7 @@ function UpcomingEventsCarousel() {
 
     /*
       Wait for the description to start expanding,
-      then scroll farther down so the complete
-      description box is visible.
+      then calculate its position and scroll to it.
     */
     const timeout = setTimeout(() => {
       const descriptionTop =
@@ -127,6 +204,10 @@ function UpcomingEventsCarousel() {
       });
     }, 150);
 
+    /*
+      Clear the timeout if the component changes
+      or the effect runs again before the timeout fires.
+    */
     return () => {
       clearTimeout(timeout);
     };
@@ -138,35 +219,73 @@ function UpcomingEventsCarousel() {
     ============================================================
   */
 
+  /*
+    Determines which event card is closest to the
+    horizontal center of the carousel.
+
+    This is important because the active card changes
+    when the user:
+    - Scrolls manually.
+    - Drags the carousel.
+    - Uses the navigation arrows.
+  */
   const updateActiveCard = () => {
     const carousel = carouselRef.current;
 
+    /*
+      Stop if the carousel DOM element is not available.
+    */
     if (!carousel) {
       return;
     }
 
+    /*
+      Calculate the horizontal center point of the
+      visible carousel area.
+    */
     const carouselCenter =
       carousel.scrollLeft +
       carousel.clientWidth / 2;
 
+    /*
+      Start by assuming the first card is closest.
+    */
     let closestIndex = 0;
 
+    /*
+      Infinity allows the first real distance calculated
+      to automatically become the closest distance.
+    */
     let closestDistance = Infinity;
 
+    /*
+      Check the center position of every event card.
+    */
     cardRefs.current.forEach(
       (card, index) => {
         if (!card) {
           return;
         }
 
+        /*
+          Calculate the horizontal center of this card.
+        */
         const cardCenter =
           card.offsetLeft +
           card.offsetWidth / 2;
 
+        /*
+          Find the distance between the card center
+          and the carousel center.
+        */
         const distance = Math.abs(
           cardCenter - carouselCenter
         );
 
+        /*
+          If this card is closer to the carousel center
+          than the previous closest card, make it active.
+        */
         if (distance < closestDistance) {
           closestDistance = distance;
           closestIndex = index;
@@ -174,11 +293,17 @@ function UpcomingEventsCarousel() {
       }
     );
 
+    /*
+      Only update React state when the active card
+      actually changes.
+    */
     if (closestIndex !== activeIndex) {
       setActiveIndex(closestIndex);
 
       /*
-        Close details when changing events.
+        Close details when changing events so that
+        the previous event's description does not
+        remain open for the new event.
       */
       setShowDetails(false);
     }
@@ -190,6 +315,12 @@ function UpcomingEventsCarousel() {
     ============================================================
   */
 
+  /*
+    Attach a native scroll event listener to the carousel.
+
+    Whenever the carousel moves, updateActiveCard()
+    checks which card is currently closest to the center.
+  */
   useEffect(() => {
     const carousel = carouselRef.current;
 
@@ -201,12 +332,19 @@ function UpcomingEventsCarousel() {
       updateActiveCard();
     };
 
+    /*
+      passive: true tells the browser that this listener
+      will not prevent scrolling, allowing smoother scrolling.
+    */
     carousel.addEventListener(
       'scroll',
       handleScroll,
       { passive: true }
     );
 
+    /*
+      Remove the event listener when the effect is cleaned up.
+    */
     return () => {
       carousel.removeEventListener(
         'scroll',
@@ -221,26 +359,45 @@ function UpcomingEventsCarousel() {
     ============================================================
   */
 
+  /*
+    Scrolls a specific event card into the center
+    of the carousel.
+  */
   const scrollToEvent = (index) => {
     const carousel = carouselRef.current;
 
     const card = cardRefs.current[index];
 
+    /*
+      Stop if either the carousel or requested card
+      does not exist.
+    */
     if (!carousel || !card) {
       return;
     }
 
+    /*
+      Calculate the scroll position required to place
+      the selected card exactly in the center.
+    */
     const targetScrollLeft =
       card.offsetLeft -
       (carousel.clientWidth -
         card.offsetWidth) /
         2;
 
+    /*
+      Smoothly move the carousel to the calculated position.
+    */
     carousel.scrollTo({
       left: targetScrollLeft,
       behavior: 'smooth',
     });
 
+    /*
+      Hide the description whenever a different event
+      is selected.
+    */
     setShowDetails(false);
   };
 
@@ -250,6 +407,11 @@ function UpcomingEventsCarousel() {
     ============================================================
   */
 
+  /*
+    Move to the next event.
+
+    The condition prevents moving beyond the last event.
+  */
   const goToNext = () => {
     if (
       activeIndex <
@@ -259,6 +421,11 @@ function UpcomingEventsCarousel() {
     }
   };
 
+  /*
+    Move to the previous event.
+
+    The condition prevents moving before the first event.
+  */
   const goToPrevious = () => {
     if (activeIndex > 0) {
       scrollToEvent(activeIndex - 1);
@@ -271,9 +438,14 @@ function UpcomingEventsCarousel() {
     ============================================================
   */
 
+  /*
+    Runs when the user presses the mouse button
+    inside the carousel.
+  */
   const handleMouseDown = (event) => {
     /*
-      Don't interfere with buttons.
+      Don't start dragging when the user clicks
+      a button or link inside the carousel.
     */
     if (
       event.target.closest(
@@ -290,21 +462,44 @@ function UpcomingEventsCarousel() {
       return;
     }
 
+    /*
+      Mark the beginning of a mouse drag.
+    */
     isMouseDragging.current = true;
 
+    /*
+      At the beginning, assume this is not yet
+      an actual drag.
+    */
     hasDragged.current = false;
 
+    /*
+      Remember where the mouse started.
+    */
     mouseStartX.current =
       event.clientX;
 
+    /*
+      Remember the carousel's starting scroll position.
+    */
     mouseStartScrollLeft.current =
       carousel.scrollLeft;
 
+    /*
+      Change the cursor to show that the carousel
+      is currently being dragged.
+    */
     carousel.style.cursor =
       'grabbing';
   };
 
+  /*
+    Runs while the mouse is being moved during a drag.
+  */
   const handleMouseMove = (event) => {
+    /*
+      Ignore mouse movement when a drag has not started.
+    */
     if (
       !isMouseDragging.current
     ) {
@@ -318,44 +513,67 @@ function UpcomingEventsCarousel() {
       return;
     }
 
+    /*
+      Calculate how far the mouse moved horizontally
+      from its starting position.
+    */
     const distance =
       event.clientX -
       mouseStartX.current;
 
+    /*
+      A movement greater than 5 pixels is treated
+      as an actual drag.
+    */
     if (Math.abs(distance) > 5) {
       hasDragged.current = true;
     }
 
     /*
-      Move the native horizontal scroll.
+      Move the native horizontal scroll position
+      opposite to the mouse movement.
+
+      Moving the mouse left → carousel moves left.
+      Moving the mouse right → carousel moves right.
     */
     carousel.scrollLeft =
       mouseStartScrollLeft.current -
       distance;
   };
 
+  /*
+    Runs when the mouse button is released.
+  */
   const handleMouseUp = () => {
+    /*
+      Do nothing if a drag was never started.
+    */
     if (
       !isMouseDragging.current
     ) {
       return;
     }
 
+    /*
+      Mark the drag as finished.
+    */
     isMouseDragging.current = false;
 
     const carousel =
       carouselRef.current;
 
+    /*
+      Restore the normal grab cursor.
+    */
     if (carousel) {
       carousel.style.cursor =
         'grab';
     }
 
     /*
-      After dragging, settle on the
-      nearest event.
+      After dragging, find the nearest event and
+      smoothly settle the carousel on that event.
     */
-
     setTimeout(() => {
       updateActiveCard();
 
@@ -363,14 +581,18 @@ function UpcomingEventsCarousel() {
     }, 50);
 
     /*
-      Prevent accidental button clicks.
+      Reset the drag flag shortly afterward so that
+      accidental clicks are not triggered by the drag.
     */
-
     setTimeout(() => {
       hasDragged.current = false;
     }, 100);
   };
 
+  /*
+    If the mouse leaves the carousel while dragging,
+    finish the drag automatically.
+  */
   const handleMouseLeave = () => {
     if (isMouseDragging.current) {
       handleMouseUp();
@@ -383,11 +605,23 @@ function UpcomingEventsCarousel() {
     ============================================================
   */
 
+  /*
+    Toggle the description of the currently active event.
+
+    If the carousel was just dragged, ignore the click
+    so that releasing the mouse does not accidentally
+    open the details.
+  */
   const handleViewDetails = () => {
     if (hasDragged.current) {
       return;
     }
 
+    /*
+      Toggle:
+      false → true  = show details
+      true  → false = hide details
+    */
     setShowDetails(
       (previous) => !previous
     );
@@ -399,17 +633,21 @@ function UpcomingEventsCarousel() {
     ============================================================
   */
 
+  /*
+    Get the complete data object for the currently
+    active event using its array index.
+  */
   const activeEvent =
     upcomingEvents[activeIndex];
 
   return (
     <section
       id="upcomingevents"
-      className="relative overflow-hidden px-0 pt-20 pb-28 sm:pt-28"
+      className="relative overflow-hidden px-0 pt-10 pb-14 sm:pt-14"
     >
       {/* ========================================================
           SECTION HEADING
-      ======================================================== */}
+          ======================================================== */}
 
       <motion.div
         initial={{
@@ -445,7 +683,7 @@ function UpcomingEventsCarousel() {
 
       {/* ========================================================
           CAROUSEL
-      ======================================================== */}
+          ======================================================== */}
 
       <motion.div
         initial={{
@@ -469,7 +707,7 @@ function UpcomingEventsCarousel() {
       >
         {/* ======================================================
             LEFT ARROW
-        ====================================================== */}
+            ====================================================== */}
 
         <motion.button
           type="button"
@@ -515,7 +753,7 @@ function UpcomingEventsCarousel() {
 
         {/* ======================================================
             RIGHT ARROW
-        ====================================================== */}
+            ====================================================== */}
 
         <motion.button
           type="button"
@@ -567,6 +805,18 @@ function UpcomingEventsCarousel() {
 
         {/* ======================================================
             NATIVE HORIZONTAL CAROUSEL
+            ======================================================
+
+            This is a normal HTML div with horizontal scrolling.
+
+            CSS scroll snapping is used so cards naturally
+            settle into position after scrolling.
+
+            The carousel also supports:
+            - Mouse dragging on desktop.
+            - Touch swiping on mobile.
+            - Arrow navigation.
+            - Dot navigation.
         ====================================================== */}
 
         <div
@@ -579,7 +829,7 @@ function UpcomingEventsCarousel() {
           className="
             no-scrollbar
             flex
-            h-[560px]
+            h-[440px]
             w-full
             items-center
             overflow-x-auto
@@ -588,10 +838,10 @@ function UpcomingEventsCarousel() {
             snap-x
             snap-mandatory
             cursor-grab
-            px-[calc(50%-112.5px)]
-            sm:h-[650px]
-            sm:px-[calc(50%-132.5px)]
-            lg:px-[calc(50%-142.5px)]
+            px-[calc(50%-105px)]
+            sm:h-[510px]
+            sm:px-[calc(50%-120px)]
+            lg:px-[calc(50%-120px)]
           "
           style={{
             touchAction: 'pan-x',
@@ -616,13 +866,29 @@ function UpcomingEventsCarousel() {
         >
           {upcomingEvents.map(
             (event, index) => {
+              /*
+                Check whether this card is currently
+                positioned in the center.
+              */
               const isActive =
                 index === activeIndex;
 
+              /*
+                Calculate how many positions away this
+                card is from the active card.
+              */
               const distance = Math.abs(
                 index - activeIndex
               );
 
+              /*
+                Cards farther than one position away
+                are hidden.
+
+                The active card is fully visible,
+                while its immediate neighbors are
+                partially visible.
+              */
               const cardOpacity =
                 distance > 1
                   ? 0
@@ -634,6 +900,11 @@ function UpcomingEventsCarousel() {
                 <div
                   key={event.id}
                   ref={(element) => {
+                    /*
+                      Store the DOM reference for this
+                      particular card at the same index
+                      as the event in the array.
+                    */
                     cardRefs.current[
                       index
                     ] = element;
@@ -641,20 +912,34 @@ function UpcomingEventsCarousel() {
                   className="
                     relative
                     flex
-                    h-[500px]
-                    w-[225px]
+                    h-[390px]
+                    w-[185px]
                     shrink-0
                     snap-center
                     items-center
                     justify-center
-                    sm:h-[590px]
-                    sm:w-[265px]
-                    lg:h-[620px]
-                    lg:w-[285px]
+                    sm:h-[460px]
+                    sm:w-[220px]
+                    lg:h-[500px]
+                    lg:w-[240px]
                   "
                 >
                   {/* ==================================================
                       EVENT CARD
+                      ==================================================
+
+                      Framer Motion controls the visual state
+                      of each card.
+
+                      The active card:
+                      - Is larger.
+                      - Is fully visible.
+                      - Has the highest z-index.
+
+                      Neighboring cards:
+                      - Are smaller.
+                      - Are slightly rotated.
+                      - Are partially transparent.
                   ================================================== */}
 
                   <motion.div
@@ -687,25 +972,35 @@ function UpcomingEventsCarousel() {
                     }}
                     className="
                       relative
-                      h-[500px]
-                      w-[285px]
+                      h-[390px]
+                      w-[235px]
                       shrink-0
                       overflow-hidden
                       rounded-[2rem]
                       bg-[#1a073f]
                       shadow-2xl
-                      sm:h-[590px]
-                      sm:w-[350px]
+                      sm:h-[460px]
+                      sm:w-[280px]
                       sm:rounded-[2.5rem]
-                      lg:h-[620px]
-                      lg:w-[380px]
+                      lg:h-[500px]
+                      lg:w-[310px]
                     "
                     style={{
+                      /*
+                        Enables 3D transforms such as rotateY.
+                      */
                       transformStyle:
                         'preserve-3d',
 
+                      /*
+                        Sets the depth used for the 3D effect.
+                      */
                       perspective: 1000,
 
+                      /*
+                        Only the active card should receive
+                        pointer interactions.
+                      */
                       pointerEvents:
                         isActive
                           ? 'auto'
@@ -715,8 +1010,11 @@ function UpcomingEventsCarousel() {
                     {/* ==============================================
                         IMAGE
 
-                        The image automatically scales and crops
-                        to completely cover the entire card.
+                        object-cover makes the image completely
+                        cover the card while preserving its
+                        aspect ratio.
+
+                        Any excess part of the image is cropped.
                     ============================================== */}
 
                     <img
@@ -739,6 +1037,10 @@ function UpcomingEventsCarousel() {
 
                     {/* ==============================================
                         IMAGE OVERLAY
+                        ==============================================
+
+                        These gradients darken the image so that
+                        the white event text remains readable.
                     ============================================== */}
 
                     <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#1a073f]/20 via-[#1a073f]/35 to-[#1a073f]/95" />
@@ -747,7 +1049,7 @@ function UpcomingEventsCarousel() {
 
                     {/* ==============================================
                         CONTENT
-                    ============================================== */}
+                        ============================================== */}
 
                     <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8">
 
@@ -778,6 +1080,11 @@ function UpcomingEventsCarousel() {
                           onMouseDown={(
                             event
                           ) => {
+                            /*
+                              Prevent the carousel's mouse
+                              drag handler from interfering
+                              with this button.
+                            */
                             event.stopPropagation();
                           }}
                           onClick={(
@@ -857,7 +1164,13 @@ function UpcomingEventsCarousel() {
       </motion.div>
 
       {/* ========================================================
-          DOTS
+          CAROUSEL DOTS
+          ========================================================
+
+          Each dot represents one event.
+
+          The active event gets a wider dot so the user
+          can easily identify which event is selected.
       ======================================================== */}
 
       <div className="relative z-40 mt-3 flex items-center justify-center gap-2">
@@ -899,6 +1212,13 @@ function UpcomingEventsCarousel() {
 
       {/* ========================================================
           DESCRIPTION
+          ========================================================
+
+          This section only appears when View Details
+          is clicked.
+
+          AnimatePresence + motion.div creates the
+          expand/collapse animation.
       ======================================================== */}
 
       <AnimatePresence initial={false}>
