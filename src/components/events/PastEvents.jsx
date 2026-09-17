@@ -348,7 +348,7 @@ function PastEvents() {
             <span
               className="
                 font-script
-                text-4xl
+                text-3xl
                 font-bold
                 leading-none
                 tracking-tight
@@ -358,9 +358,9 @@ function PastEvents() {
                 to-[#c026d3]
                 bg-clip-text
                 text-transparent
-                sm:text-5xl
-                md:text-6xl
-                lg:text-7xl
+                sm:text-4xl
+                md:text-5xl
+                lg:text-6xl
               "
             >
               {selectedYear} Memories
