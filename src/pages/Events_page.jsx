@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+
 import EventsNavbar from '../components/events/EventsNavbar';
 import FeaturedEvent from '../components/events/FeaturedEvent.jsx';
 import UpcomingEventsCarousel from '../components/events/UpcomingEventsCarousel';
@@ -9,12 +11,7 @@ function Events() {
   return (
     <main className="relative min-h-screen bg-[#faf9ff]">
 
-      {/* --------------------------------
-          EVENTS HEADER BACKGROUND
-          Grid + Atmospheric Aura
-          Extends behind the Navbar
-          -------------------------------- */}
-
+      {/* Header background: grid pattern, atmospheric glows, and fade into page background */}
       <div
         className="
           pointer-events-none
@@ -28,8 +25,6 @@ function Events() {
           z-0
         "
       >
-
-        {/* Grid & Atmospheric Multicolor Aura Texture */}
         <div
           className="
             absolute
@@ -44,8 +39,7 @@ function Events() {
             overflow-hidden
           "
         >
-
-          {/* Technical Grid Pattern */}
+          {/* Technical grid used as the visual background texture */}
           <div
             className="
               absolute
@@ -64,8 +58,7 @@ function Events() {
             }}
           />
 
-
-          {/* Soft Coral Left Accent Glow */}
+          {/* Left-side warm accent glow */}
           <div
             className="
               absolute
@@ -89,8 +82,7 @@ function Events() {
             }}
           />
 
-
-          {/* Soft Purple Center Primary Glow */}
+          {/* Main purple glow behind the events header */}
           <div
             className="
               absolute
@@ -98,24 +90,23 @@ function Events() {
               left-1/2
               -translate-x-1/2
               -translate-y-1/2
-              w-[340px]
-              sm:w-[600px]
-              h-[230px]
-              sm:h-[350px]
+              w-[420px]
+              sm:w-[700px]
+              h-[280px]
+              sm:h-[400px]
               rounded-full
-              opacity-55
-              sm:opacity-65
-              blur-[60px]
-              sm:blur-[90px]
+              opacity-80
+              sm:opacity-90
+              blur-[55px]
+              sm:blur-[80px]
             "
             style={{
               background:
-                'radial-gradient(ellipse at center, rgba(168, 85, 247, 0.45) 0%, rgba(192, 132, 252, 0.18) 50%, transparent 75%)',
+                'radial-gradient(ellipse at center, rgba(168, 85, 247, 0.65) 0%, rgba(192, 132, 252, 0.32) 45%, rgba(216, 180, 254, 0.12) 65%, transparent 80%)',
             }}
           />
 
-
-          {/* Soft Pink Right Accent Glow */}
+          {/* Right-side pink accent glow */}
           <div
             className="
               absolute
@@ -138,11 +129,9 @@ function Events() {
                 'radial-gradient(circle, rgba(236, 72, 153, 0.20) 0%, transparent 75%)',
             }}
           />
-
         </div>
 
-
-        {/* Soft Fade Into Page Background */}
+        {/* Fades the header background smoothly into the main page background */}
         <div
           className="
             absolute
@@ -153,23 +142,16 @@ function Events() {
             to-[#faf9ff]
           "
         />
-
       </div>
 
 
-      {/* --------------------------------
-          SECTION 1: EVENTS NAVBAR
-          -------------------------------- */}
-
+      {/* Events page navigation */}
       <div className="relative z-20">
         <EventsNavbar />
       </div>
 
 
-      {/* --------------------------------
-          SECTION 2: EVENTS HEADER
-          -------------------------------- */}
-
+      {/* Events page introductory header */}
       <section
         className="
           relative
@@ -178,98 +160,105 @@ function Events() {
           px-6
           sm:px-10
           lg:px-16
-          pt-8
-          sm:pt-14
-          pb-12
-          sm:pb-16
+          pt-6
+          sm:pt-10
+          pb-8
+          sm:pb-10
           text-center
         "
       >
-
-        {/* Header Content */}
         <div className="relative z-10">
 
-          {/* Subtitle */}
-          <p
+          {/* Subtitle with smooth rise animation */}
+          <motion.p
+            initial={{ opacity: 0, y: 35 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.9,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="
               font-sans
-              text-lg
-              sm:text-xl
-              md:text-2xl
+              text-base
+              sm:text-lg
+              md:text-xl
               font-medium
               tracking-tight
               text-[#8338ec]
             "
           >
             Where ideas turn into experiences.
-          </p>
+          </motion.p>
 
 
-          {/* Main Title */}
-          <h1
+          {/* Main title with slight delay */}
+          <motion.h1
+            initial={{ opacity: 0, y: 45 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.9,
+              delay: 0.15,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="
-              mt-3
+              mt-2
               font-sans
               font-bold
-              text-6xl
-              sm:text-7xl
-              md:text-8xl
-              lg:text-9xl
-              xl:text-[7.5rem]
+              text-5xl
+              sm:text-6xl
+              md:text-7xl
+              lg:text-8xl
+              xl:text-[6.5rem]
               tracking-tight
               leading-none
               text-[#1a073f]
             "
           >
             Our Events
-          </h1>
+          </motion.h1>
 
 
-          {/* Description */}
-          <p
+          {/* Description with final staggered delay */}
+          <motion.p
+            initial={{ opacity: 0, y: 35 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.9,
+              delay: 0.3,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="
               mx-auto
-              mt-5
+              mt-4
               max-w-2xl
               font-sans
-              text-base
-              sm:text-lg
+              text-sm
+              sm:text-base
               leading-relaxed
               text-zinc-600
             "
           >
             Explore our upcoming and past events, workshops, competitions,
             and experiences organised by Data Nexus Club.
-          </p>
+          </motion.p>
 
         </div>
-
       </section>
 
 
-      {/* --------------------------------
-          SECTION 3: FEATURED EVENT
-          -------------------------------- */}
-
+      {/* Featured event section */}
       <FeaturedEvent />
 
 
-      {/* --------------------------------
-          SECTION 4: UPCOMING EVENTS
-          -------------------------------- */}
-
+      {/* Upcoming events carousel section */}
       <UpcomingEventsCarousel />
 
 
-      {/* --------------------------------
-          SECTION 5: PAST EVENTS
-          -------------------------------- */}
-
+      {/* Past events section */}
       <PastEvents />
-      {/* --------------------------------
-          SECTION 6: FOOTER
-          -------------------------------- */}
 
+
+      {/* Shared site footer */}
       <Footer />
 
     </main>
