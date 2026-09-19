@@ -6,10 +6,11 @@ import TeamPage from "./pages/Team_page";
 import Events from "./pages/Events_page";
 
 function App() {
-  const getPath = () =>
-    (window.location.pathname + window.location.hash).toLowerCase();
+  const getPath = () => {
+    return (window.location.pathname + window.location.hash).toLowerCase();
+  };
 
-  const [currentPath, setCurrentPath] = useState(getPath);
+  const [currentPath, setCurrentPath] = useState(getPath());
 
   useEffect(() => {
     const handleLocationChange = () => {
@@ -33,7 +34,7 @@ function App() {
     return <AchievementsPage />;
   }
 
-  if (isTeams) {
+  if (currentPath.includes("teams")) {
     return <TeamPage />;
   }
 
