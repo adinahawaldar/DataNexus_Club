@@ -10,6 +10,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import agentic_ai from '../../assets/events/agentic_ai.jpg';
 import nexathon from '../../assets/events/nexathon_event.jpg';
+import prepit from '../../assets/events/prepit.jpg';
+import protosprint from '../../assets/events/protosprint.jpg';
+import DataConflux from '../../assets/events/DataConflux.jpg';
 
 const upcomingEvents = [
   {
@@ -34,23 +37,32 @@ const upcomingEvents = [
 
   {
     id: 3,
-    name: 'Power BI Competition',
+    name: 'PrepIt',
     status: 'Upcoming',
-    image:
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85',
+    image: prepit,
     description:
-      'A hands-on data visualization competition where participants transform datasets into meaningful dashboards and insights.',
+      'Prep-It is a student-focused preparation event designed to help participants strengthen their skills, build confidence, and get ready to tackle technical challenges through engaging learning and problem-solving activities.',
     registrationLink: '',
   },
 
   {
     id: 4,
-    name: 'Data Analytics Bootcamp',
+    name: 'Protosprint',
     status: 'Upcoming',
-    image:
-      'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=85',
+    image: protosprint,
+      
     description:
-      'A practical bootcamp designed to introduce participants to data analytics workflows and real-world problem solving.',
+      'ProtoSprint is a rapid prototyping event where participants turn innovative ideas into practical solutions through creativity, teamwork, and hands-on development.',
+    registrationLink: '',
+  },
+  {
+    id: 5,
+    name: 'DataConflux',
+    status: 'Upcoming',
+    image: DataConflux,
+      
+    description:
+      'DataConflux is a data-driven event where students explore Data Science, AI, and emerging technologies through hands-on challenges, collaboration, and innovative problem-solving.',
     registrationLink: '',
   },
 ];
