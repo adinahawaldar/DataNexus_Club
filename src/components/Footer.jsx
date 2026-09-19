@@ -17,7 +17,7 @@ export default function Footer() {
     const socialHandles = [
         {
             name: "Instagram",
-            href: "https://instagram.com",
+            href: "https://www.instagram.com/datanexus_aiktc?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==",
             icon: (
                 <svg
                     width="18"
@@ -37,7 +37,7 @@ export default function Footer() {
         },
         {
             name: "LinkedIn",
-            href: "https://linkedin.com",
+            href: "https://www.linkedin.com/company/data-nexus-club/",
             icon: (
                 <svg
                     width="18"
@@ -57,7 +57,7 @@ export default function Footer() {
         },
         {
             name: "WhatsApp",
-            href: "https://whatsapp.com",
+            href: "https://whatsapp.com/channel/0029VbBbnMZ9MF97N8yK692m",
             icon: (
                 <svg
                     width="18"
