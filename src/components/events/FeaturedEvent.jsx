@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, animate, useInView } from 'framer-motion';
+import agentic_ai from '../../assets/events/agentic_ai.jpg';
 
 /* Featured event content */
 const featuredEvent = {
-  title: 'PREPIT',
-  date: '18 APRIL 2026',
+  title: 'Agentic AI',
+  date: '28th September 2026',
+  time: '10:00 AM',
   description:
-    'PREPIT is an intensive interview preparation and training program designed to help students excel in technical and HR interviews. The event focuses on Data Science, Machine Learning concepts, coding challenges, and mock interview sessions guided by experienced mentors.',
+    'The CSE (Data Science) Department along with DataNexus Club is organizing a 5 hours intensive workshop on Agentic AI for students of FE, SE, TE & BE of CSE (Data Science).The workshop will introduce students to Agentic AI, AI agents, agent-based systems, workflows, and real-world applications through conceptual sessions, live demonstrations, interactive activities, and hands-on exercises.',
   image:
-    'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2000&q=85',
-  registrationLink: '',
+    agentic_ai,
+  registrationLink: 'https://forms.gle/CDV2pfdxm6jYn4uD7',
 };
 
 
@@ -61,22 +63,22 @@ function FlipClockCard({ value, label }) {
   return (
     <div className="flex flex-col items-center group flex-shrink-0">
 
-      <div className="relative w-14 h-18 sm:w-20 sm:h-24 md:w-24 md:h-26 lg:w-28 lg:h-30 bg-white border border-zinc-200/90 rounded-lg sm:rounded-xl shadow-md flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:shadow-lg group-hover:scale-[1.03]">
+      <div className="relative w-14 h-18 sm:w-20 sm:h-24 md:w-24 md:h-26 lg:w-28 lg:h-30 bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-white/10 rounded-lg sm:rounded-xl shadow-md dark:shadow-black/30 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:shadow-lg group-hover:scale-[1.03]">
 
         {/* Top half highlight */}
-        <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white via-zinc-50/80 to-zinc-100/60 pointer-events-none border-b border-zinc-200/60" />
+        <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white via-zinc-50/80 to-zinc-100/60 dark:from-zinc-800 dark:via-zinc-850 dark:to-zinc-900 pointer-events-none border-b border-zinc-200/60 dark:border-white/10" />
 
         {/* Bottom half shadow */}
-        <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-b from-zinc-100/90 via-zinc-100 to-zinc-200/70 pointer-events-none" />
+        <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-b from-zinc-100/90 via-zinc-100 to-zinc-200/70 dark:from-zinc-900 dark:via-zinc-950 dark:to-black pointer-events-none" />
 
         {/* Split line between the two halves */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1.5px] bg-zinc-300/90 z-20 shadow-xs" />
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1.5px] bg-zinc-300/90 dark:bg-white/10 z-20 shadow-xs" />
 
         {/* Left hinge notch */}
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 bg-zinc-300/90 rounded-r-sm border-r border-y border-zinc-400/40 z-30 shadow-inner" />
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 bg-zinc-300/90 dark:bg-zinc-700 rounded-r-sm border-r border-y border-zinc-400/40 dark:border-white/10 z-30 shadow-inner" />
 
         {/* Right hinge notch */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 bg-zinc-300/90 rounded-l-sm border-l border-y border-zinc-400/40 z-30 shadow-inner" />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 bg-zinc-300/90 dark:bg-zinc-700 rounded-l-sm border-l border-y border-zinc-400/40 dark:border-white/10 z-30 shadow-inner" />
 
         {/* Animated timer value */}
         <AnimatePresence mode="popLayout">
@@ -89,7 +91,7 @@ function FlipClockCard({ value, label }) {
               duration: 0.35,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="text-lg sm:text-3xl md:text-4xl lg:text-5xl font-black font-mono tracking-tight text-[#1a073f] z-10 select-none drop-shadow-xs"
+            className="text-lg sm:text-3xl md:text-4xl lg:text-5xl font-black font-mono tracking-tight text-[#1a073f] dark:text-white z-10 select-none drop-shadow-xs"
           >
             {formattedVal}
           </motion.span>
@@ -97,7 +99,7 @@ function FlipClockCard({ value, label }) {
       </div>
 
       {/* Unit label */}
-      <span className="text-[8px] sm:text-[10px] md:text-xs font-extrabold text-purple-600 tracking-[0.15em] sm:tracking-[0.22em] uppercase mt-1.5 sm:mt-2 font-poppins">
+      <span className="text-[8px] sm:text-[10px] md:text-xs font-extrabold text-purple-600 dark:text-purple-400 tracking-[0.15em] sm:tracking-[0.22em] uppercase mt-1.5 sm:mt-2 font-poppins">
         {label}
       </span>
     </div>
@@ -105,12 +107,88 @@ function FlipClockCard({ value, label }) {
 }
 
 
+/* Converts the event date and time into a JavaScript Date object */
+function getEventDateTime() {
+  const [day, monthName, year] = featuredEvent.date
+    .replace(/(\d+)(st|nd|rd|th)/, '$1')
+    .split(' ');
+
+  const months = {
+    January: 0,
+    February: 1,
+    March: 2,
+    April: 3,
+    May: 4,
+    June: 5,
+    July: 6,
+    August: 7,
+    September: 8,
+    October: 9,
+    November: 10,
+    December: 11,
+  };
+
+  const [timeValue, period] = featuredEvent.time.split(' ');
+  let [hours, minutes] = timeValue.split(':').map(Number);
+
+  if (period === 'PM' && hours !== 12) {
+    hours += 12;
+  }
+
+  if (period === 'AM' && hours === 12) {
+    hours = 0;
+  }
+
+  return new Date(
+    Number(year),
+    months[monthName],
+    Number(day),
+    hours,
+    minutes,
+    0
+  );
+}
+
+
+/* Calculates the remaining time until the event */
+function getTimeLeft() {
+  const eventDate = getEventDateTime();
+
+  const now = new Date();
+  const difference = eventDate.getTime() - now.getTime();
+
+  if (difference <= 0) {
+    return {
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    };
+  }
+
+  const totalSeconds = Math.floor(difference / 1000);
+
+  return {
+    days: Math.floor(totalSeconds / (24 * 60 * 60)),
+    hours: Math.floor(
+      (totalSeconds % (24 * 60 * 60)) / (60 * 60)
+    ),
+    minutes: Math.floor(
+      (totalSeconds % (60 * 60)) / 60
+    ),
+    seconds: totalSeconds % 60,
+  };
+}
+
+
 function FeaturedEvent() {
-  const [daysDisplay, setDaysDisplay] = useState(0);
-  const [hoursDisplay, setHoursDisplay] = useState(0);
-  const [minsDisplay, setMinsDisplay] = useState(0);
-  const [liveSeconds, setLiveSeconds] = useState(0);
-  const [animatingSec, setAnimatingSec] = useState(0);
+  const initialTime = getTimeLeft();
+
+  const [daysDisplay, setDaysDisplay] = useState(initialTime.days);
+  const [hoursDisplay, setHoursDisplay] = useState(initialTime.hours);
+  const [minsDisplay, setMinsDisplay] = useState(initialTime.minutes);
+  const [liveSeconds, setLiveSeconds] = useState(initialTime.seconds);
+  const [animatingSec, setAnimatingSec] = useState(initialTime.seconds);
   const [isIntroDone, setIsIntroDone] = useState(true);
 
   const ref = useRef(null);
@@ -120,80 +198,56 @@ function FeaturedEvent() {
     once: false,
   });
 
-  /* Initial countdown values */
-  const targetD = 18;
-  const targetH = 14;
-  const targetM = 22;
-  const targetS = 45;
 
-  /* Keeps the countdown running every second */
+  /* Keeps the countdown synchronized with the actual event date */
   useEffect(() => {
-    setDaysDisplay(targetD);
-    setHoursDisplay(targetH);
-    setMinsDisplay(targetM);
-    setLiveSeconds(targetS);
-    setAnimatingSec(targetS);
-  }, []);
+    const updateCountdown = () => {
+      const timeLeft = getTimeLeft();
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setLiveSeconds((prev) => {
-        if (prev <= 0) {
-          setMinsDisplay((m) => {
-            if (m <= 0) {
-              setHoursDisplay((h) => {
-                if (h <= 0) {
-                  setDaysDisplay((d) => (d <= 0 ? 0 : d - 1));
-                  return 23;
-                }
+      setDaysDisplay(timeLeft.days);
+      setHoursDisplay(timeLeft.hours);
+      setMinsDisplay(timeLeft.minutes);
+      setLiveSeconds(timeLeft.seconds);
+    };
 
-                return h - 1;
-              });
+    updateCountdown();
 
-              return 59;
-            }
-
-            return m - 1;
-          });
-
-          return 59;
-        }
-
-        return prev - 1;
-      });
-    }, 1000);
+    const timer = setInterval(updateCountdown, 1000);
 
     return () => clearInterval(timer);
   }, []);
 
+
   /* Animates the timer values when the countdown enters the viewport */
   useEffect(() => {
     if (isInView) {
+      const currentTime = getTimeLeft();
+
       setDaysDisplay(0);
       setHoursDisplay(0);
       setMinsDisplay(0);
       setAnimatingSec(0);
       setIsIntroDone(false);
 
-      const dControls = animate(0, targetD, {
+      const dControls = animate(0, currentTime.days, {
         duration: 1.8,
         ease: 'easeOut',
         onUpdate: (v) => setDaysDisplay(Math.round(v)),
       });
 
-      const hControls = animate(0, targetH, {
+      const hControls = animate(0, currentTime.hours, {
         duration: 1.8,
         ease: 'easeOut',
         onUpdate: (v) => setHoursDisplay(Math.round(v)),
       });
 
-      const mControls = animate(0, targetM, {
+      const mControls = animate(0, currentTime.minutes, {
         duration: 1.8,
         ease: 'easeOut',
         onUpdate: (v) => setMinsDisplay(Math.round(v)),
       });
 
-      const sControls = animate(0, liveSeconds, {
+      const sControls = animate(0, currentTime.seconds, {
         duration: 1.8,
         ease: 'easeOut',
         onUpdate: (v) => setAnimatingSec(Math.round(v)),
@@ -211,6 +265,7 @@ function FeaturedEvent() {
 
   const displaySec = isIntroDone ? liveSeconds : animatingSec;
 
+
   /* Scrolls to the upcoming events section */
   const handleKnowMore = () => {
     const upcomingSection =
@@ -223,6 +278,7 @@ function FeaturedEvent() {
       });
     }
   };
+
 
   return (
     <section
@@ -330,7 +386,7 @@ function FeaturedEvent() {
               text-white/75
             "
           >
-            {featuredEvent.date}
+            {featuredEvent.date} • {featuredEvent.time}
           </p>
 
 
@@ -499,7 +555,9 @@ function FeaturedEvent() {
             sm:text-base
             font-semibold
             text-[#1a073f]
+            dark:text-white
             hover:text-[#8338ec]
+            dark:hover:text-purple-400
             transition-colors
             duration-200
             cursor-pointer
