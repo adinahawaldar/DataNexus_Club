@@ -1,153 +1,39 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import EventsNavbar from '../components/events/EventsNavbar';
+import Navbar from '../components/Navbar';
 import FeaturedEvent from '../components/events/FeaturedEvent.jsx';
 import UpcomingEventsCarousel from '../components/events/UpcomingEventsCarousel';
 import PastEvents from '../components/events/PastEvents';
 import Footer from '../components/Footer';
+import { ThemeProvider } from '../context/ThemeContext';
 
 function Events() {
   return (
-    <main className="relative min-h-screen bg-[#faf9ff]">
+    <ThemeProvider>
+      <EventsContent />
+    </ThemeProvider>
+  );
+}
 
-      {/* Header background: grid pattern, atmospheric glows, and fade into page background */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          top-0
-          left-0
-          right-0
-          h-[620px]
-          sm:h-[680px]
-          overflow-hidden
-          z-0
-        "
-      >
-        <div
-          className="
-            absolute
-            top-1/2
-            left-1/2
-            -translate-x-1/2
-            -translate-y-1/2
-            w-full
-            max-w-5xl
-            h-[400px]
-            sm:h-[500px]
-            overflow-hidden
-          "
-        >
-          {/* Technical grid used as the visual background texture */}
-          <div
-            className="
-              absolute
-              inset-0
-              opacity-60
-              sm:opacity-85
-            "
-            style={{
-              backgroundImage:
-                'linear-gradient(to right, rgba(161, 161, 170, 0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(161, 161, 170, 0.4) 1px, transparent 1px)',
-              backgroundSize: '28px 28px',
-              maskImage:
-                'radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.35) 40%, transparent 70%)',
-              WebkitMaskImage:
-                'radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.35) 40%, transparent 70%)',
-            }}
-          />
-
-          {/* Left-side warm accent glow */}
-          <div
-            className="
-              absolute
-              top-1/2
-              left-1/4
-              -translate-x-1/2
-              -translate-y-1/2
-              w-[220px]
-              sm:w-[420px]
-              h-[180px]
-              sm:h-[280px]
-              rounded-full
-              opacity-35
-              sm:opacity-45
-              blur-[50px]
-              sm:blur-[80px]
-            "
-            style={{
-              background:
-                'radial-gradient(circle, rgba(251, 146, 60, 0.25) 0%, transparent 75%)',
-            }}
-          />
-
-          {/* Main purple glow behind the events header */}
-          <div
-            className="
-              absolute
-              top-1/2
-              left-1/2
-              -translate-x-1/2
-              -translate-y-1/2
-              w-[420px]
-              sm:w-[700px]
-              h-[280px]
-              sm:h-[400px]
-              rounded-full
-              opacity-80
-              sm:opacity-90
-              blur-[55px]
-              sm:blur-[80px]
-            "
-            style={{
-              background:
-                'radial-gradient(ellipse at center, rgba(168, 85, 247, 0.65) 0%, rgba(192, 132, 252, 0.32) 45%, rgba(216, 180, 254, 0.12) 65%, transparent 80%)',
-            }}
-          />
-
-          {/* Right-side pink accent glow */}
-          <div
-            className="
-              absolute
-              top-1/2
-              right-1/4
-              translate-x-1/2
-              -translate-y-1/2
-              w-[220px]
-              sm:w-[420px]
-              h-[180px]
-              sm:h-[280px]
-              rounded-full
-              opacity-35
-              sm:opacity-45
-              blur-[50px]
-              sm:blur-[80px]
-            "
-            style={{
-              background:
-                'radial-gradient(circle, rgba(236, 72, 153, 0.20) 0%, transparent 75%)',
-            }}
-          />
-        </div>
-
-        {/* Fades the header background smoothly into the main page background */}
-        <div
-          className="
-            absolute
-            inset-0
-            bg-gradient-to-b
-            from-transparent
-            via-transparent
-            to-[#faf9ff]
-          "
-        />
-      </div>
-
+function EventsContent() {
+  return (
+    <main
+      className="
+        relative
+        min-h-screen
+        bg-[#faf9ff]
+        text-zinc-900
+        transition-colors
+        duration-500
+        dark:bg-[#120b24]
+        dark:text-white
+      "
+    >
 
       {/* Events page navigation */}
       <div className="relative z-20">
-        <EventsNavbar />
+        <Navbar />
       </div>
 
 
@@ -185,6 +71,7 @@ function Events() {
               font-medium
               tracking-tight
               text-[#8338ec]
+              dark:text-purple-400
             "
           >
             Where ideas turn into experiences.
@@ -212,6 +99,7 @@ function Events() {
               tracking-tight
               leading-none
               text-[#1a073f]
+              dark:text-white
             "
           >
             Our Events
@@ -236,6 +124,7 @@ function Events() {
               sm:text-base
               leading-relaxed
               text-zinc-600
+              dark:text-zinc-400
             "
           >
             Explore our upcoming and past events, workshops, competitions,
