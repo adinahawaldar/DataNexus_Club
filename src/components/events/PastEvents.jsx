@@ -9,8 +9,20 @@ import img6 from '../../assets/events/img6.jpg';
 import img7 from '../../assets/events/img7.png';
 import img8 from '../../assets/events/img8.png';
 import img9 from '../../assets/events/img7.png';
-
-
+import img10 from '../../assets/events/img10.png';
+import img11 from '../../assets/events/img11.png';
+import img12 from '../../assets/events/img12.png';
+import img13 from '../../assets/events/img13.png';
+import img14 from '../../assets/events/img14.jpeg';
+import img15 from '../../assets/events/img15.jpeg';
+import img16 from '../../assets/events/img16.jpeg';
+import img17 from '../../assets/events/img17.jpg';
+import img18 from '../../assets/events/img18.jpg';
+import img19 from '../../assets/events/img19.jpg';
+import img20 from '../../assets/events/img20.jpeg';
+import img21 from '../../assets/events/img21.jpg';
+import img22 from '../../assets/events/img22.jpg';
+import { i } from 'framer-motion/client';
 /*
   ============================================================
   PAST EVENTS DATA
@@ -25,64 +37,65 @@ const pastEvents = {
   '2026': [
     {
       id: 1,
-      name: 'PREPIT',
-      date: '18 April 2026',
-
-      images: [
-        'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=85',
-      ],
-
-      description:
-        'PREPIT is an intensive interview preparation and training program designed to help students excel in technical and HR interviews. The event focuses on Data Science, Machine Learning concepts, coding challenges, and mock interview sessions guided by experienced mentors.',
-    },
-
-    {
-      id: 2,
       name: 'Power BI Competition',
       date: '26 February 2026',
 
       images: [
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=85',
+        img20,
+        img21,
+        img22,
       ],
 
       description:
-        'A practical data visualization competition where participants worked with data and created meaningful dashboards and insights using Power BI.',
+        'The flagship data visualization competition organized by DataNexus Club. Participants will receive a real-world dataset and compete to create the most insightful and visually compelling Power BI dashboards. Judged on data storytelling, design aesthetics, and analytical depth.',
+    },
+
+    {
+      id: 2,
+      name: 'Power BI Workshop',
+      date: '17 February 2026',
+
+      images: [
+        img17,
+        img18,
+        img19,
+      ],
+
+      description:
+        'A hands-on workshop covering the fundamentals of Microsoft Power BI. Students learned to connect data sources, build interactive dashboards, create DAX formulas, and publish reports. Over 150 students attended across two sessions, gaining practical skills in data visualization and business intelligence.',
     },
 
     {
       id: 3,
-      name: 'Workshop on Power BI',
-      date: '17 February 2026',
+      name: 'TechSprint (Virtual Hackathon)',
+      date: '16 January 2026',
 
       images: [
-        'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=85',
+        img14,
+        img15,
+        img16,
       ],
 
       description:
-        'An interactive workshop focused on Power BI and the fundamentals of transforming data into meaningful visualizations and dashboards.',
+        'A collaboration with GDGC AIKTC and Elite Club of ECS, which tested the problem solving skills of the people. and making the Winner our President won the TechSprint 2026 his team "Team SPOT" along with his team members Iffah Sarang (AIML) and Huzaifa Ansari (AIML). Runner-Up Team Chaigpt the lead Rumani Maseera won it.',
     },
   ],
 
   '2025': [
     {
       id: 4,
-      name: 'Java Bootcamp',
-      date: '14 October 2025',
+      name: 'Nexathon',
+      date: '18 October 2025',
 
       images: [
-        'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=85',
+        img11,
+        img10,
+        img13,
+        img12,
       ],
 
       description:
-        'A practical bootcamp designed to strengthen programming fundamentals and introduce students to Java through hands-on learning.',
+        'The event promoted innovation and data-driven problem-solving across domains like Healthcare, FinTech, Agriculture, Education, and Open Innovation. With 70+ registered teams and 234 participants, students presented their projects through detailed demonstrations and evaluations by expert judges.',
     },
 
     {
