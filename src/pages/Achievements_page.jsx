@@ -1,148 +1,140 @@
 import React from "react";
 import { motion } from "framer-motion";
-
 import Navbar from "../components/Navbar";
 import AchievementsHero from "../components/AchievementsHero";
 import Footer from "../components/Footer";
 
+// Import uploaded images
+import Achievement1 from "../assets/Achievement1.png";
+import Achievement2 from "../assets/Achievement2.png";
+
 function AchievementsPage() {
-    const achievements = [
-        {
-            number: "01",
-            title: "Hackathons",
-            description:
-                "Collaborating, competing, and building practical solutions through technical challenges and hackathons.",
-            image: "/achievements/achievement1.jpeg",
-        },
-        {
-            number: "02",
-            title: "Technical Projects",
-            description:
-                "Turning ideas into real projects while learning AI, data science, development, and problem solving.",
-            image: "/achievements/achievement2.jpeg",
-        },
-        {
-            number: "03",
-            title: "Community Impact",
-            description:
-                "Creating a stronger student community through workshops, teamwork, knowledge sharing, and innovation.",
-            image: "/achievements/achievement3.jpeg",
-        },
-    ];
+  // Updated achievements array with uploaded images
+  const achievements = [
+    {
+      number: "01",
+      title: "Hackathons",
+      description:
+        "Collaborating, competing, and building practical solutions through technical challenges and hackathons.",
+      image: Achievement1,
+    },
+    {
+      number: "02",
+      title: "Technical Projects",
+      description:
+        "Turning ideas into real projects while learning AI, data science, development, and problem solving.",
+      image: Achievement2,
+    },
+    {
+      number: "03",
+      title: "Community Impact",
+      description:
+        "Creating a stronger student community through workshops, teamwork, knowledge sharing, and innovation.",
+      image: Achievement1,
+    },
+  ];
 
-    return (
-        <div className="min-h-screen bg-[#0b0813] text-white">
+  return (
+    <div className="min-h-screen bg-[#0b0813] text-white">
+      {/* NAVBAR */}
+      <Navbar variant="dark" />
 
-            {/* NAVBAR */}
-            <Navbar variant="dark" />
+      {/* HERO */}
+      <AchievementsHero />
 
-            {/* HERO */}
-            <AchievementsHero />
+      {/* ================= EXPLORE ACHIEVEMENTS ================= */}
+      <section
+        id="achievement-highlights"
+        className="relative overflow-hidden bg-[#0b0813] px-6 py-24 sm:px-10 lg:px-16"
+      >
+        <div className="mx-auto max-w-[1440px]">
+          {/* Heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7 }}
+            className="mb-12"
+          >
+            <p className="mb-3 font-poppins text-xs font-semibold uppercase tracking-[0.25em] text-purple-400">
+              Explore Our Journey
+            </p>
+            <h2 className="max-w-3xl font-poppins text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+              Stories of <span className="text-purple-400">Growth.</span>
+            </h2>
+            <p className="mt-5 max-w-2xl font-poppins text-sm leading-7 text-zinc-400 sm:text-base">
+             From hackathons to real-world projects, our journey reflects creativity,
+             resilience, and collaboration of Data Nexus Club
+            </p>
+          </motion.div>
 
-            {/* ================= EXPLORE ACHIEVEMENTS ================= */}
-            <section
-                id="achievement-highlights"
-                className="relative overflow-hidden bg-[#0b0813] px-6 py-24 sm:px-10 lg:px-16"
+          {/* Achievement Cards (only two now) */}
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {/* Card 1: Award Ceremony */}
+            <motion.article
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.7, delay: 0.12 }}
+              className="group overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.04] transition-all duration-500 hover:-translate-y-2 hover:border-purple-400/30 hover:bg-white/[0.06]"
             >
-                <div className="mx-auto max-w-[1440px]">
+              <div className="relative h-[300px] overflow-hidden">
+                <img
+                  src={Achievement1}
+                  alt="Award Ceremony"
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              </div>
+              <div className="p-7">
+                <h3 className="font-poppins text-2xl font-bold text-white">
+                  DataNexus Members in Council of SoET
+                </h3>
+                <p className="mt-3 font-poppins text-sm leading-7 text-zinc-400">
+                  Recognition of excellence at Anjuman-I-Islam’s 
+                  Kalsekar Technical Campus Student Council.
+                </p>
+              </div>
+            </motion.article>
 
-                    {/* Heading */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.15 }}
-                        transition={{ duration: 0.7 }}
-                        className="mb-12"
-                    >
-                        <p className="mb-3 font-poppins text-xs font-semibold uppercase tracking-[0.25em] text-purple-400">
-                            Explore Our Journey
-                        </p>
+            {/* Card 2: Certificates Achievement */}
+            <motion.article
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.7, delay: 0.24 }}
+              className="group overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.04] transition-all duration-500 hover:-translate-y-2 hover:border-purple-400/30 hover:bg-white/[0.06]"
+            >
+              <div className="relative h-[300px] overflow-hidden">
+                <img
+                  src={Achievement2}
+                  alt="Certificates Achievement"
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              </div>
+              <div className="p-7">
+                <h3 className="font-poppins text-2xl font-bold text-white">
+                  Battle of Pivot – 3rd Prize
+                </h3>
+                <p className="mt-3 font-poppins text-sm leading-7 text-zinc-400">
+                  Celebrating academic and Technical accomplishments.
+                </p>
+              </div>
+            </motion.article>
+          </div>
+        </div>
+      </section>
 
-                        <h2 className="max-w-3xl font-poppins text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                            Moments that
-                            <span className="text-purple-400">
-                                {" "}made an impact.
-                            </span>
-                        </h2>
-
-                        <p className="mt-5 max-w-2xl font-poppins text-sm leading-7 text-zinc-400 sm:text-base">
-                            Every event, project, and collaboration becomes a
-                            part of our journey. These moments represent the
-                            creativity, teamwork, and growth of DataNexus.
-                        </p>
-                    </motion.div>
-
-
-                    {/* Achievement Cards */}
-                    <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-
-                        {achievements.map((achievement, index) => (
-                            <motion.article
-                                key={achievement.number}
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, amount: 0.15 }}
-                                transition={{
-                                    duration: 0.7,
-                                    delay: index * 0.12,
-                                }}
-                                className="group overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.04] transition-all duration-500 hover:-translate-y-2 hover:border-purple-400/30 hover:bg-white/[0.06]"
-                            >
-
-                                {/* IMAGE */}
-                                <div className="relative h-[300px] overflow-hidden">
-                                    <img
-                                        src={achievement.image}
-                                        alt={achievement.title}
-                                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    />
-
-                                    {/* Dark overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                                    {/* Number */}
-                                    <div className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md">
-                                        <span className="font-poppins text-xs font-bold text-white">
-                                            {achievement.number}
-                                        </span>
-                                    </div>
-
-                                    {/* Arrow */}
-                                    <div className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#1a073f] transition-all duration-300 group-hover:rotate-12">
-                                        ↗
-                                    </div>
-                                </div>
-
-
-                                {/* CONTENT */}
-                                <div className="p-7">
-
-                                    <h3 className="font-poppins text-2xl font-bold text-white">
-                                        {achievement.title}
-                                    </h3>
-
-                                    <p className="mt-3 font-poppins text-sm leading-7 text-zinc-400">
-                                        {achievement.description}
-                                    </p>
-
-                                    <div className="mt-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-purple-400">
-                                        <span className="h-px w-8 bg-purple-400/60" />
-                                        DataNexus
-                                    </div>
-                                </div>
-
-                            </motion.article>
-                        ))}
-
-                    </div>
-                </div>
-            </section>
-           {/* ================= PAST ACHIEVEMENTS ================= */}
-<section
-    id="past-achievements"
-    className="relative overflow-hidden bg-[#0b0813] px-6 pb-24 pt-20 text-white sm:px-10 sm:pb-28 sm:pt-24 lg:px-16"
->
-    <div className="mx-auto max-w-[1440px]">
+      {/* ================= PAST ACHIEVEMENTS ================= */}
+      {/* This section remains unchanged */}
+      <section
+        id="past-achievements"
+        className="relative overflow-hidden bg-[#0b0813] px-6 pb-24 pt-20 text-white sm:px-10 sm:pb-28 sm:pt-24 lg:px-16"
+      >
+        <div className="mx-auto max-w-[1440px]">
 
         {/* ================= SECTION HEADER ================= */}
         <motion.div
@@ -469,13 +461,14 @@ function AchievementsPage() {
             </motion.article>
 
         </div>
-    </div>
-</section>
-
-            {/* FOOTER */}
-            <Footer />
+    
         </div>
-    );
+      </section>
+
+      {/* FOOTER */}
+      <Footer />
+    </div>
+  );
 }
 
 export default AchievementsPage;
