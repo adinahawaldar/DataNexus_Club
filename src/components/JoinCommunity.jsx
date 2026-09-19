@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 
 export default function JoinCommunity() {
-  const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const { isDark } = useTheme();
 
   const collagePhotos = [
@@ -18,12 +16,7 @@ export default function JoinCommunity() {
     'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80',
   ];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setIsSubmitted(true);
-    }
-  };
+  const whatsappCommunityLink = 'https://whatsapp.com/channel/0029VbBbnMZ9MF97N8yK692m';
 
   return (
     <section
@@ -41,12 +34,15 @@ export default function JoinCommunity() {
                 src={photo}
                 alt="DataNexus Event Collage"
                 className={`w-full h-full object-cover transition-transform duration-700 hover:scale-105 ${
-                  isDark ? 'brightness-75 contrast-115' : 'brightness-100 contrast-105'
+                  isDark
+                    ? 'brightness-75 contrast-115'
+                    : 'brightness-100 contrast-105'
                 }`}
               />
             </div>
           ))}
         </div>
+
         {/* Seamless Blend: Top Fade */}
         <div
           className={`absolute top-0 inset-x-0 h-28 sm:h-40 pointer-events-none z-10 bg-gradient-to-b ${
@@ -55,6 +51,7 @@ export default function JoinCommunity() {
               : 'from-[#faf8fd] via-[#faf8fd]/60 to-transparent'
           }`}
         />
+
         {/* Seamless Blend: Bottom Fade */}
         <div
           className={`absolute bottom-0 inset-x-0 h-28 sm:h-40 pointer-events-none z-10 bg-gradient-to-t ${
@@ -93,69 +90,34 @@ export default function JoinCommunity() {
               isDark ? 'text-zinc-300' : 'text-zinc-700'
             }`}
           >
-            Join DataNexus Club today to build real projects, participate in hackathons, and connect with fellow developers.
+            Join DataNexus Club today to build real projects, participate in
+            hackathons, and connect with fellow developers.
           </p>
 
-          {/* Email Subscription Input Box */}
-          <div className="w-full max-w-md">
-            <AnimatePresence mode="wait">
-              {!isSubmitted ? (
-                <motion.form
-                  key="form"
-                  initial={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onSubmit={handleSubmit}
-                  className="flex flex-col sm:flex-row items-center gap-3 w-full"
-                >
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your college email address..."
-                    className={`w-full rounded-full px-5 py-3.5 text-sm transition-all shadow-sm focus:outline-none ${
-                      isDark
-                        ? 'bg-[#0a0716] border border-purple-400/20 text-white placeholder-zinc-500 focus:border-purple-400/60'
-                        : 'bg-white border border-purple-200 text-zinc-900 placeholder-zinc-400 focus:border-purple-600 focus:ring-2 focus:ring-purple-200'
-                    }`}
-                  />
-                  <button
-                    type="submit"
-                    className="w-full sm:w-auto rounded-full px-7 py-3.5 text-sm font-semibold whitespace-nowrap active:scale-95 transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 bg-gradient-to-r from-[#5b21b6] via-[#9333ea] to-[#5b21b6] backdrop-blur-xl border border-white/30 text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.45)] hover:brightness-115 hover:scale-105"
-                  >
-                    Join Community
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="3" y1="8" x2="13" y2="8" />
-                      <polyline points="9 4 13 8 9 12" />
-                    </svg>
-                  </button>
-                </motion.form>
-              ) : (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className={`rounded-2xl p-4 sm:p-5 text-center border ${
-                    isDark
-                      ? 'bg-purple-950/80 border-purple-500/40 text-purple-200'
-                      : 'bg-purple-50 border-purple-200 text-[#1a073f]'
-                  }`}
-                >
-                  <div
-                    className={`inline-flex items-center gap-2 text-sm font-bold mb-1 ${
-                      isDark ? 'text-white' : 'text-purple-950'
-                    }`}
-                  >
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-ping" />
-                    Welcome to DataNexus Club!
-                  </div>
-                  <p className={`text-xs sm:text-sm font-medium ${isDark ? 'text-purple-300' : 'text-purple-900'}`}>
-                    We've sent a welcome guide and event invite to <span className="font-semibold">{email}</span>.
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          {/* WhatsApp Community Button */}
+          <motion.a
+            href={whatsappCommunityLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="rounded-full px-8 py-3.5 text-sm font-semibold whitespace-nowrap transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 bg-gradient-to-r from-[#5b21b6] via-[#9333ea] to-[#5b21b6] backdrop-blur-xl border border-white/30 text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.45)] hover:brightness-115"
+          >
+            Join Community
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="3" y1="8" x2="13" y2="8" />
+              <polyline points="9 4 13 8 9 12" />
+            </svg>
+          </motion.a>
         </motion.div>
       </div>
     </section>
