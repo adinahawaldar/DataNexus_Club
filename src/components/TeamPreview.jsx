@@ -6,6 +6,8 @@ import ridaImg from '../assets/team/rida.png';
 import aatifImg from '../assets/team/Aatif Shaikh.jpeg';
 import naumanImg from '../assets/team/Nauman Patel.jpeg';
 import kashifImg from '../assets/team/Kashif Qureshi.jpeg';
+import hodimg from '../assets/team/hod.jpeg';
+import mentorimg from '../assets/team/mentor.jpeg';
 
 export default function TeamPreview() {
   const { isDark } = useTheme();
@@ -18,7 +20,7 @@ export default function TeamPreview() {
       role: 'Head of Department',
       shortRole: 'HOD',
       image:
-        'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=80',
+        hodimg,
       rotate: '-rotate-3 sm:-rotate-4',
       badgePos: '-top-10 left-1/2 -translate-x-1/2',
     },
@@ -28,7 +30,7 @@ export default function TeamPreview() {
       role: 'Faculty Coordinator',
       shortRole: 'Faculty Coordinator',
       image:
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80',
+        mentorimg,
       rotate: 'rotate-3 sm:rotate-4',
       badgePos: '-top-10 left-1/2 -translate-x-1/2',
     },
