@@ -4,10 +4,11 @@ import AchievementsPage from "./pages/Achievements_page";
 import TeamPage from "./pages/Team_page";
 
 function App() {
-  const getPath = () =>
-    (window.location.pathname + window.location.hash).toLowerCase();
+  const getPath = () => {
+    return (window.location.pathname + window.location.hash).toLowerCase();
+  };
 
-  const [currentPath, setCurrentPath] = useState(getPath);
+  const [currentPath, setCurrentPath] = useState(getPath());
 
   useEffect(() => {
     const handleLocationChange = () => {
@@ -23,14 +24,11 @@ function App() {
     };
   }, []);
 
-  const isAchievements = currentPath.includes("achievements");
-  const isTeams = currentPath.includes("teams");
-
-  if (isAchievements) {
+  if (currentPath.includes("achievements")) {
     return <AchievementsPage />;
   }
 
-  if (isTeams) {
+  if (currentPath.includes("teams")) {
     return <TeamPage />;
   }
 
