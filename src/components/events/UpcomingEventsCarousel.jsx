@@ -1,48 +1,34 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 /*
   ============================================================
   UPCOMING EVENTS DATA
   ============================================================
 
-  This array stores all upcoming events.
-
-  Each event contains:
-  - id: Unique identifier for the event.
-  - name: Event name.
-  - status: Status shown on the event card.
-  - image: Image displayed as the card background.
-  - description: Complete event description.
-  - registrationLink: Link used for event registration.
-
-  Keep the nearest upcoming event first.
-
-  Images can have ANY resolution or aspect ratio.
-  The carousel automatically scales and crops them
-  to completely fill the card.
 */
-import prepitImage from '../../assets/bloom.jpg';
+
+import agentic_ai from '../../assets/events/agentic_ai.jpg';
+import nexathon from '../../assets/events/nexathon_event.jpg';
 
 const upcomingEvents = [
   {
     id: 1,
-    name: 'PREPIT',
+    name: 'Agentic AI Workshop',
     status: 'Upcoming',
-    image: prepitImage,
+    image: agentic_ai,
     description:
-      'PREPIT is an intensive interview preparation and training program designed to help students excel in technical and HR interviews. The event focuses on Data Science, Machine Learning concepts, coding challenges, and mock interview sessions guided by experienced mentors.',
-    registrationLink: '',
+      'Explore the fascinating world of Agentic AI in this hands-on workshop. Learn about autonomous agents, their applications, and the future of AI-driven decision making.',
+    registrationLink: 'https://forms.gle/CDV2pfdxm6jYn4uD7',
   },
 
   {
     id: 2,
-    name: 'Data Science Workshop',
+    name: 'Nexathon II',
     status: 'Upcoming',
-    image:
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=85',
+    image: nexathon,
     description:
-      'An interactive learning session focused on practical concepts, tools, and techniques used in Data Science.',
+      'NEXATHON II is a celebration of innovation, creativity, and technology, where students come together to transform ideas into impactful solutions and showcase their skills through real-world challenges.',
     registrationLink: '',
   },
 
@@ -84,6 +70,7 @@ const upcomingEvents = [
   - Automatic scrolling to the description.
   - Framer Motion animations.
 */
+
 function UpcomingEventsCarousel() {
   /*
     ============================================================
@@ -672,11 +659,11 @@ function UpcomingEventsCarousel() {
           What&apos;s happening next.
         </p>
 
-        <h2 className="mt-3 font-sans text-4xl font-bold leading-none tracking-tight text-[#1a073f] sm:text-5xl md:text-6xl lg:text-7xl">
+        <h2 className="mt-3 font-sans text-4xl font-bold leading-none tracking-tight text-[#1a073f] dark:text-white sm:text-5xl md:text-6xl lg:text-7xl">
           Upcoming Events
         </h2>
 
-        <p className="mx-auto mt-5 max-w-2xl font-sans text-base leading-relaxed text-zinc-600 sm:text-lg">
+        <p className="mx-auto mt-5 max-w-2xl font-sans text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
           Discover what&apos;s coming up at Data Nexus Club.
         </p>
       </motion.div>
@@ -729,10 +716,10 @@ function UpcomingEventsCarousel() {
                 }
           }
           aria-label="Previous event"
-          className={`absolute left-2 top-1/2 z-[80] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#1a073f]/10 bg-white/90 shadow-lg backdrop-blur-md transition-all duration-200 sm:left-6 sm:h-14 sm:w-14 lg:left-10 ${
+          className={`absolute left-2 top-1/2 z-[80] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#1a073f]/10 dark:border-white/10 bg-white/90 dark:bg-zinc-900/90 shadow-lg backdrop-blur-md transition-all duration-200 sm:left-6 sm:h-14 sm:w-14 lg:left-10 ${
             activeIndex === 0
               ? 'cursor-not-allowed opacity-30'
-              : 'cursor-pointer hover:bg-white'
+              : 'cursor-pointer hover:bg-white dark:hover:bg-zinc-800'
           }`}
         >
           <svg
@@ -743,7 +730,8 @@ function UpcomingEventsCarousel() {
           >
             <path
               d="M15 18L9 12L15 6"
-              stroke="#1a073f"
+              stroke="currentColor"
+              className="text-[#1a073f] dark:text-purple-300"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -780,11 +768,11 @@ function UpcomingEventsCarousel() {
                 }
           }
           aria-label="Next event"
-          className={`absolute right-2 top-1/2 z-[80] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#1a073f]/10 bg-white/90 shadow-lg backdrop-blur-md transition-all duration-200 sm:right-6 sm:h-14 sm:w-14 lg:right-10 ${
+          className={`absolute right-2 top-1/2 z-[80] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#1a073f]/10 dark:border-white/10 bg-white/90 dark:bg-zinc-900/90 shadow-lg backdrop-blur-md transition-all duration-200 sm:right-6 sm:h-14 sm:w-14 lg:right-10 ${
             activeIndex ===
             upcomingEvents.length - 1
               ? 'cursor-not-allowed opacity-30'
-              : 'cursor-pointer hover:bg-white'
+              : 'cursor-pointer hover:bg-white dark:hover:bg-zinc-800'
           }`}
         >
           <svg
@@ -795,7 +783,8 @@ function UpcomingEventsCarousel() {
           >
             <path
               d="M9 18L15 12L9 6"
-              stroke="#1a073f"
+              stroke="currentColor"
+              className="text-[#1a073f] dark:text-purple-300"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -805,19 +794,7 @@ function UpcomingEventsCarousel() {
 
         {/* ======================================================
             NATIVE HORIZONTAL CAROUSEL
-            ======================================================
-
-            This is a normal HTML div with horizontal scrolling.
-
-            CSS scroll snapping is used so cards naturally
-            settle into position after scrolling.
-
-            The carousel also supports:
-            - Mouse dragging on desktop.
-            - Touch swiping on mobile.
-            - Arrow navigation.
-            - Dot navigation.
-        ====================================================== */}
+            ====================================================== */}
 
         <div
           ref={carouselRef}
@@ -866,29 +843,13 @@ function UpcomingEventsCarousel() {
         >
           {upcomingEvents.map(
             (event, index) => {
-              /*
-                Check whether this card is currently
-                positioned in the center.
-              */
               const isActive =
                 index === activeIndex;
 
-              /*
-                Calculate how many positions away this
-                card is from the active card.
-              */
               const distance = Math.abs(
                 index - activeIndex
               );
 
-              /*
-                Cards farther than one position away
-                are hidden.
-
-                The active card is fully visible,
-                while its immediate neighbors are
-                partially visible.
-              */
               const cardOpacity =
                 distance > 1
                   ? 0
@@ -900,11 +861,6 @@ function UpcomingEventsCarousel() {
                 <div
                   key={event.id}
                   ref={(element) => {
-                    /*
-                      Store the DOM reference for this
-                      particular card at the same index
-                      as the event in the array.
-                    */
                     cardRefs.current[
                       index
                     ] = element;
@@ -924,24 +880,6 @@ function UpcomingEventsCarousel() {
                     lg:w-[240px]
                   "
                 >
-                  {/* ==================================================
-                      EVENT CARD
-                      ==================================================
-
-                      Framer Motion controls the visual state
-                      of each card.
-
-                      The active card:
-                      - Is larger.
-                      - Is fully visible.
-                      - Has the highest z-index.
-
-                      Neighboring cards:
-                      - Are smaller.
-                      - Are slightly rotated.
-                      - Are partially transparent.
-                  ================================================== */}
-
                   <motion.div
                     animate={{
                       scale: isActive
@@ -986,37 +924,17 @@ function UpcomingEventsCarousel() {
                       lg:w-[310px]
                     "
                     style={{
-                      /*
-                        Enables 3D transforms such as rotateY.
-                      */
                       transformStyle:
                         'preserve-3d',
 
-                      /*
-                        Sets the depth used for the 3D effect.
-                      */
                       perspective: 1000,
 
-                      /*
-                        Only the active card should receive
-                        pointer interactions.
-                      */
                       pointerEvents:
                         isActive
                           ? 'auto'
                           : 'none',
                     }}
                   >
-                    {/* ==============================================
-                        IMAGE
-
-                        object-cover makes the image completely
-                        cover the card while preserving its
-                        aspect ratio.
-
-                        Any excess part of the image is cropped.
-                    ============================================== */}
-
                     <img
                       src={event.image}
                       alt={event.name}
@@ -1035,21 +953,9 @@ function UpcomingEventsCarousel() {
                       "
                     />
 
-                    {/* ==============================================
-                        IMAGE OVERLAY
-                        ==============================================
-
-                        These gradients darken the image so that
-                        the white event text remains readable.
-                    ============================================== */}
-
                     <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#1a073f]/20 via-[#1a073f]/35 to-[#1a073f]/95" />
 
                     <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-tr from-black/20 via-transparent to-white/10" />
-
-                    {/* ==============================================
-                        CONTENT
-                        ============================================== */}
 
                     <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8">
 
@@ -1080,11 +986,6 @@ function UpcomingEventsCarousel() {
                           onMouseDown={(
                             event
                           ) => {
-                            /*
-                              Prevent the carousel's mouse
-                              drag handler from interfering
-                              with this button.
-                            */
                             event.stopPropagation();
                           }}
                           onClick={(
@@ -1165,13 +1066,7 @@ function UpcomingEventsCarousel() {
 
       {/* ========================================================
           CAROUSEL DOTS
-          ========================================================
-
-          Each dot represents one event.
-
-          The active event gets a wider dot so the user
-          can easily identify which event is selected.
-      ======================================================== */}
+          ======================================================== */}
 
       <div className="relative z-40 mt-3 flex items-center justify-center gap-2">
         {upcomingEvents.map(
@@ -1202,7 +1097,7 @@ function UpcomingEventsCarousel() {
                   transition={{
                     duration: 0.25,
                   }}
-                  className="block h-1.5 rounded-full bg-[#1a073f]"
+                  className="block h-1.5 rounded-full bg-[#1a073f] dark:bg-purple-400"
                 />
               </button>
             );
@@ -1212,14 +1107,7 @@ function UpcomingEventsCarousel() {
 
       {/* ========================================================
           DESCRIPTION
-          ========================================================
-
-          This section only appears when View Details
-          is clicked.
-
-          AnimatePresence + motion.div creates the
-          expand/collapse animation.
-      ======================================================== */}
+          ======================================================== */}
 
       <AnimatePresence initial={false}>
         {showDetails && (
@@ -1246,17 +1134,17 @@ function UpcomingEventsCarousel() {
             }}
             className="mx-auto max-w-3xl overflow-hidden px-4 sm:px-8"
           >
-            <div className="mt-8 rounded-[2rem] border border-[#1a073f]/10 bg-white/70 px-6 py-7 shadow-sm backdrop-blur-md sm:px-10 sm:py-9">
+            <div className="mt-8 rounded-[2rem] border border-[#1a073f]/10 dark:border-white/10 bg-white/70 dark:bg-white/[0.04] px-6 py-7 shadow-sm dark:shadow-black/20 backdrop-blur-md sm:px-10 sm:py-9">
 
-              <p className="font-sans text-xs font-semibold uppercase tracking-[0.15em] text-[#8338ec] sm:text-sm">
+              <p className="font-sans text-xs font-semibold uppercase tracking-[0.15em] text-[#8338ec] dark:text-purple-400 sm:text-sm">
                 About this event
               </p>
 
-              <h3 className="mt-2 font-sans text-2xl font-bold tracking-tight text-[#1a073f] sm:text-3xl">
+              <h3 className="mt-2 font-sans text-2xl font-bold tracking-tight text-[#1a073f] dark:text-white sm:text-3xl">
                 {activeEvent.name}
               </h3>
 
-              <p className="mt-4 font-sans text-sm leading-7 text-zinc-600 sm:text-base">
+              <p className="mt-4 font-sans text-sm leading-7 text-zinc-600 dark:text-zinc-400 sm:text-base">
                 {activeEvent.description}
               </p>
 
