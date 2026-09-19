@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import img1 from '../../assets/events/FDS_FY_1.jpeg';
+import img2 from '../../assets/events/FDS_FY_2.jpeg';
+import img3 from '../../assets/events/FDS_FY_3.jpeg';
+import img4 from '../../assets/events/img4.jpg';
+import img5 from '../../assets/events/img5.jpg';
+import img6 from '../../assets/events/img6.jpg';
+import img7 from '../../assets/events/img7.png';
+import img8 from '../../assets/events/img8.png';
+import img9 from '../../assets/events/img7.png';
+
 
 /*
   ============================================================
@@ -77,47 +87,47 @@ const pastEvents = {
 
     {
       id: 5,
-      name: 'Unleashing the Power of Data',
-      date: '9 October 2025',
+      name: 'Java Bootcamp',
+      date: '14 October 2025',
 
       images: [
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=85',
+        img7,
+        img8,
+        img9,
       ],
 
       description:
-        'An engaging session exploring the importance of data and how data-driven thinking can be used to understand problems and create meaningful solutions.',
+        'A comprehensive bootcamp designed to equip students with Java programming skills. Covered fundamentals like syntax, OOP principles, data structures, and algorithms. Hands-on coding sessions and projects provided practical experience in Java development.',
     },
 
     {
       id: 6,
       name: 'Workshop: Fundamentals of Data Science',
-      date: '26 September 2025',
+      date: '09 October 2025',
 
       images: [
-        'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=1600&q=85',
+        img4,
+        img5,
+        img6,
       ],
 
       description:
-        'A foundational workshop introducing students to important Data Science concepts and helping them understand the possibilities of working with data.',
+        'The session featured Dr. Tushar Ghorpade, who shared insights on real-world applications of Data Science in healthcare, finance, retail, and governance. Students were introduced to essential tools like Python and R, along with concepts such as data cleaning, visualization, and machine learning.',
     },
 
     {
       id: 7,
-      name: 'Inauguration of S4DS & Data Nexus Club',
-      date: '11 September 2025',
+      name: 'Fundamentals of Data Science (First Year)',
+      date: '26 September 2025',
 
       images: [
-        'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1600&q=85',
+        img1,
+        img2,
+        img3,
       ],
 
       description:
-        'The inauguration of S4DS and Data Nexus Club marked the beginning of a student community focused on Data Science, learning, collaboration, and innovation.',
+        'The workshop aimed to introduce students to core concepts of Data Science and bridge theoretical knowledge with practical applications. Sessions covered topics like data cleaning, data visualization, machine learning basics, and the role of Data Science in media.',
     },
   ],
 };
@@ -198,7 +208,7 @@ function PastEvents() {
   return (
     <section
       id="pastevents"
-      className="relative overflow-hidden px-4 pb-32 pt-20 sm:px-8 sm:pt-28 lg:px-16"
+      className="relative overflow-hidden px-4 pb-32 pt-20 text-zinc-900 transition-colors duration-500 dark:text-white sm:px-8 sm:pt-28 lg:px-16"
     >
       {/* ========================================================
           SECTION HEADING
@@ -227,11 +237,11 @@ function PastEvents() {
           Memories that stay.
         </p>
 
-        <h2 className="mt-3 font-sans text-4xl font-bold leading-none tracking-tight text-[#1a073f] sm:text-5xl md:text-6xl lg:text-7xl">
+        <h2 className="mt-3 font-sans text-4xl font-bold leading-none tracking-tight text-[#1a073f] dark:text-white sm:text-5xl md:text-6xl lg:text-7xl">
           Past Events
         </h2>
 
-        <p className="mx-auto mt-5 max-w-2xl font-sans text-base leading-relaxed text-zinc-600 sm:text-lg">
+        <p className="mx-auto mt-5 max-w-2xl font-sans text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
           A look back at the events, workshops,
           competitions, and experiences that shaped
           Data Nexus.
@@ -256,6 +266,8 @@ function PastEvents() {
             p-1.5
             shadow-sm
             backdrop-blur-md
+            dark:border-white/10
+            dark:bg-white/[0.05]
           "
         >
           {['2026', '2025'].map(
@@ -288,7 +300,7 @@ function PastEvents() {
                   {isActive && (
                     <motion.div
                       layoutId="pastEventsYearPill"
-                      className="absolute inset-0 rounded-full bg-[#1a073f]"
+                      className="absolute inset-0 rounded-full bg-[#1a073f] dark:bg-purple-600"
                       transition={{
                         type: 'spring',
                         stiffness: 400,
@@ -301,7 +313,7 @@ function PastEvents() {
                     className={`relative z-10 transition-colors duration-300 ${
                       isActive
                         ? 'text-white'
-                        : 'text-zinc-500 hover:text-[#1a073f]'
+                        : 'text-zinc-500 hover:text-[#1a073f] dark:text-zinc-400 dark:hover:text-white'
                     }`}
                   >
                     {year}
@@ -347,16 +359,16 @@ function PastEvents() {
 
             <span
               className="
-                font-script
-                text-3xl
-                font-bold
-                leading-none
-                tracking-tight
                 bg-gradient-to-r
                 from-[#6d28d9]
                 via-[#8338ec]
                 to-[#c026d3]
                 bg-clip-text
+                font-script
+                text-3xl
+                font-bold
+                leading-none
+                tracking-tight
                 text-transparent
                 sm:text-4xl
                 md:text-5xl
@@ -439,13 +451,13 @@ function PastEvents() {
 
                           {/* TITLE */}
 
-                          <h3 className="mt-3 font-sans text-3xl font-bold leading-[1.05] tracking-tight text-[#1a073f] sm:text-4xl lg:text-5xl">
+                          <h3 className="mt-3 font-sans text-3xl font-bold leading-[1.05] tracking-tight text-[#1a073f] dark:text-white sm:text-4xl lg:text-5xl">
                             {event.name}
                           </h3>
 
                           {/* SHORT DESCRIPTION */}
 
-                          <p className="mt-5 font-sans text-sm leading-7 text-zinc-600 sm:text-base">
+                          <p className="mt-5 font-sans text-sm leading-7 text-zinc-600 dark:text-zinc-400 sm:text-base">
                             {event.description.length >
                             150
                               ? `${event.description.slice(
@@ -487,6 +499,10 @@ function PastEvents() {
                               duration-200
                               hover:border-[#8338ec]
                               hover:text-[#8338ec]
+                              dark:border-white/30
+                              dark:text-white
+                              dark:hover:border-purple-400
+                              dark:hover:text-purple-400
                             "
                           >
                             {isOpen
@@ -549,17 +565,17 @@ function PastEvents() {
                           }}
                           className="overflow-hidden"
                         >
-                          <div className="mx-auto mt-8 max-w-4xl rounded-[2rem] border border-[#1a073f]/10 bg-white/70 px-6 py-7 shadow-sm backdrop-blur-md sm:mt-10 sm:px-10 sm:py-9">
+                          <div className="mx-auto mt-8 max-w-4xl rounded-[2rem] border border-[#1a073f]/10 bg-white/70 px-6 py-7 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04] sm:mt-10 sm:px-10 sm:py-9">
 
-                            <p className="font-sans text-xs font-semibold uppercase tracking-[0.15em] text-[#8338ec]">
+                            <p className="font-sans text-xs font-semibold uppercase tracking-[0.15em] text-[#8338ec] dark:text-purple-400">
                               About the event
                             </p>
 
-                            <h4 className="mt-2 font-sans text-2xl font-bold tracking-tight text-[#1a073f] sm:text-3xl">
+                            <h4 className="mt-2 font-sans text-2xl font-bold tracking-tight text-[#1a073f] dark:text-white sm:text-3xl">
                               {event.name}
                             </h4>
 
-                            <p className="mt-4 font-sans text-sm leading-7 text-zinc-600 sm:text-base sm:leading-8">
+                            <p className="mt-4 font-sans text-sm leading-7 text-zinc-600 dark:text-zinc-400 sm:text-base sm:leading-8">
                               {event.description}
                             </p>
 
@@ -613,6 +629,8 @@ function PastEvents() {
                   transition-colors
                   duration-200
                   hover:bg-purple-950
+                  dark:bg-purple-600
+                  dark:hover:bg-purple-500
                   sm:px-8
                   sm:py-4
                 "
