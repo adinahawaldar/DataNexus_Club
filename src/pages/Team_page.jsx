@@ -31,13 +31,25 @@ import ridaImg from '../assets/team/rida.png';
 import aatifImg from '../assets/team/Aatif Shaikh.jpeg';
 import naumanImg from '../assets/team/Nauman Patel.jpeg';
 import kashifImg from '../assets/team/Kashif Qureshi.jpeg';
+import heroImage from '../assets/team/teamhero.jpg';
+import mueezImg from '../assets/team/mueez.png';
+import aliImg from '../assets/team/ali.png';
+import irfaImg from '../assets/team/irfa.png';
+import vivekImg from '../assets/team/vivek.png';
+import saeemImg from '../assets/team/saeem.png';
+import sanaImg from '../assets/team/sana.png';
+import maseeraImg from '../assets/team/maseera.png';
+import sandipImg from '../assets/team/sandip.png';
+import altafImg from '../assets/team/altaf.png';
+import fizaImg from '../assets/team/fiza.png';
+
 
 const cn = (...classes) => classes.filter(Boolean).join(' ');
 
-const HERO_IMAGE = 'src/assets/team/image-removebg-preview (2).png';
+const HERO_IMAGE = heroImage;
 
 const TEAMS = ['Team 1', 'Team 2', 'Team 3', 'Team 4', 'Team 5'];
-const TEAM_TABS = ['All', ...TEAMS];
+const TEAM_TABS = ['Micro', ...TEAMS];
 
 const AUTOPLAY_MS = 3500;
 
@@ -162,12 +174,17 @@ const ALL_MEMBERS = Object.values(TEAM_MEMBERS).flat();
 -------------------------------------------------------- */
 
 const FOUNDING_MEMBERS = [
-  ['Dr. Rajesh Sharma', 'Faculty Advisor', '/src/assets/team/dimy1.png', '#'],
-  ['Prof. Ananya Roy', 'Faculty Coordinator', '/src/assets/team/dimy1.png', '#'],
-  ['Aarav Mehta', 'Club President', '/src/assets/team/dimy1.png', '#'],
-  ['Ishita Verma', 'Vice President', '/src/assets/team/dimy1.png', '#'],
-  ['Kabir Shah', 'Secretary', '/src/assets/team/dimy1.png', '#'],
-  ['Nisha Patil', 'Treasurer', '/src/assets/team/dimy1.png', '#'],
+  ['MR. MUEEZ HAJWANI', 'PRESIDENT', mueezImg, '#'],
+  ['MR. ALI KHAN', 'VICE PRESIDENT', aliImg, '#'],
+  ['MR. IRFAN SHAIKH', 'SECRETARY',irfaImg , '#'],
+  ['MR. VIVEK P. BANGAR', 'TREASURER', vivekImg ,'#'],
+  ['MR. SAEEM BIJLE', 'TREASURER MEMBER', saeemImg, '#'],
+  ['MS. SANA SHAIKH', 'TECHNICAL HEAD', sanaImg, '#'],
+  ['MS. MS. MASEERA RUMANI', 'DESIGN HEAD', maseeraImg, '#'],
+  ['MR. SANDIP DUSADH', 'DOCUMENTATION HEAD', sandipImg, '#'],
+  ['MR. ALTAF KASU', 'MARKETING HEAD', altafImg, '#'],
+  ['MS. FIZA PEERKHAN', 'MEDIA HEAD', fizaImg, '#'],
+  
 ].map(([name, role, image, linkedin], index) => ({
   id: `founder-${index}`,
   name,
@@ -280,20 +297,20 @@ function HeroCard() {
         <img
           src={HERO_IMAGE}
           alt="DataNexus Club team"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover opacity-[1.5]"
           onError={(event) => {
             event.currentTarget.style.display = 'none';
           }}
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-black/10" />
+        <div className="absolute inset-0 bg-transparent" />
 
         <div className="absolute inset-x-0 top-0 z-20">
           <Navbar />
         </div>
 
         <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-10">
-          <h1 className="max-w-xl font-poppins text-[2.75rem] font-extrabold leading-[0.95] tracking-tight text-[#1a073f] dark:text-white sm:text-7xl md:text-8xl">
+          <h1 className="inline-block max-w-xl rounded-2xl border-purple-300/30 bg-purple-500/10 px-5 py-3 font-poppins text-[2.75rem] font-extrabold leading-[0.95] tracking-tight text-[#1a073f] shadow-[0_8px_32px_rgba(126,34,206,0.18)] backdrop-blur-md dark:border-purple-300/20 dark:bg-purple-900/30 dark:text-white dark:shadow-[0_8px_32px_rgba(168,85,247,0.12)] sm:text-7xl md:text-8xl">
             Meet the team
           </h1>
         </div>
@@ -632,7 +649,7 @@ function FoundingMembersSection() {
       <div className="mx-auto max-w-[1120px]">
 
         <h2 className="mb-7 text-center font-poppins text-2xl font-bold tracking-tight text-[#1a073f] dark:text-white sm:mb-10 sm:text-5xl">
-          Founding Members
+          Our Founding Members
         </h2>
 
         <div className="relative mx-auto flex h-56 max-w-[900px] items-center justify-center overflow-hidden sm:h-72 sm:overflow-visible">
@@ -656,7 +673,7 @@ function FoundingMembersSection() {
                 <div
                   key={member.id}
                   className={cn(
-                    'group absolute h-44 w-32 cursor-pointer overflow-hidden rounded-md bg-zinc-200 shadow-lg transition-all duration-500 ease-out dark:bg-[#15111f] sm:h-64 sm:w-48',
+                    'group absolute h-100 w-65 cursor-pointer overflow-hidden rounded-md bg-zinc-200 shadow-lg transition-all duration-500 ease-out dark:bg-[#15111f] sm:h-64 sm:w-48',
 
                     active &&
                       'ring-2 ring-[#241052]/20'
