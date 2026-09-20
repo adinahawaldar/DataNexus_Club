@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { FaLinkedinIn } from 'react-icons/fa';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-import { ThemeProvider } from '../context/ThemeContext';
 
 import adinaImg from '../assets/team/Adina Hawalder.jpeg';
 import amaanImg from '../assets/team/Amaan Jalgaonkar.jpeg';
@@ -49,7 +48,7 @@ const cn = (...classes) => classes.filter(Boolean).join(' ');
 const HERO_IMAGE = heroImage;
 
 const TEAMS = ['Team 1', 'Team 2', 'Team 3', 'Team 4', 'Team 5'];
-const TEAM_TABS = ['Micro', ...TEAMS];
+const TEAM_TABS = ['ALL', ...TEAMS];
 
 const AUTOPLAY_MS = 3500;
 
@@ -176,8 +175,8 @@ const ALL_MEMBERS = Object.values(TEAM_MEMBERS).flat();
 const FOUNDING_MEMBERS = [
   ['MR. MUEEZ HAJWANI', 'PRESIDENT', mueezImg, '#'],
   ['MR. ALI KHAN', 'VICE PRESIDENT', aliImg, '#'],
-  ['MR. IRFAN SHAIKH', 'SECRETARY',irfaImg , '#'],
-  ['MR. VIVEK P. BANGAR', 'TREASURER', vivekImg ,'#'],
+  ['MR. IRFAN SHAIKH', 'SECRETARY', irfaImg, '#'],
+  ['MR. VIVEK P. BANGAR', 'TREASURER', vivekImg, '#'],
   ['MR. SAEEM BIJLE', 'TREASURER MEMBER', saeemImg, '#'],
   ['MS. SANA SHAIKH', 'TECHNICAL HEAD', sanaImg, '#'],
   ['MS. MS. MASEERA RUMANI', 'DESIGN HEAD', maseeraImg, '#'],
@@ -268,19 +267,17 @@ export default function TeamPage() {
   }, []);
 
   return (
-    <ThemeProvider>
-      <main className="min-h-screen overflow-x-hidden bg-[#faf8fd] text-zinc-900 transition-colors duration-500 dark:bg-[#07050e] dark:text-white">
-        <HeroCard />
+    <main className="min-h-screen overflow-x-hidden bg-[#faf8fd] text-zinc-900 transition-colors duration-500 dark:bg-[#07050e] dark:text-white">
+      <HeroCard />
 
-        <TeamSection />
+      <TeamSection />
 
-        <TeamOf2026Section />
+      <TeamOf2026Section />
 
-        <FoundingMembersSection />
+      <FoundingMembersSection />
 
-        <Footer />
-      </main>
-    </ThemeProvider>
+      <Footer />
+    </main>
   );
 }
 
@@ -330,7 +327,7 @@ function TeamSection() {
   let displayTitle;
   let showLeader = true;
 
-  if (activeTeam === 'All') {
+  if (activeTeam === 'ALL') {
     // ONLY the 5 Micro / Core Team cards
     members = ALL_TEAM_MEMBERS;
     displayTitle = 'Core Team';
