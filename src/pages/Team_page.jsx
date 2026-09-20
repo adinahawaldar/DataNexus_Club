@@ -15,8 +15,10 @@ import samiyaImg from '../assets/team/Samiya Khan.jpeg';
 import asrarImg from '../assets/team/Asrar Siddique.jpeg';
 import mohammadImg from '../assets/team/Mohammad Ahmed.jpeg';
 import siminImg from '../assets/team/Simin Ainarkar.jpeg';
-import tasifImg from '../assets/team/Tasif farooqui.jpeg';
+import tasifImg from '../assets/team/Tasif Farooqui.jpeg';
 import biswajitImg from '../assets/team/Biswajit Parida.jpeg';
+import sandeshImg from '../assets/team/Sandesh kite.jpeg';
+import maarijImg from '../assets/team/Mohammad Maarij.jpeg';
 import nazimImg from '../assets/team/Nazim Shaikh.jpeg';
 import raheedImg from '../assets/team/Raheed Khot.jpeg';
 import anjaliImg from '../assets/team/Anjali.jpeg';
@@ -84,8 +86,8 @@ const ALL_TEAM_DETAILS = [
 const TEAM_MEMBER_DETAILS = [
   // TEAM 1
   [
-    ['Sandesh kite', 'Technical Lead', '/src/assets/team/Sandesh kite.jpeg', '#'],
-    ['Mohammed Maarij', 'Core Member', '/src/assets/team/Mohammad Maarij.jpeg', '#'],
+    ['Sandesh kite', 'Technical Lead', sandeshImg, '#'],
+    ['Mohammed Maarij', 'Core Member', maarijImg, '#'],
     ['Adina Hawalder', 'Core Member', adinaImg, '#'],
     ['Amaan Jalgaonkar', 'Core Member', amaanImg, '#'],
     ['Taskeen Shaikh', 'Core Member', taskeenImg, '#'],
