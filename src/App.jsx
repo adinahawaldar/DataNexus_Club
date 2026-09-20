@@ -5,6 +5,8 @@ import AchievementsPage from "./pages/Achievements_page";
 import TeamPage from "./pages/Team_page";
 import Events from "./pages/Events_page";
 
+import { ThemeProvider } from "./context/ThemeContext";
+
 function App() {
   const getPath = () => {
     return (window.location.pathname + window.location.hash).toLowerCase();
@@ -31,18 +33,34 @@ function App() {
   const isEvents = currentPath.includes("events");
 
   if (isAchievements) {
-    return <AchievementsPage />;
+    return (
+      <ThemeProvider>
+        <AchievementsPage />
+      </ThemeProvider>
+    );
   }
 
   if (currentPath.includes("teams")) {
-    return <TeamPage />;
+    return (
+      <ThemeProvider>
+        <TeamPage />
+      </ThemeProvider>
+    );
   }
 
   if (isEvents) {
-    return <Events />;
+    return (
+      <ThemeProvider>
+        <Events />
+      </ThemeProvider>
+    );
   }
 
-  return <LandingPage />;
+  return (
+    <ThemeProvider>
+      <LandingPage />
+    </ThemeProvider>
+  );
 }
 
 export default App;
