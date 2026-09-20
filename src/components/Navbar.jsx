@@ -1,79 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from '../context/ThemeContext';
 import dncLogo from '../assets/DNC_Logo.png';
+import { navigateTo } from '../utils/navigation';
 
-const getCurrentPath = () =>
-  (window.location.pathname + window.location.hash).toLowerCase();
+const getActiveFromPath = () => {
+  const currentPath = (window.location.pathname + window.location.hash).toLowerCase();
 
-export default function Navbar({ variant }) {
-  const [activeTab, setActiveTab] = useState(() => {
-    const currentPath = getCurrentPath();
+  if (currentPath.includes('teams')) return 'Teams';
+  if (currentPath.includes('events')) return 'Events';
+  if (currentPath.includes('achievements')) return 'Achievements';
+  return 'Home';
+};
 
-    if (currentPath.includes('teams')) {
-      return 'Teams';
-    }
-
-    if (currentPath.includes('events')) {
-      return 'Events';
-    }
-
-    if (currentPath.includes('achievements')) {
-      return 'Achievements';
-    }
-
-    return 'Home';
-  });
-
+export default function Navbar() {
+  const [activeTab, setActiveTab] = useState(getActiveFromPath);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
-  const { isDark: isDarkContext, toggleTheme } = useTheme();
+  useEffect(() => {
+    const handleLocationUpdate = () => {
+      setActiveTab(getActiveFromPath());
+    };
 
-  const isDark = variant ? variant === 'dark' : isDarkContext;
+    window.addEventListener('popstate', handleLocationUpdate);
+    window.addEventListener('hashchange', handleLocationUpdate);
+
+    return () => {
+      window.removeEventListener('popstate', handleLocationUpdate);
+      window.removeEventListener('hashchange', handleLocationUpdate);
+    };
+  }, []);
 
   const navItems = [
-    { id: 'Home', label: 'Home' },
-    { id: 'Teams', label: 'Teams' },
-    { id: 'Events', label: 'Events' },
-    { id: 'Achievements', label: 'Achievements' },
+    { id: 'Home', label: 'Home', path: '/' },
+    { id: 'Teams', label: 'Teams', path: '/teams' },
+    { id: 'Events', label: 'Events', path: '/events' },
+    { id: 'Achievements', label: 'Achievements', path: '/achievements' },
   ];
 
-  const handleNavClick = (id) => {
+  const handleNavClick = (path, id) => {
     setActiveTab(id);
     setIsMobileOpen(false);
-
-    /*
-      ============================================================
-      PAGE NAVIGATION
-      ============================================================
-
-      Each navbar item now opens its own page.
-
-      Home         -> Landing page
-      Teams        -> Teams page
-      Events       -> Events page
-      Achievements -> Achievements page
-    */
-
-    if (id === 'Home') {
-      window.location.href = '/';
-      return;
-    }
-
-    if (id === 'Teams') {
-      window.location.href = '/teams';
-      return;
-    }
-
-    if (id === 'Events') {
-      window.location.href = '/events';
-      return;
-    }
-
-    if (id === 'Achievements') {
-      window.location.href = '/achievements';
-      return;
-    }
+    navigateTo(path);
   };
 
   return (
@@ -89,9 +56,8 @@ export default function Navbar({ variant }) {
       <div className="flex w-full items-center justify-between">
 
         {/* ================= LOGO ================= */}
-
         <button
-          onClick={() => handleNavClick('Home')}
+          onClick={() => handleNavClick('/', 'Home')}
           className="flex items-center gap-2 cursor-pointer transition-transform duration-200 hover:scale-105 active:scale-95 focus:outline-none"
           aria-label="DataNexus Home"
         >
@@ -100,49 +66,39 @@ export default function Navbar({ variant }) {
             alt="DataNexus Club Logo"
             className="h-16 w-auto object-contain transition-all duration-300 sm:h-20"
             style={{
-              filter: isDark
-                ? 'drop-shadow(0 4px 12px rgba(147, 51, 234, 0.25))'
-                : 'brightness(0.15) sepia(1) hue-rotate(250deg) saturate(400%) drop-shadow(0 2px 10px rgba(26, 7, 63, 0.2))',
+              filter: 'drop-shadow(0 4px 12px rgba(147, 51, 234, 0.25))',
             }}
           />
         </button>
 
-        {/* ================= RIGHT CONTROLS (NAV + THEME TOGGLE) ================= */}
-
+        {/* ================= RIGHT CONTROLS (NAV + MOBILE TOGGLE) ================= */}
         <div className="flex items-center gap-2.5 sm:gap-3">
 
           {/* DESKTOP NAV */}
-
           <nav
-            className={`hidden items-center gap-1 rounded-full border p-1.5 shadow-[0_8px_32px_0_rgba(131,56,236,0.08)] backdrop-blur-2xl md:inline-flex ${
-              isDark
-                ? 'border-white/15 bg-white/10'
-                : 'border-zinc-200/90 bg-white/90 shadow-md'
-            }`}
+            className="hidden items-center gap-1 rounded-full border border-white/15 bg-white/10 p-1.5 shadow-[0_8px_32px_0_rgba(131,56,236,0.08)] backdrop-blur-2xl md:inline-flex"
           >
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
 
               return (
-                <button
+                <a
                   key={item.id}
-                  onClick={() => handleNavClick(item.id)}
+                  href={item.path}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.path, item.id);
+                  }}
                   className={`relative flex cursor-pointer items-center rounded-full px-5 py-2 text-sm font-semibold transition-colors duration-200 ${
                     isActive
                       ? 'text-[#1a073f]'
-                      : isDark
-                        ? 'text-white hover:text-purple-200'
-                        : 'text-zinc-700 hover:text-[#1a073f]'
+                      : 'text-white hover:text-purple-200'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeTabPill"
-                      className={`absolute inset-0 z-0 rounded-full border shadow-[0_2px_12px_rgba(0,0,0,0.08)] ${
-                        isDark
-                          ? 'border-white/90 bg-white'
-                          : 'border-purple-200 bg-purple-100'
-                      }`}
+                      className="absolute inset-0 z-0 rounded-full border border-white/90 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
                       transition={{
                         type: 'spring',
                         stiffness: 380,
@@ -154,70 +110,17 @@ export default function Navbar({ variant }) {
                   <span className="relative z-10 font-bold">
                     {item.label}
                   </span>
-                </button>
+                </a>
               );
             })}
           </nav>
 
-          {/* THEME TOGGLE BUTTON */}
-
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle Light/Dark Theme"
-            className={`cursor-pointer rounded-full border p-2.5 shadow-sm backdrop-blur-xl transition-all duration-200 ${
-              isDark
-                ? 'border-white/15 bg-white/10 text-amber-300 hover:scale-105 hover:bg-white/20 active:scale-95'
-                : 'border-zinc-200 bg-white/90 text-purple-700 shadow-md hover:scale-105 hover:bg-white active:scale-95'
-            }`}
-          >
-            {isDark ? (
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="5" />
-                <line x1="12" y1="1" x2="12" y2="3" />
-                <line x1="12" y1="21" x2="12" y2="23" />
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                <line x1="1" y1="12" x2="3" y2="12" />
-                <line x1="21" y1="12" x2="23" y2="12" />
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-              </svg>
-            ) : (
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-              </svg>
-            )}
-          </button>
-
           {/* MOBILE MENU BUTTON */}
-
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             aria-label="Toggle Navigation Menu"
             aria-expanded={isMobileOpen}
-            className={`cursor-pointer rounded-full border p-2.5 shadow-sm backdrop-blur-xl transition-all duration-200 md:hidden ${
-              isDark
-                ? 'border-white/15 bg-white/10 text-white hover:bg-white/20'
-                : 'border-zinc-200 bg-white/90 text-[#1a073f] shadow-md hover:bg-white'
-            }`}
+            className="cursor-pointer rounded-full border border-white/15 bg-white/10 p-2.5 text-white shadow-sm backdrop-blur-xl transition-all duration-200 hover:bg-white/20 md:hidden"
           >
             {isMobileOpen ? (
               <svg
@@ -252,7 +155,6 @@ export default function Navbar({ variant }) {
       </div>
 
       {/* ================= MOBILE NAV ================= */}
-
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
@@ -275,33 +177,31 @@ export default function Navbar({ variant }) {
               duration: 0.3,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className={`mt-3 flex w-full flex-col gap-1.5 rounded-2xl border p-3 shadow-xl backdrop-blur-2xl md:hidden ${
-              isDark
-                ? 'border-white/10 bg-[#15111f]/95'
-                : 'border-zinc-200/90 bg-white/95'
-            }`}
+            className="mt-3 flex w-full flex-col gap-1.5 rounded-2xl border border-white/10 bg-[#15111f]/95 p-3 shadow-xl backdrop-blur-2xl md:hidden"
           >
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
 
               return (
-                <button
+                <a
                   key={item.id}
-                  onClick={() => handleNavClick(item.id)}
+                  href={item.path}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.path, item.id);
+                  }}
                   className={`flex w-full cursor-pointer items-center rounded-xl px-4 py-3 text-left text-sm font-bold transition-all ${
                     isActive
-                      ? 'border border-purple-200/80 bg-purple-50 text-[#1a073f]'
-                      : isDark
-                        ? 'text-zinc-200 hover:bg-white/10 hover:text-white'
-                        : 'text-zinc-700 hover:bg-zinc-100/70 hover:text-zinc-950'
+                      ? 'border border-purple-400/40 bg-purple-600/30 text-white'
+                      : 'text-zinc-200 hover:bg-white/10 hover:text-white'
                   }`}
                 >
                   <span>{item.label}</span>
 
                   {isActive && (
-                    <span className="ml-auto h-2 w-2 rounded-full bg-purple-600" />
+                    <span className="ml-auto h-2 w-2 rounded-full bg-purple-400" />
                   )}
-                </button>
+                </a>
               );
             })}
           </motion.div>

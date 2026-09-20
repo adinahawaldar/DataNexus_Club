@@ -1,16 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
+import { navigateTo } from "../utils/navigation";
 
 export default function Footer() {
     const { isDark } = useTheme();
 
     const navLinks = [
-        { label: "Home", href: "#/" },
-        { label: "Teams", href: "#/teams" },
-        { label: "Events", href: "#/events" },
-        { label: "Achievements", href: "#/achievements" },
-        { label: "About", href: "#/about" },
+        { label: "Home", href: "/" },
+        { label: "Teams", href: "/teams" },
+        { label: "Events", href: "/events" },
+        { label: "Achievements", href: "/achievements" },
+        { label: "About", href: "/#about" },
         { label: "S4DS Chapter", href: "https://s4ds.org/" },
     ];
 
@@ -156,11 +157,13 @@ export default function Footer() {
                                         ? "noopener noreferrer"
                                         : undefined
                                 }
-                                className={`font-poppins text-sm font-semibold transition-colors duration-200 ${
-                                    isDark
-                                        ? "text-zinc-400 hover:text-purple-400"
-                                        : "text-zinc-700 hover:text-purple-700"
-                                }`}
+                                onClick={(e) => {
+                                    if (!link.href.startsWith("http")) {
+                                        e.preventDefault();
+                                        navigateTo(link.href);
+                                    }
+                                }}
+                                className="font-poppins text-sm font-semibold transition-colors duration-200 text-zinc-400 hover:text-purple-400"
                             >
                                 {link.label}
                             </a>

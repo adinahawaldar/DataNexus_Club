@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
+import { navigateTo } from '../utils/navigation';
 import madihaImg from '../assets/team/madiha.png';
 import ridaImg from '../assets/team/rida.png';
 import aatifImg from '../assets/team/Aatif Shaikh.jpeg';
@@ -244,6 +245,10 @@ export default function TeamPreview() {
         {/* "Meet the Team ↗" Title */}
         <motion.a
           href="/teams"
+          onClick={(e) => {
+            e.preventDefault();
+            navigateTo('/teams');
+          }}
           aria-label="Meet the DataNexus team"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
