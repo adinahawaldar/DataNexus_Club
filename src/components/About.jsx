@@ -9,7 +9,7 @@ export default function About() {
     <section
       id="about"
       className={`relative w-full py-20 sm:py-24 overflow-hidden select-none transition-colors duration-500 ${
-        isDark ? 'bg-[#07050e] text-white' : 'bg-white text-zinc-900'
+        isDark ? 'bg-[#07050e] text-white' : 'bg-[#faf8fd] text-zinc-900'
       }`}
     >
       <div className="relative z-10 w-full px-6 sm:px-10 lg:px-14 max-w-7xl mx-auto">

@@ -7,10 +7,13 @@ import TeamPreview from '../components/TeamPreview';
 import JoinCommunity from '../components/JoinCommunity';
 import Footer from '../components/Footer';
 import SplashScreen from '../components/SplashScreen';
-import { ThemeProvider, useTheme } from '../context/ThemeContext';
+import { useTheme } from '../context/ThemeContext';
 
 function MainLayout() {
-  const [isSplashDone, setIsSplashDone] = useState(false);
+  const [isSplashDone, setIsSplashDone] = useState(
+    sessionStorage.getItem('splashShown') === 'true'
+  );
+
   const { isDark } = useTheme();
 
   useEffect(() => {
@@ -18,6 +21,7 @@ function MainLayout() {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
+
     // Always force scroll to top (Hero section) on initial page load
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
@@ -34,6 +38,7 @@ function MainLayout() {
     lenis.scrollTo(0, { immediate: true });
 
     let rafId;
+
     function raf(time) {
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
@@ -50,6 +55,8 @@ function MainLayout() {
   // When splash screen finishes, ensure view is centered at the top Hero section
   const handleSplashDone = () => {
     setIsSplashDone(true);
+    sessionStorage.setItem('splashShown', 'true');
+
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   };
 
@@ -58,10 +65,11 @@ function MainLayout() {
       className={`relative w-full min-h-screen transition-colors duration-500 overflow-hidden ${
         isDark
           ? 'bg-[#07050e] text-white selection:bg-purple-500 selection:text-white'
-          : 'bg-white text-zinc-900 selection:bg-purple-200 selection:text-purple-950'
+          : 'bg-[#faf8fd] text-zinc-900 selection:bg-purple-200 selection:text-purple-950'
       }`}
     >
-      <SplashScreen onStartFade={handleSplashDone} />
+      {!isSplashDone && <SplashScreen onStartFade={handleSplashDone} />}
+
       <Hero isSplashDone={isSplashDone} />
       <Events />
       <About />
@@ -73,9 +81,5 @@ function MainLayout() {
 }
 
 export default function LandingPage() {
-  return (
-    <ThemeProvider>
-      <MainLayout />
-    </ThemeProvider>
-  );
+  return <MainLayout />;
 }
