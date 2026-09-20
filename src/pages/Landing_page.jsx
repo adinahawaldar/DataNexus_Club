@@ -7,12 +7,13 @@ import TeamPreview from '../components/TeamPreview';
 import JoinCommunity from '../components/JoinCommunity';
 import Footer from '../components/Footer';
 import SplashScreen from '../components/SplashScreen';
-import { ThemeProvider, useTheme } from '../context/ThemeContext';
+import { useTheme } from '../context/ThemeContext';
 
 function MainLayout() {
   const [isSplashDone, setIsSplashDone] = useState(
     sessionStorage.getItem('splashShown') === 'true'
   );
+
   const { isDark } = useTheme();
 
   useEffect(() => {
@@ -37,6 +38,7 @@ function MainLayout() {
     lenis.scrollTo(0, { immediate: true });
 
     let rafId;
+
     function raf(time) {
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
@@ -59,28 +61,25 @@ function MainLayout() {
   };
 
   return (
-   <main
-  className={`relative w-full min-h-screen transition-colors duration-500 overflow-hidden ${
-    isDark
-      ? 'bg-[#07050e] text-white selection:bg-purple-500 selection:text-white'
-      : 'bg-[#faf8fd] text-zinc-900 selection:bg-purple-200 selection:text-purple-950'
-  }`}
->
-  {!isSplashDone && <SplashScreen onStartFade={handleSplashDone} />}
-    <Hero isSplashDone={isSplashDone} />
-    <Events />
-    <About />
-    <TeamPreview />
-    <JoinCommunity />
-    <Footer />
-  </main>
+    <main
+      className={`relative w-full min-h-screen transition-colors duration-500 overflow-hidden ${
+        isDark
+          ? 'bg-[#07050e] text-white selection:bg-purple-500 selection:text-white'
+          : 'bg-[#faf8fd] text-zinc-900 selection:bg-purple-200 selection:text-purple-950'
+      }`}
+    >
+      {!isSplashDone && <SplashScreen onStartFade={handleSplashDone} />}
+
+      <Hero isSplashDone={isSplashDone} />
+      <Events />
+      <About />
+      <TeamPreview />
+      <JoinCommunity />
+      <Footer />
+    </main>
   );
 }
 
 export default function LandingPage() {
-  return (
-    <ThemeProvider>
-      <MainLayout />
-    </ThemeProvider>
-  );
+  return <MainLayout />;
 }
