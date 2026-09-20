@@ -29,7 +29,6 @@ function AchievementsHero() {
                     : "bg-[#faf8fd] text-[#1a073f]"
             }`}
         >
-
             {/* Background atmosphere */}
             <div className="pointer-events-none absolute inset-0">
 
@@ -58,7 +57,6 @@ function AchievementsHero() {
                 />
 
             </div>
-
 
             <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] w-full max-w-[1440px] items-center px-6 py-16 sm:px-10 lg:px-16">
 
@@ -92,7 +90,6 @@ function AchievementsHero() {
                             </span>
                         </div>
 
-
                         <h1
                             className={`font-poppins text-5xl font-extrabold leading-[0.95] tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-[5.2rem] ${
                                 isDark
@@ -108,7 +105,6 @@ function AchievementsHero() {
                             </span>
                         </h1>
 
-
                         <p
                             className={`mt-7 max-w-lg font-poppins text-sm leading-7 sm:text-base sm:leading-8 ${
                                 isDark
@@ -121,7 +117,6 @@ function AchievementsHero() {
                             DataNexus.
                         </p>
 
-
                         <button
                             onClick={scrollToAchievements}
                             className="group mt-9 inline-flex items-center gap-3 rounded-full bg-[#1a073f] px-6 py-3.5 font-poppins text-sm font-bold text-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-purple-800 active:scale-95"
@@ -132,7 +127,6 @@ function AchievementsHero() {
                                 ↗
                             </span>
                         </button>
-
 
                         <div className="mt-12 flex items-center gap-3">
 
@@ -152,7 +146,6 @@ function AchievementsHero() {
 
                     </motion.div>
 
-
                     {/* RIGHT COLLAGE */}
                     <motion.div
                         initial={{ opacity: 0, x: 45 }}
@@ -170,7 +163,6 @@ function AchievementsHero() {
                             }`}
                         />
 
-
                         {/* IMAGE 1 */}
                         <motion.div
                             whileHover={{ y: -8, rotate: 0 }}
@@ -186,14 +178,7 @@ function AchievementsHero() {
                                 alt="DataNexus achievement"
                                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                             />
-
-                            <div className="absolute bottom-4 left-4 rounded-full border border-white/10 bg-black/50 px-4 py-2 backdrop-blur-md">
-                                <span className="font-poppins text-[10px] font-semibold uppercase tracking-[0.18em] text-white/80">
-                                    DataNexus
-                                </span>
-                            </div>
                         </motion.div>
-
 
                         {/* IMAGE 2 */}
                         <motion.div
@@ -212,7 +197,6 @@ function AchievementsHero() {
                             />
                         </motion.div>
 
-
                         {/* IMAGE 3 */}
                         <motion.div
                             whileHover={{ y: -8, rotate: 0 }}
@@ -229,30 +213,6 @@ function AchievementsHero() {
                                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                             />
                         </motion.div>
-
-
-                        {/* 03 badge */}
-                        <div className="absolute bottom-20 left-[58%] z-40 hidden -translate-x-1/2 sm:block">
-
-                            <div
-                                className={`flex h-20 w-20 items-center justify-center rounded-full border backdrop-blur-xl ${
-                                    isDark
-                                        ? "border-white/10 bg-purple-500/15"
-                                        : "border-purple-200 bg-purple-100/80"
-                                }`}
-                            >
-                                <span
-                                    className={`font-poppins text-xl font-extrabold ${
-                                        isDark
-                                            ? "text-purple-300"
-                                            : "text-purple-600"
-                                    }`}
-                                >
-                                    03
-                                </span>
-                            </div>
-
-                        </div>
 
                     </motion.div>
 

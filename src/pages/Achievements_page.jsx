@@ -15,7 +15,6 @@ import past3 from "../assets/achievements/achievement4.jpg";
 
 import { ThemeProvider, useTheme } from "../context/ThemeContext";
 
-
 function AchievementsPage() {
     return (
         <ThemeProvider>
@@ -24,14 +23,13 @@ function AchievementsPage() {
     );
 }
 
-
 function AchievementsContent() {
     const { isDark } = useTheme();
 
     const achievements = [
         {
             number: "01",
-            title: "Hackathons (SIH '26 Winners) ",
+            title: "Hackathons (SIH '26 Winners)",
             description:
                 "Collaborating, competing, and building practical solutions through technical challenges and hackathons.",
             image: sih1,
@@ -60,7 +58,6 @@ function AchievementsContent() {
                     : "bg-[#faf8fd] text-zinc-900"
             }`}
         >
-
             {/* NAVBAR */}
             <Navbar />
 
@@ -71,14 +68,12 @@ function AchievementsContent() {
             <section
                 id="achievement-highlights"
                 className={`relative overflow-hidden px-6 py-24 transition-colors duration-500 sm:px-10 lg:px-16 ${
-                    isDark
-                        ? "bg-[#0b0813]"
-                        : "bg-[#faf8fd]"
+                    isDark ? "bg-[#0b0813]" : "bg-[#faf8fd]"
                 }`}
             >
                 <div className="mx-auto max-w-[1440px]">
 
-                    {/* Heading */}
+                    {/* HEADING */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -122,8 +117,7 @@ function AchievementsContent() {
                         </p>
                     </motion.div>
 
-
-                    {/* Achievement Cards */}
+                    {/* ACHIEVEMENT CARDS */}
                     <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
 
                         {achievements.map((achievement, index) => (
@@ -142,7 +136,6 @@ function AchievementsContent() {
                                         : "border-purple-200/60 bg-white shadow-[0_15px_45px_rgba(26,7,63,0.08)] hover:border-purple-300 hover:bg-white hover:shadow-[0_20px_55px_rgba(126,34,206,0.12)]"
                                 }`}
                             >
-
                                 {/* IMAGE */}
                                 <div className="relative h-[300px] overflow-hidden">
                                     <img
@@ -151,22 +144,15 @@ function AchievementsContent() {
                                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
 
-                                    {/* Dark overlay */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                                    {/* Number */}
+                                    {/* NUMBER */}
                                     <div className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md">
                                         <span className="font-poppins text-xs font-bold text-white">
                                             {achievement.number}
                                         </span>
                                     </div>
-
-                                    {/* Arrow */}
-                                    <div className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#1a073f] transition-all duration-300 group-hover:rotate-12">
-                                        ↗
-                                    </div>
                                 </div>
-
 
                                 {/* CONTENT */}
                                 <div className="p-7">
@@ -196,14 +182,12 @@ function AchievementsContent() {
                                         DataNexus
                                     </div>
                                 </div>
-
                             </motion.article>
                         ))}
 
                     </div>
                 </div>
             </section>
-
 
             {/* ================= PAST ACHIEVEMENTS ================= */}
             <section
@@ -216,7 +200,7 @@ function AchievementsContent() {
             >
                 <div className="mx-auto max-w-[1440px]">
 
-                    {/* ================= SECTION HEADER ================= */}
+                    {/* SECTION HEADER */}
                     <motion.div
                         initial={{ opacity: 0, y: 25 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -225,12 +209,10 @@ function AchievementsContent() {
                             duration: 0.7,
                             ease: [0.16, 1, 0.3, 1],
                         }}
-                        className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end"
+                        className="mb-12"
                     >
-
                         <div className="max-w-2xl">
 
-                            {/* Small eyebrow */}
                             <div className="mb-4 flex items-center gap-3">
                                 <span className="h-px w-8 bg-purple-400/50" />
 
@@ -245,7 +227,6 @@ function AchievementsContent() {
                                 </p>
                             </div>
 
-                            {/* Main heading */}
                             <h2
                                 className={`font-poppins text-4xl font-extrabold tracking-[-0.03em] sm:text-5xl lg:text-6xl ${
                                     isDark
@@ -265,7 +246,6 @@ function AchievementsContent() {
                                 </span>
                             </h2>
 
-                            {/* Description */}
                             <p
                                 className={`mt-5 max-w-xl font-poppins text-sm leading-7 sm:text-base ${
                                     isDark
@@ -273,50 +253,16 @@ function AchievementsContent() {
                                         : "text-zinc-600"
                                 }`}
                             >
-                                Milestones, experiences, and moments that helped shape
-                                the journey of DataNexus.
+                                Milestones, experiences, and moments that helped
+                                shape the journey of DataNexus.
                             </p>
-                        </div>
-
-
-                        {/* Archive label */}
-                        <div className="hidden shrink-0 items-center gap-3 md:flex">
-                            <span
-                                className={`font-poppins text-[10px] font-semibold uppercase tracking-[0.2em] ${
-                                    isDark
-                                        ? "text-zinc-600"
-                                        : "text-zinc-500"
-                                }`}
-                            >
-                                Our Archive
-                            </span>
-
-                            <div
-                                className={`flex h-10 w-10 items-center justify-center rounded-full border ${
-                                    isDark
-                                        ? "border-white/10 bg-white/[0.03]"
-                                        : "border-purple-200 bg-white"
-                                }`}
-                            >
-                                <span
-                                    className={
-                                        isDark
-                                            ? "text-sm text-zinc-500"
-                                            : "text-sm text-purple-500"
-                                    }
-                                >
-                                    ↘
-                                </span>
-                            </div>
                         </div>
                     </motion.div>
 
-
-                    {/* ================= PAST ACHIEVEMENT CARDS ================= */}
+                    {/* PAST ACHIEVEMENT CARDS */}
                     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
 
-
-                        {/* ================= CARD 01 ================= */}
+                        {/* CARD 01 */}
                         <motion.article
                             initial={{ opacity: 0, y: 35 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -332,8 +278,6 @@ function AchievementsContent() {
                                     : "border-purple-200/60 bg-white shadow-[0_12px_40px_rgba(26,7,63,0.06)] hover:border-purple-300 hover:shadow-[0_18px_45px_rgba(126,34,206,0.10)]"
                             }`}
                         >
-
-                            {/* Image area */}
                             <div
                                 className={`relative h-[285px] overflow-hidden ${
                                     isDark
@@ -341,7 +285,6 @@ function AchievementsContent() {
                                         : "bg-zinc-100"
                                 }`}
                             >
-
                                 <img
                                     src={past1}
                                     alt="Past DataNexus achievement"
@@ -350,21 +293,20 @@ function AchievementsContent() {
 
                                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-                                {/* Year badge */}
+                                {/* YEAR */}
                                 <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/55 px-3.5 py-1.5 backdrop-blur-md">
                                     <span className="font-poppins text-[10px] font-semibold uppercase tracking-[0.12em] text-zinc-300">
-                                        2026
+                                        2025
                                     </span>
                                 </div>
 
-                                {/* Past badge */}
+                                {/* PAST */}
                                 <div className="absolute right-4 top-4 rounded-full border border-white/10 bg-black/45 px-3 py-1.5 backdrop-blur-md">
                                     <span className="font-poppins text-[9px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
                                         Past
                                     </span>
                                 </div>
 
-                                {/* Bottom image label */}
                                 <div className="absolute bottom-4 left-4 flex items-center gap-2">
                                     <span className="h-1.5 w-1.5 rounded-full bg-purple-400/70" />
 
@@ -374,8 +316,6 @@ function AchievementsContent() {
                                 </div>
                             </div>
 
-
-                            {/* Content */}
                             <div className="p-6 sm:p-7">
 
                                 <div className="mb-7 flex items-center justify-between">
@@ -405,7 +345,12 @@ function AchievementsContent() {
                                             : "text-zinc-600"
                                     }`}
                                 >
-                                    Sana Zakir Shaikh, Talha Siddique and Amrut Patankar achieved first prize at the Technical Paper Presentation held at Pillai HOC College of Engineering & Technology. Their research excellence reflects the department's academic strength.
+                                    Sana Zakir Shaikh, Talha Siddique and Amrut
+                                    Patankar achieved first prize at the
+                                    Technical Paper Presentation held at
+                                    Pillai HOC College of Engineering &
+                                    Technology. Their research excellence
+                                    reflects the department's academic strength.
                                 </p>
 
                                 <div
@@ -432,8 +377,7 @@ function AchievementsContent() {
                             </div>
                         </motion.article>
 
-
-                        {/* ================= CARD 02 ================= */}
+                        {/* CARD 02 */}
                         <motion.article
                             initial={{ opacity: 0, y: 35 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -449,7 +393,6 @@ function AchievementsContent() {
                                     : "border-purple-200/60 bg-white shadow-[0_12px_40px_rgba(26,7,63,0.06)] hover:border-purple-300 hover:shadow-[0_18px_45px_rgba(126,34,206,0.10)]"
                             }`}
                         >
-
                             <div
                                 className={`relative h-[285px] overflow-hidden ${
                                     isDark
@@ -457,7 +400,6 @@ function AchievementsContent() {
                                         : "bg-zinc-100"
                                 }`}
                             >
-
                                 <img
                                     src={past2}
                                     alt="Past DataNexus achievement"
@@ -466,12 +408,14 @@ function AchievementsContent() {
 
                                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
+                                {/* YEAR */}
                                 <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/55 px-3.5 py-1.5 backdrop-blur-md">
                                     <span className="font-poppins text-[10px] font-semibold uppercase tracking-[0.12em] text-zinc-300">
-                                        2026
+                                        2025
                                     </span>
                                 </div>
 
+                                {/* PAST */}
                                 <div className="absolute right-4 top-4 rounded-full border border-white/10 bg-black/45 px-3 py-1.5 backdrop-blur-md">
                                     <span className="font-poppins text-[9px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
                                         Past
@@ -486,7 +430,6 @@ function AchievementsContent() {
                                     </span>
                                 </div>
                             </div>
-
 
                             <div className="p-6 sm:p-7">
 
@@ -517,7 +460,11 @@ function AchievementsContent() {
                                             : "text-zinc-600"
                                     }`}
                                 >
-                                    Our team “The Logic Legends” dominated the SPARK A THON at FCRIT Vashi, finishing first among 50+ teams. Their creativity and teamwork made AIKTC proud on the national stage.
+                                    Our team “The Logic Legends” dominated the
+                                    SPARK A THON at FCRIT Vashi, finishing first
+                                    among 50+ teams. Their creativity and
+                                    teamwork made AIKTC proud on the national
+                                    stage.
                                 </p>
 
                                 <div
@@ -544,8 +491,7 @@ function AchievementsContent() {
                             </div>
                         </motion.article>
 
-
-                        {/* ================= CARD 03 ================= */}
+                        {/* CARD 03 */}
                         <motion.article
                             initial={{ opacity: 0, y: 35 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -561,7 +507,6 @@ function AchievementsContent() {
                                     : "border-purple-200/60 bg-white shadow-[0_12px_40px_rgba(26,7,63,0.06)] hover:border-purple-300 hover:shadow-[0_18px_45px_rgba(126,34,206,0.10)]"
                             }`}
                         >
-
                             <div
                                 className={`relative h-[285px] overflow-hidden ${
                                     isDark
@@ -569,7 +514,6 @@ function AchievementsContent() {
                                         : "bg-zinc-100"
                                 }`}
                             >
-
                                 <img
                                     src={past3}
                                     alt="Past DataNexus achievement"
@@ -578,12 +522,14 @@ function AchievementsContent() {
 
                                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
+                                {/* YEAR */}
                                 <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/55 px-3.5 py-1.5 backdrop-blur-md">
                                     <span className="font-poppins text-[10px] font-semibold uppercase tracking-[0.12em] text-zinc-300">
-                                        2026
+                                        2025
                                     </span>
                                 </div>
 
+                                {/* PAST */}
                                 <div className="absolute right-4 top-4 rounded-full border border-white/10 bg-black/45 px-3 py-1.5 backdrop-blur-md">
                                     <span className="font-poppins text-[9px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
                                         Past
@@ -598,7 +544,6 @@ function AchievementsContent() {
                                     </span>
                                 </div>
                             </div>
-
 
                             <div className="p-6 sm:p-7">
 
@@ -619,7 +564,7 @@ function AchievementsContent() {
                                             : "text-[#1a073f]"
                                     }`}
                                 >
-                                    DataNexus Members in Council of SoET
+                                    DataNexus Members in the Council of SoET
                                 </h3>
 
                                 <p
@@ -629,13 +574,23 @@ function AchievementsContent() {
                                             : "text-zinc-600"
                                     }`}
                                 >
-                                    Data Science department boasts active members in the Council of SoET. Mueez Hajwani, Maseera Rumani, and Ali Khan served as the backbone of Bonhomie 2026, driving success as key leaders:
+                                    Data Science department boasts active
+                                    members in the Council of SoET. Mueez
+                                    Hajwani, Maseera Rumani, and Ali Khan served
+                                    as key leaders in Bonhomie 2026:
+                                    <br />
                                     • Mueez Hajwani (Technical Secretary)
+                                    <br />
                                     • Ali Khan (Cultural Secretary)
+                                    <br />
                                     • Maseera Rumani (Cultural Secretary)
-                                    Their dedication in technical, cultural, and documentation roles propelled the department to Best Department (1st place) with 21 medals.
+                                    <br />
+                                    Their dedication in technical, cultural,
+                                    and documentation roles contributed to the
+                                    department's success and recognition.
                                 </p>
 
+                                {/* ROLE */}
                                 <div
                                     className={`mt-6 border-t pt-5 ${
                                         isDark
@@ -644,7 +599,7 @@ function AchievementsContent() {
                                     }`}
                                 >
                                     <p className="font-poppins text-[10px] font-semibold uppercase tracking-[0.2em] text-purple-400/70">
-                                        Result
+                                        Role
                                     </p>
 
                                     <p
@@ -654,7 +609,7 @@ function AchievementsContent() {
                                                 : "text-zinc-600"
                                         }`}
                                     >
-                                        First Place
+                                        Council Members & Student Leaders
                                     </p>
                                 </div>
                             </div>
