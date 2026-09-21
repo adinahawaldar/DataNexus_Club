@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaLinkedinIn } from 'react-icons/fa';
 import Footer from '../components/Footer';
@@ -750,6 +750,8 @@ function FoundingMembersSection() {
   const [hoveredId, setHoveredId] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const swipeStartX = useRef(null);
+  const suppressClick = useRef(false);
 
   const count = FOUNDING_MEMBERS.length;
   const step = useCarouselStep();
@@ -782,11 +784,41 @@ function FoundingMembersSection() {
 
   const handleTap = useCallback(
     (member, index) => {
+      if (suppressClick.current) {
+        suppressClick.current = false;
+        return;
+      }
+
       setActiveIndex(index);
       setHoveredId(member.id);
       setIsPaused(true);
     },
     []
+  );
+
+  const handleTouchStart = useCallback((event) => {
+    swipeStartX.current = event.touches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback(
+    (event) => {
+      if (swipeStartX.current === null) return;
+
+      const distance = event.changedTouches[0].clientX - swipeStartX.current;
+      swipeStartX.current = null;
+
+      if (Math.abs(distance) < 40) return;
+
+      suppressClick.current = true;
+      setHoveredId(null);
+      setIsPaused(false);
+      setActiveIndex((current) =>
+        distance < 0
+          ? (current + 1) % count
+          : (current - 1 + count) % count
+      );
+    },
+    [count]
   );
 
   return (
@@ -824,7 +856,9 @@ function FoundingMembersSection() {
             visible: { opacity: 1, y: 0, scale: 1 },
           }}
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto flex h-[246px] max-w-[340px] items-center justify-center overflow-hidden sm:h-72 sm:max-w-[900px] sm:overflow-visible"
+          className="relative mx-auto flex h-[226px] max-w-[320px] touch-pan-y items-center justify-center overflow-hidden sm:h-72 sm:max-w-[900px] sm:overflow-visible"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
 
           {FOUNDING_MEMBERS.map(
@@ -846,7 +880,7 @@ function FoundingMembersSection() {
                 <div
                   key={member.id}
                   className={cn(
-                    'group absolute h-[220px] w-[165px] cursor-pointer overflow-hidden rounded-md bg-zinc-200 shadow-lg transition-all duration-500 ease-out dark:bg-[#15111f] sm:h-64 sm:w-48',
+                    'group absolute h-[200px] w-[150px] cursor-pointer overflow-hidden rounded-md bg-zinc-200 shadow-lg transition-all duration-500 ease-out dark:bg-[#15111f] sm:h-64 sm:w-48',
 
                     active &&
                       'ring-2 ring-[#241052]/20'
