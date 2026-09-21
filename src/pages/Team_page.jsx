@@ -1,38 +1,39 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import { FaLinkedinIn } from 'react-icons/fa';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 
-import adinaImg from '../assets/team/Adina Hawalder.jpeg';
-import amaanImg from '../assets/team/Amaan Jalgaonkar.jpeg';
-import taskeenImg from '../assets/team/Taskeen Shaikh.jpeg';
-import aimanImg from '../assets/team/Aiman Kelkar.jpeg';
-import mahekImg from '../assets/team/Mahek Bagdadi.jpeg';
-import ahmedImg from '../assets/team/Ahmed Dhundware.jpeg';
-import sualehaImg from '../assets/team/Sualeha Hasbule.jpeg';
-import hamzaImg from '../assets/team/Hamza Patel.jpeg';
-import samiyaImg from '../assets/team/Samiya Khan.jpeg';
-import asrarImg from '../assets/team/Asrar Siddique.jpeg';
-import mohammadImg from '../assets/team/Mohammad Ahmed.jpeg';
-import siminImg from '../assets/team/Simin Ainarkar.jpeg';
-import tasifImg from '../assets/team/Tasif Farooqui.jpeg';
-import biswajitImg from '../assets/team/Biswajit Parida.jpeg';
-import sandeshImg from '../assets/team/Sandesh kite.jpeg';
-import maarijImg from '../assets/team/Mohammad Maarij.jpeg';
-import nazimImg from '../assets/team/Nazim Shaikh.jpeg';
-import raheedImg from '../assets/team/Raheed Khot.jpeg';
-import anjaliImg from '../assets/team/Anjali.jpeg';
-import raoufImg from '../assets/team/Raouf.jpeg';
-import furkhanImg from '../assets/team/Furkhan.jpeg';
-import fatimaImg from '../assets/team/Fatima Siddique.jpeg';
-import fatimachougleImg from '../assets/team/Fatima Chougle.jpeg';
-import pranaliImg from '../assets/team/Pranali.jpeg';
+import adinaImg from '../assets/team/Adina Hawalder.png';
+import amaanImg from '../assets/team/Amaan Jalgaonkar.png';
+import taskeenImg from '../assets/team/Taskeen Shaikh.png';
+import aimanImg from '../assets/team/Aiman Kelkar.png';
+import mahekImg from '../assets/team/Mahek Bagdadi.png';
+import ahmedImg from '../assets/team/Ahmed Dhundware.png';
+import sualehaImg from '../assets/team/Sualeha Hasbule.png';
+import hamzaImg from '../assets/team/Hamza Patel.png';
+import samiyaImg from '../assets/team/Samiya Khan.png';
+import asrarImg from '../assets/team/Asrar Siddique.png';
+import mohammadImg from '../assets/team/Mohammad Ahmed.png';
+import siminImg from '../assets/team/Simin Ainarkar.png';
+import tasifImg from '../assets/team/Tasif Farooqui.png';
+import biswajitImg from '../assets/team/Biswajit Parida.png';
+import sandeshImg from '../assets/team/Sandesh kite.png';
+import maarijImg from '../assets/team/Mohammad Maarij.png';
+import nazimImg from '../assets/team/Nazim Shaikh.png';
+import raheedImg from '../assets/team/Rahee  Khot.png';
+import anjaliImg from '../assets/team/Anjali.png';
+import raoufImg from '../assets/team/Raouf.png';
+import furkhanImg from '../assets/team/Furkhan.png';
+import fatimaImg from '../assets/team/Fatima Siddique.png';
+import fatimachougleImg from '../assets/team/Fatima Chougle.png';
+import pranaliImg from '../assets/team/Pranali.png';
 import madihaImg from '../assets/team/madiha.png';
 import ridaImg from '../assets/team/rida.png';
-import aatifImg from '../assets/team/Aatif Shaikh.jpeg';
-import naumanImg from '../assets/team/Nauman Patel.jpeg';
-import kashifImg from '../assets/team/Kashif Qureshi.jpeg';
-import heroImage from '../assets/team/teamhero.jpg';
+import aatifImg from '../assets/team/Aatif Shaikh.png';
+import naumanImg from '../assets/team/Nauman Patel.png';
+import kashifImg from '../assets/team/Kashif Qureshi.png';
+import heroImage from '../assets/team/TEAM.png';
 import mueezImg from '../assets/team/mueez.png';
 import aliImg from '../assets/team/ali.png';
 import irfaImg from '../assets/team/irfa.png';
@@ -206,9 +207,9 @@ function useCarouselStep() {
       const w = window.innerWidth;
 
       if (w < 380) {
-        setStep(64);
+        setStep(108);
       } else if (w < 640) {
-        setStep(88);
+        setStep(112);
       } else {
         setStep(135);
       }
@@ -293,10 +294,13 @@ function HeroCard() {
       <div
         className="relative flex h-[70vh] min-h-[340px] max-h-[700px] w-full flex-col justify-between overflow-hidden rounded-lg border border-purple-900/10 bg-zinc-200 dark:border-white/10 dark:bg-[#15111f] sm:h-[95vh] sm:min-h-[400px] sm:rounded-xl md:rounded-2xl"
       >
-        <img
+        <motion.img
           src={HERO_IMAGE}
           alt="DataNexus Club team"
           className="absolute inset-0 h-full w-full object-cover opacity-[1.5]"
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
           onError={(event) => {
             event.currentTarget.style.display = 'none';
           }}
@@ -309,9 +313,18 @@ function HeroCard() {
         </div>
 
         <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-10">
-          <h1 className="inline-block max-w-xl rounded-2xl border-purple-300/30 bg-purple-500/10 px-5 py-3 font-poppins text-[2.75rem] font-extrabold leading-[0.95] tracking-tight text-[#1a073f] shadow-[0_8px_32px_rgba(126,34,206,0.18)] backdrop-blur-md dark:border-purple-300/20 dark:bg-purple-900/30 dark:text-white dark:shadow-[0_8px_32px_rgba(168,85,247,0.12)] sm:text-7xl md:text-8xl">
+          <motion.h1
+            initial={{ opacity: 0, y: 45 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.9,
+              delay: 0.2,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="inline-block max-w-xl px-5 py-3 font-poppins text-[2.75rem] font-extrabold leading-[0.95] tracking-tight text-[#1a073f] dark:text-white sm:text-7xl md:text-8xl"
+          >
             Meet the team
-          </h1>
+          </motion.h1>
         </div>
       </div>
     </section>
@@ -324,6 +337,8 @@ function HeroCard() {
 
 function TeamSection() {
   const [activeTeam, setActiveTeam] = useState('Team 1');
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
+  const [revealedMemberId, setRevealedMemberId] = useState(null);
 
   let members;
   let displayTitle;
@@ -346,6 +361,11 @@ function TeamSection() {
     ? members.slice(0, 5)
     : members;
 
+  const handleTeamChange = (team) => {
+    setActiveTeam(team);
+    setRevealedMemberId(null);
+  };
+
   return (
     <section
       id="team-section"
@@ -354,19 +374,26 @@ function TeamSection() {
       <div className="mx-auto max-w-[1200px]">
 
         {/* HEADER */}
-        <div className="mb-6 flex flex-col gap-4 sm:mb-7 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mb-6 flex flex-col items-center gap-4 sm:mb-7 lg:flex-row lg:items-center lg:justify-between">
 
-          <h2 className="font-poppins text-3xl font-bold tracking-tight text-[#1a073f] dark:text-white sm:text-5xl lg:text-6xl">
+          <motion.h2
+            key={displayTitle}
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.35 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full text-center font-poppins text-3xl font-bold tracking-tight text-[#1a073f] dark:text-white sm:text-left sm:text-5xl lg:text-6xl"
+          >
             {displayTitle}
-          </h2>
+          </motion.h2>
 
           {/* TEAM NAVIGATION */}
-          <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
+          <div className="hidden w-full flex-nowrap justify-end gap-1 pb-1 sm:flex lg:w-auto lg:shrink-0">
             {TEAM_TABS.map((tab) => (
               <button
                 key={tab}
                 type="button"
-                onClick={() => setActiveTeam(tab)}
+                onClick={() => handleTeamChange(tab)}
                 className={cn(
                   'flex shrink-0 items-center justify-center whitespace-nowrap text-xs tracking-wide transition-colors',
 
@@ -375,25 +402,111 @@ function TeamSection() {
                     : 'h-8 px-2 text-zinc-500 hover:text-[#1a073f] dark:text-zinc-400 dark:hover:text-white'
                 )}
               >
-                {tab}
+                {tab === 'ALL'
+                  ? 'Micro'
+                  : TEAM_DISPLAY_NAMES[tab].replace(' Team', '')}
               </button>
             ))}
+          </div>
+
+          <div className="flex w-full min-w-0 items-center justify-center gap-1 sm:hidden">
+            {TEAM_TABS.slice(0, 3).map((tab) => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => handleTeamChange(tab)}
+                className={cn(
+                  'flex h-8 shrink-0 items-center justify-center whitespace-nowrap text-[11px] tracking-wide transition-colors',
+                  activeTeam === tab
+                    ? 'rounded-full bg-[#1a073f] px-3 text-white dark:bg-purple-500'
+                    : 'px-1.5 text-zinc-500 hover:text-[#1a073f] dark:text-zinc-400 dark:hover:text-white'
+                )}
+              >
+                {tab === 'ALL' ? 'Micro' : TEAM_DISPLAY_NAMES[tab].replace(' Team', '')}
+              </button>
+            ))}
+
+            <div className="relative shrink-0">
+              <span className="sr-only">Select another team</span>
+              <button
+                type="button"
+                aria-expanded={isMoreOpen}
+                aria-haspopup="menu"
+                onClick={() => setIsMoreOpen((current) => !current)}
+                className={cn(
+                  'flex h-8 items-center rounded-full border bg-[#1a073f] px-2.5 pr-6 text-[11px] tracking-wide text-white outline-none transition-colors',
+                  TEAM_TABS.includes(activeTeam) && TEAM_TABS.indexOf(activeTeam) > 2
+                    ? 'border-purple-400 bg-purple-500'
+                    : 'border-purple-300/40 dark:border-purple-400/40'
+                )}
+              >
+                {TEAM_TABS.includes(activeTeam) && TEAM_TABS.indexOf(activeTeam) > 2
+                  ? TEAM_DISPLAY_NAMES[activeTeam].replace(' Team', '')
+                  : 'More'}
+              </button>
+              <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px]">
+                ▼
+              </span>
+
+              {isMoreOpen && (
+                <div
+                  role="menu"
+                  className="absolute right-0 top-10 z-30 min-w-full overflow-hidden rounded-xl border border-purple-300/40 bg-[#1a073f] p-1 shadow-[0_12px_28px_rgba(26,7,63,0.35)]"
+                >
+                {TEAM_TABS.slice(3).map((tab) => (
+                  <button
+                    key={tab}
+                    type="button"
+                    role="menuitem"
+                    onClick={() => {
+                      handleTeamChange(tab);
+                      setIsMoreOpen(false);
+                    }}
+                    className="block w-full rounded-lg px-3 py-1.5 text-left text-[11px] text-white transition-colors hover:bg-purple-500"
+                  >
+                    {TEAM_DISPLAY_NAMES[tab].replace(' Team', '')}
+                  </button>
+                ))}
+                </div>
+              )}
+            </div>
           </div>
 
         </div>
 
         {/* CARDS */}
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
+        <motion.div
+          key={activeTeam}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.15 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.08,
+              },
+            },
+          }}
+          className="grid grid-cols-2 gap-5 lg:grid-cols-5 lg:gap-6"
+        >
 
           {teamMembers.map((member, index) => (
             <MemberCard
               key={member.id}
               member={member}
               isLeader={showLeader && index === 0}
+              isCenteredMobile={teamMembers.length === 5 && index === 4}
+              isRevealed={revealedMemberId === member.id}
+              onToggle={() =>
+                setRevealedMemberId((current) =>
+                  current === member.id ? null : member.id
+                )
+              }
             />
           ))}
 
-        </div>
+        </motion.div>
 
       </div>
     </section>
@@ -407,22 +520,31 @@ function TeamSection() {
 function MemberCard({
   member,
   isLeader = false,
+  isCenteredMobile = false,
+  isRevealed = false,
+  onToggle,
 }) {
-  const [revealed, setRevealed] = useState(false);
-
   return (
-    <article
+    <motion.article
+      initial={{ opacity: 0, y: 28, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      variants={{
+        hidden: { opacity: 0, y: 28, scale: 0.96 },
+        visible: { opacity: 1, y: 0, scale: 1 },
+      }}
+      viewport={{ once: false, amount: 0.15 }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
-        'group relative aspect-[4/5] w-full overflow-hidden rounded-[24px] border bg-black shadow-[0_14px_40px_rgba(26,7,63,0.08)] transition-all duration-300 hover:-translate-y-1',
+        'group relative isolate aspect-[4/5] w-full overflow-hidden rounded-[24px] border border-purple-400/70 bg-[linear-gradient(180deg,#25194d_0%,#170f38_50%,#05030d_100%)] shadow-[0_14px_40px_rgba(26,7,63,0.28)] transition-all duration-300 hover:-translate-y-1',
+        isCenteredMobile &&
+          'max-sm:col-span-2 max-sm:w-[calc(50%-0.625rem)] max-sm:justify-self-center',
 
         isLeader
-          ? 'border-purple-400/70 shadow-[0_18px_45px_rgba(147,51,234,0.20)] dark:border-purple-400/70 dark:shadow-[0_18px_45px_rgba(147,51,234,0.24)]'
-          : 'border-zinc-200/90 dark:border-white/10 dark:shadow-[0_14px_40px_rgba(0,0,0,0.28)]'
+          ? 'shadow-[0_18px_45px_rgba(147,51,234,0.28)]'
+          : ''
       )}
 
-      onClick={() =>
-        setRevealed((current) => !current)
-      }
+      onClick={onToggle}
     >
 
       {/* TEAM HEAD BADGE */}
@@ -445,7 +567,7 @@ function MemberCard({
         className={cn(
           'absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/35 p-4 text-center text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100',
 
-          revealed && 'opacity-100'
+          isRevealed && 'opacity-100'
         )}
       >
         <div>
@@ -475,7 +597,7 @@ function MemberCard({
 
       </div>
 
-    </article>
+    </motion.article>
   );
 }
 
@@ -501,17 +623,42 @@ function TeamOf2026Section() {
   return (
     <section className="overflow-hidden bg-[#faf8fd] py-10 dark:bg-[#07050e] sm:py-20">
 
-      <div className="mx-auto">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.12 }}
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.12,
+            },
+          },
+        }}
+        className="mx-auto"
+      >
 
-        <h2 className="mb-8 px-4 text-center font-poppins text-[2rem] font-bold leading-tight tracking-tight text-[#1a073f] dark:text-white sm:mb-14 sm:px-0 sm:text-7xl">
+        <motion.h2
+          variants={{
+            hidden: { opacity: 0, y: 28 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-8 px-4 text-center font-poppins text-[2rem] font-bold leading-tight tracking-tight text-[#1a073f] dark:text-white sm:mb-14 sm:px-0 sm:text-7xl"
+        >
           Team of 2026
-        </h2>
+        </motion.h2>
 
         <div className="space-y-2 sm:space-y-4">
 
           {marqueeRows.map((row, rowIndex) => (
-            <div
+            <motion.div
               key={rowIndex}
+              variants={{
+                hidden: { opacity: 0, x: rowIndex === 1 ? 34 : -34 },
+                visible: { opacity: 1, x: 0 },
+              }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="overflow-hidden"
             >
 
@@ -566,12 +713,19 @@ function TeamOf2026Section() {
 
               </div>
 
-            </div>
+            </motion.div>
           ))}
 
         </div>
 
-        <div className="mt-10 flex justify-center px-4 sm:mt-12 sm:px-0">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 24 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-10 flex justify-center px-4 sm:mt-12 sm:px-0"
+        >
 
           <a
             href="#team-section"
@@ -580,9 +734,9 @@ function TeamOf2026Section() {
             Meet the teams
           </a>
 
-        </div>
+        </motion.div>
 
-      </div>
+      </motion.div>
 
     </section>
   );
@@ -596,6 +750,8 @@ function FoundingMembersSection() {
   const [hoveredId, setHoveredId] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const swipeStartX = useRef(null);
+  const suppressClick = useRef(false);
 
   const count = FOUNDING_MEMBERS.length;
   const step = useCarouselStep();
@@ -628,30 +784,82 @@ function FoundingMembersSection() {
 
   const handleTap = useCallback(
     (member, index) => {
+      if (suppressClick.current) {
+        suppressClick.current = false;
+        return;
+      }
+
       setActiveIndex(index);
-
-      setHoveredId(
-        (current) =>
-          current === member.id
-            ? null
-            : member.id
-      );
-
+      setHoveredId(member.id);
       setIsPaused(true);
     },
     []
   );
 
+  const handleTouchStart = useCallback((event) => {
+    swipeStartX.current = event.touches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback(
+    (event) => {
+      if (swipeStartX.current === null) return;
+
+      const distance = event.changedTouches[0].clientX - swipeStartX.current;
+      swipeStartX.current = null;
+
+      if (Math.abs(distance) < 40) return;
+
+      suppressClick.current = true;
+      setHoveredId(null);
+      setIsPaused(false);
+      setActiveIndex((current) =>
+        distance < 0
+          ? (current + 1) % count
+          : (current - 1 + count) % count
+      );
+    },
+    [count]
+  );
+
   return (
     <section className="px-4 pb-16 sm:px-8 sm:pb-20 lg:px-12">
 
-      <div className="mx-auto max-w-[1120px]">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.15 }}
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.12,
+            },
+          },
+        }}
+        className="mx-auto max-w-[1120px]"
+      >
 
-        <h2 className="mb-7 text-center font-poppins text-2xl font-bold tracking-tight text-[#1a073f] dark:text-white sm:mb-10 sm:text-5xl">
+        <motion.h2
+          variants={{
+            hidden: { opacity: 0, y: 28 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-7 text-center font-poppins text-2xl font-bold tracking-tight text-[#1a073f] dark:text-white sm:mb-10 sm:text-5xl"
+        >
           Our Founding Members
-        </h2>
+        </motion.h2>
 
-        <div className="relative mx-auto flex h-56 max-w-[900px] items-center justify-center overflow-hidden sm:h-72 sm:overflow-visible">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 34, scale: 0.97 },
+            visible: { opacity: 1, y: 0, scale: 1 },
+          }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mx-auto flex h-[226px] max-w-[320px] touch-pan-y items-center justify-center overflow-hidden sm:h-72 sm:max-w-[900px] sm:overflow-visible"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
 
           {FOUNDING_MEMBERS.map(
             (member, index) => {
@@ -672,7 +880,7 @@ function FoundingMembersSection() {
                 <div
                   key={member.id}
                   className={cn(
-                    'group absolute h-100 w-65 cursor-pointer overflow-hidden rounded-md bg-zinc-200 shadow-lg transition-all duration-500 ease-out dark:bg-[#15111f] sm:h-64 sm:w-48',
+                    'group absolute h-[200px] w-[150px] cursor-pointer overflow-hidden rounded-md bg-zinc-200 shadow-lg transition-all duration-500 ease-out dark:bg-[#15111f] sm:h-64 sm:w-48',
 
                     active &&
                       'ring-2 ring-[#241052]/20'
@@ -756,9 +964,16 @@ function FoundingMembersSection() {
             }
           )}
 
-        </div>
+        </motion.div>
 
-        <div className="mt-6 flex justify-center gap-2">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 18 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-6 flex justify-center gap-2"
+        >
 
           {FOUNDING_MEMBERS.map(
             (member, index) => (
@@ -781,9 +996,9 @@ function FoundingMembersSection() {
             )
           )}
 
-        </div>
+        </motion.div>
 
-      </div>
+      </motion.div>
 
     </section>
   );

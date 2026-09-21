@@ -4,11 +4,11 @@ import { useTheme } from '../context/ThemeContext';
 import { navigateTo } from '../utils/navigation';
 import madihaImg from '../assets/team/madiha.png';
 import ridaImg from '../assets/team/rida.png';
-import aatifImg from '../assets/team/Aatif Shaikh.jpeg';
-import naumanImg from '../assets/team/Nauman Patel.jpeg';
-import kashifImg from '../assets/team/Kashif Qureshi.jpeg';
-import hodimg from '../assets/team/hod.jpeg';
-import mentorimg from '../assets/team/mentor.jpeg';
+import aatifImg from '../assets/team/Aatif Shaikh.png';
+import naumanImg from '../assets/team/Nauman Patel.png';
+import kashifImg from '../assets/team/Kashif Qureshi.png';
+import hodimg from '../assets/team/hod.png';
+import mentorimg from '../assets/team/mentor.png';
 
 export default function TeamPreview() {
   const { isDark } = useTheme();

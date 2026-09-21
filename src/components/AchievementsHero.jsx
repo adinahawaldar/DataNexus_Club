@@ -184,7 +184,7 @@ function AchievementsHero() {
                             <img
                                 src={sih2}
                                 alt="DataNexus achievement"
-                                className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                                className="h-full w-full object-cover object-[20%_center] transition-transform duration-700 hover:scale-105 sm:object-center"
                             />
 
                             <div className="absolute bottom-4 left-4 rounded-full border border-white/10 bg-black/50 px-4 py-2 backdrop-blur-md">
