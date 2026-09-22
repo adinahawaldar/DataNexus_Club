@@ -54,7 +54,7 @@ export default function TeamPreview() {
       role: 'Vice President',
       image: aatifImg,
       rotate: 'rotate-2 sm:rotate-3',
-      badgePos: '-bottom-10 left-1/2 -translate-x-1/2',
+      badgePos: '-top-10 md:top-auto md:-bottom-10 left-1/2 -translate-x-1/2',
     },
     {
       id: 'secretary',
