@@ -22,11 +22,11 @@ function EventsContent() {
       className="
         relative
         min-h-screen
-        bg-[#faf9ff]
-        text-zinc-900
+        bg-[#07050E]
+        text-white
         transition-colors
         duration-500
-        dark:bg-[#120b24]
+        dark:bg-[#07050E]
         dark:text-white
       "
     >

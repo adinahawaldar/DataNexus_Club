@@ -55,6 +55,7 @@ export default function TeamPreview() {
       image: aatifImg,
       rotate: 'rotate-2 sm:rotate-3',
       badgePos: '-bottom-10 left-1/2 -translate-x-1/2',
+      stackingClass: 'z-20 sm:z-auto',
     },
     {
       id: 'secretary',
@@ -184,6 +185,12 @@ export default function TeamPreview() {
                 }}
                 whileHover={{ scale: 1.08, rotate: 0, zIndex: 40 }}
                 className={`relative w-full aspect-[4/5] rounded-[32px] overflow-visible shadow-2xl ${
+                  leader.stackingClass || ''
+                } ${
+                  idx === row2Leaders.length - 1
+                    ? 'col-span-2 w-full max-w-[calc((100%_-_1.25rem)_/_2)] justify-self-start sm:col-span-1 sm:w-full sm:max-w-none sm:justify-self-auto'
+                    : ''
+                } ${
                   leader.rotate
                 } transition-all duration-300 ${
                   isDark

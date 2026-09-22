@@ -718,24 +718,6 @@ function TeamOf2026Section() {
 
         </div>
 
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 24 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-10 flex justify-center px-4 sm:mt-12 sm:px-0"
-        >
-
-          <a
-            href="#team-section"
-            className="w-full rounded-2xl border border-[#1a073f] px-6 py-3.5 text-center text-sm text-[#1a073f] transition-colors hover:bg-[#1a073f] hover:text-white dark:border-purple-400 dark:text-purple-300 dark:hover:bg-purple-500 sm:w-auto sm:px-16 sm:py-4 sm:text-base"
-          >
-            Meet the teams
-          </a>
-
-        </motion.div>
-
       </motion.div>
 
     </section>
