@@ -21,7 +21,7 @@ const upcomingEvents = [
     status: 'Upcoming',
     image: agentic_ai,
     description:
-      'Explore the fascinating world of Agentic AI in this hands-on workshop. Learn about autonomous agents, their applications, and the future of AI-driven decision making.',
+      'The CSE (Data Science) Department along with DataNexus Club is organizing a 5 hours intensive workshop on Agentic AI for students of FE, SE, TE & BE of CSE (Data Science).The workshop will introduce students to Agentic AI, AI agents, agent-based systems, workflows, and real-world applications through conceptual sessions, live demonstrations, interactive activities, and hands-on exercises.',
     registrationLink: 'https://forms.gle/CDV2pfdxm6jYn4uD7',
   },
 
