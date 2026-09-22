@@ -179,7 +179,7 @@ export default function Footer() {
                 >
                     <h3
                         className={`font-poppins text-xs sm:text-sm font-bold tracking-[0.25em] uppercase ${
-                            isDark ? "text-cyan-400" : "text-cyan-600"
+                            isDark ? "text-purple-400" : "text-purple-600"
                         }`}
                     >
                         Contact Us
@@ -205,8 +205,8 @@ export default function Footer() {
                                 href="tel:+917757831168"
                                 className={`mt-1.5 inline-block font-poppins text-sm font-medium transition-colors ${
                                     isDark
-                                        ? "text-cyan-400 hover:text-cyan-300"
-                                        : "text-cyan-600 hover:text-cyan-700"
+                                        ? "text-purple-400 hover:text-purple-300"
+                                        : "text-purple-600 hover:text-purple-700"
                                 }`}
                             >
                                 +91 7757831168
@@ -232,8 +232,8 @@ export default function Footer() {
                                 href="tel:+919833188826"
                                 className={`mt-1.5 inline-block font-poppins text-sm font-medium transition-colors ${
                                     isDark
-                                        ? "text-cyan-400 hover:text-cyan-300"
-                                        : "text-cyan-600 hover:text-cyan-700"
+                                        ? "text-purple-400 hover:text-purple-300"
+                                        : "text-purple-600 hover:text-purple-700"
                                 }`}
                             >
                                 +91 9833188826
