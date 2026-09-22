@@ -171,6 +171,77 @@ export default function Footer() {
                     </div>
                 </div>
 
+                {/* CONTACT US */}
+                <div
+                    className={`mt-10 border-t pt-8 ${
+                        isDark ? "border-white/10" : "border-zinc-200"
+                    }`}
+                >
+                    <h3
+                        className={`font-poppins text-xs sm:text-sm font-bold tracking-[0.25em] uppercase ${
+                            isDark ? "text-cyan-400" : "text-cyan-600"
+                        }`}
+                    >
+                        Contact Us
+                    </h3>
+
+                    <div className="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-2 md:max-w-2xl">
+                        <div>
+                            <h4
+                                className={`font-poppins text-base font-semibold ${
+                                    isDark ? "text-white" : "text-zinc-900"
+                                }`}
+                            >
+                                Aatif Shaikh
+                            </h4>
+                            <p
+                                className={`mt-0.5 font-poppins text-xs sm:text-sm ${
+                                    isDark ? "text-zinc-400" : "text-zinc-600"
+                                }`}
+                            >
+                                (Vice President, DataNexus Club)
+                            </p>
+                            <a
+                                href="tel:+917757831168"
+                                className={`mt-1.5 inline-block font-poppins text-sm font-medium transition-colors ${
+                                    isDark
+                                        ? "text-cyan-400 hover:text-cyan-300"
+                                        : "text-cyan-600 hover:text-cyan-700"
+                                }`}
+                            >
+                                +91 7757831168
+                            </a>
+                        </div>
+
+                        <div>
+                            <h4
+                                className={`font-poppins text-base font-semibold ${
+                                    isDark ? "text-white" : "text-zinc-900"
+                                }`}
+                            >
+                                Nauman Patel
+                            </h4>
+                            <p
+                                className={`mt-0.5 font-poppins text-xs sm:text-sm ${
+                                    isDark ? "text-zinc-400" : "text-zinc-600"
+                                }`}
+                            >
+                                (Treasurer, DataNexus Club)
+                            </p>
+                            <a
+                                href="tel:+919833188826"
+                                className={`mt-1.5 inline-block font-poppins text-sm font-medium transition-colors ${
+                                    isDark
+                                        ? "text-cyan-400 hover:text-cyan-300"
+                                        : "text-cyan-600 hover:text-cyan-700"
+                                }`}
+                            >
+                                +91 9833188826
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 {/* COPYRIGHT */}
                 <div
                     className={`mt-10 flex flex-col gap-3 border-t pt-7 text-xs sm:flex-row sm:items-center sm:justify-between ${
