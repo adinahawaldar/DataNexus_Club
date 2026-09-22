@@ -232,7 +232,7 @@ function NexathonFlipClockTimer({ googleFormLink, isDark }) {
                 isDark ? 'text-purple-300' : 'text-[#1a073f]'
               }`}
             >
-              FLAGSHIP EVENT • 28 SEPT, 2026
+              UPCOMING EVENT • 28 SEPT, 2026
             </span>
           </div>
 
