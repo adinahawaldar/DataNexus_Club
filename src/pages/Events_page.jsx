@@ -19,17 +19,18 @@ function Events() {
 function EventsContent() {
   return (
     <main
-      className="
-        relative
-        min-h-screen
-        bg-[#faf9ff]
-        text-zinc-900
-        transition-colors
-        duration-500
-        dark:bg-[#120b24]
-        dark:text-white
-      "
-    >
+    className="
+      relative
+      w-full
+      min-h-screen
+      transition-colors
+      duration-500
+      overflow-hidden
+      bg-[#faf8fd]
+      text-zinc-900
+      dark:bg-[#07050e]
+      dark:text-white"
+      >
 
       {/* Events page navigation */}
       <div className="relative z-20">
