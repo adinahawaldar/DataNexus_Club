@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, animate, useInView } from 'framer-motion';
+import { useTheme } from '../../context/ThemeContext';
 import agentic_ai from '../../assets/events/agentic_ai.jpg';
 
 /* Featured event content */
 const featuredEvent = {
-  title: 'Agentic AI',
+  title: 'Agentic AI Workshop',
   date: '28th September 2026',
   time: '10:00 AM',
   description:
-    'The CSE (Data Science) Department along with DataNexus Club is organizing a 5 hours intensive workshop on Agentic AI for students of FE, SE, TE & BE of CSE (Data Science).The workshop will introduce students to Agentic AI, AI agents, agent-based systems, workflows, and real-world applications through conceptual sessions, live demonstrations, interactive activities, and hands-on exercises.',
+    'Explore the fascinating world of Agentic AI in this 5 hours intensive hands-on workshop. Learn about autonomous agents, their applications, and the future of AI-driven decision making.',
   image:
     agentic_ai,
   registrationLink: 'https://forms.gle/CDV2pfdxm6jYn4uD7',
@@ -57,28 +58,63 @@ function AnimatedNumber({ value }) {
 
 
 /* Individual flip-clock card used for days, hours, minutes, and seconds */
-function FlipClockCard({ value, label }) {
+function FlipClockCard({ value, label, isDark }) {
   const formattedVal = String(value).padStart(2, '0');
 
   return (
     <div className="flex flex-col items-center group flex-shrink-0">
 
-      <div className="relative w-14 h-18 sm:w-20 sm:h-24 md:w-24 md:h-26 lg:w-28 lg:h-30 bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-white/10 rounded-lg sm:rounded-xl shadow-md dark:shadow-black/30 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:shadow-lg group-hover:scale-[1.03]">
+      {/* Flip Clock Card Box */}
+      <div
+        className={`relative w-20 h-24 sm:w-26 sm:h-32 md:w-32 md:h-38 lg:w-38 lg:h-44 rounded-xl sm:rounded-2xl flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:scale-[1.03] ${
+          isDark
+            ? 'bg-[#18132e] border border-purple-400/18 shadow-lg group-hover:border-purple-400/35'
+            : 'bg-white border border-purple-200/50 shadow-md group-hover:shadow-lg'
+        }`}
+      >
 
-        {/* Top half highlight */}
-        <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white via-zinc-50/80 to-zinc-100/60 dark:from-zinc-800 dark:via-zinc-850 dark:to-zinc-900 pointer-events-none border-b border-zinc-200/60 dark:border-white/10" />
+        {/* Top Half Highlight Surface */}
+        <div
+          className={`absolute top-0 inset-x-0 h-1/2 pointer-events-none border-b ${
+            isDark
+              ? 'bg-gradient-to-b from-white/5 to-transparent border-purple-500/15'
+              : 'bg-gradient-to-b from-white via-zinc-50/80 to-zinc-100/60 border-zinc-200/60'
+          }`}
+        />
 
-        {/* Bottom half shadow */}
-        <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-b from-zinc-100/90 via-zinc-100 to-zinc-200/70 dark:from-zinc-900 dark:via-zinc-950 dark:to-black pointer-events-none" />
+        {/* Bottom Half Shadow Surface */}
+        <div
+          className={`absolute bottom-0 inset-x-0 h-1/2 pointer-events-none ${
+            isDark
+              ? 'bg-gradient-to-b from-black/40 to-black/70'
+              : 'bg-gradient-to-b from-zinc-100/90 via-zinc-100 to-zinc-200/70'
+          }`}
+        />
 
-        {/* Split line between the two halves */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1.5px] bg-zinc-300/90 dark:bg-white/10 z-20 shadow-xs" />
+        {/* Center Split Horizontal Line */}
+        <div
+          className={`absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1.5px] z-20 ${
+            isDark ? 'bg-purple-500/20' : 'bg-zinc-300/90 shadow-xs'
+          }`}
+        />
 
-        {/* Left hinge notch */}
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 bg-zinc-300/90 dark:bg-zinc-700 rounded-r-sm border-r border-y border-zinc-400/40 dark:border-white/10 z-30 shadow-inner" />
+        {/* Left Side Hinge Notch */}
+        <div
+          className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 rounded-r-sm z-30 ${
+            isDark
+              ? 'bg-purple-900/40 border-r border-y border-purple-500/25'
+              : 'bg-zinc-300/90 border-r border-y border-zinc-400/40 shadow-inner'
+          }`}
+        />
 
-        {/* Right hinge notch */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 bg-zinc-300/90 dark:bg-zinc-700 rounded-l-sm border-l border-y border-zinc-400/40 dark:border-white/10 z-30 shadow-inner" />
+        {/* Right Side Hinge Notch */}
+        <div
+          className={`absolute right-0 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-3 sm:h-4 rounded-l-sm z-30 ${
+            isDark
+              ? 'bg-purple-900/40 border-l border-y border-purple-500/25'
+              : 'bg-zinc-300/90 border-l border-y border-zinc-400/40 shadow-inner'
+          }`}
+        />
 
         {/* Animated timer value */}
         <AnimatePresence mode="popLayout">
@@ -91,7 +127,9 @@ function FlipClockCard({ value, label }) {
               duration: 0.35,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="text-lg sm:text-3xl md:text-4xl lg:text-5xl font-black font-mono tracking-tight text-[#1a073f] dark:text-white z-10 select-none drop-shadow-xs"
+            className={`text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-mono tracking-tight z-10 select-none drop-shadow-xs ${
+              isDark ? 'text-[#fffdfa]' : 'text-zinc-800'
+            }`}
           >
             {formattedVal}
           </motion.span>
@@ -99,7 +137,11 @@ function FlipClockCard({ value, label }) {
       </div>
 
       {/* Unit label */}
-      <span className="text-[8px] sm:text-[10px] md:text-xs font-extrabold text-purple-600 dark:text-purple-400 tracking-[0.15em] sm:tracking-[0.22em] uppercase mt-1.5 sm:mt-2 font-poppins">
+      <span
+        className={`text-[10px] sm:text-xs md:text-sm font-extrabold tracking-[0.18em] sm:tracking-[0.25em] uppercase mt-2.5 sm:mt-3.5 font-poppins ${
+          isDark ? 'text-[#e2e8f0]' : 'text-zinc-600'
+        }`}
+      >
         {label}
       </span>
     </div>
@@ -182,6 +224,8 @@ function getTimeLeft() {
 
 
 function FeaturedEvent() {
+  const { isDark } = useTheme();
+
   const initialTime = getTimeLeft();
 
   const [daysDisplay, setDaysDisplay] = useState(initialTime.days);
@@ -433,21 +477,25 @@ function FeaturedEvent() {
               <FlipClockCard
                 value={daysDisplay}
                 label="DAYS"
+                isDark={isDark}
               />
 
               <FlipClockCard
                 value={hoursDisplay}
                 label="HOURS"
+                isDark={isDark}
               />
 
               <FlipClockCard
                 value={minsDisplay}
                 label="MINUTES"
+                isDark={isDark}
               />
 
               <FlipClockCard
                 value={displaySec}
                 label="SECONDS"
+                isDark={isDark}
               />
 
             </div>
@@ -469,26 +517,7 @@ function FeaturedEvent() {
               href={featuredEvent.registrationLink || '#'}
               target="_blank"
               rel="noopener noreferrer"
-              className="
-                bg-zinc-950
-                text-white
-                rounded-full
-                px-5
-                py-2.5
-                sm:px-7
-                sm:py-3
-                text-xs
-                sm:text-sm
-                font-semibold
-                inline-flex
-                items-center
-                gap-2
-                shadow-xl
-                hover:bg-purple-950
-                transition-colors
-                duration-200
-                cursor-pointer
-              "
+              className="font-bold text-xs sm:text-sm lg:text-base px-6 sm:px-8 py-3 sm:py-3.5 rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-2 font-poppins bg-gradient-to-r from-[#5b21b6] via-[#9333ea] to-[#5b21b6] backdrop-blur-xl border border-white/30 text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.45)] hover:brightness-115"
             >
               Enroll Now
 
