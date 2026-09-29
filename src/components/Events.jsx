@@ -98,7 +98,7 @@ function NexathonFlipClockTimer({ googleFormLink, isDark }) {
 
   // set Event date and time:
   const getTimeLeft = () => {
-    const eventDate = new Date('2026-09-28T10:00:00');
+    const eventDate = new Date('2026-10-09T10:00:00');
     const now = new Date();
 
     const difference = eventDate.getTime() - now.getTime();
@@ -232,7 +232,7 @@ function NexathonFlipClockTimer({ googleFormLink, isDark }) {
                 isDark ? 'text-purple-300' : 'text-[#1a073f]'
               }`}
             >
-              UPCOMING EVENT • 28 SEPT, 2026
+              UPCOMING EVENT • 9 OCT, 2026
             </span>
           </div>
 
@@ -241,7 +241,7 @@ function NexathonFlipClockTimer({ googleFormLink, isDark }) {
               isDark ? 'text-white' : 'text-[#1a073f]'
             }`}
           >
-            AGENTIC AI WORKSHOP
+            NEXATHON II
           </h3>
 
           <p
@@ -249,7 +249,7 @@ function NexathonFlipClockTimer({ googleFormLink, isDark }) {
               isDark ? 'text-[#e2e8f0]' : 'text-zinc-600'
             }`}
           >
-            A hands-on workshop introducing students to Agentic AI, AI agents, agent-based systems, workflows, and real-world applications through concepts, demos, activities, and exercises.
+            NEXATHON II is a celebration of innovation, creativity, and technology, where students come together to transform ideas into impactful solutions and showcase their skills through real-world challenges.
           </p>
         </div>
 
@@ -264,10 +264,14 @@ function NexathonFlipClockTimer({ googleFormLink, isDark }) {
         {/* Right Side: Register CTA Button */}
         <div className="flex flex-col items-center md:items-end flex-shrink-0">
           <button
-            onClick={() => window.open(googleFormLink, '_blank')}
+            onClick={() => {
+              if (googleFormLink) {
+                window.open(googleFormLink, '_blank');
+              }
+            }}
             className="font-bold text-xs sm:text-sm lg:text-base px-6 sm:px-8 py-3 sm:py-3.5 rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-2 font-poppins bg-gradient-to-r from-[#5b21b6] via-[#9333ea] to-[#5b21b6] backdrop-blur-xl border border-white/30 text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.45)] hover:brightness-115"
           >
-            <span>Register Now</span>
+            <span>Enroll Now</span>
             <svg
               className="w-4 h-4"
               fill="none"
@@ -292,8 +296,6 @@ export default function Events() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const { isDark } = useTheme();
 
-  const googleFormLink = 'https://forms.gle/CDV2pfdxm6jYn4uD7';
-
   const eventsData = [
     {
       id: 1,
@@ -310,10 +312,10 @@ export default function Events() {
       title: 'Nexathon II',
       description:
         'NEXATHON II is a celebration of innovation, creativity, and technology, where students come together to transform ideas into impactful solutions and showcase their skills through real-world challenges.',
-      badge: 'Oct 2026',
+      badge: '9 Oct 2026',
       bgImage:
         nexathon,
-        registrationLink: '',
+      registrationLink: 'https://nexathon.aiktc.ac.in/',
     },
     {
       id: 3,
@@ -323,7 +325,7 @@ export default function Events() {
       badge: 'TBD',
       bgImage:
         prepit,
-        registrationLink: '',
+      registrationLink: '',
     },
   ];
 
@@ -338,7 +340,7 @@ export default function Events() {
         {/* Integrated Nexathon Countdown Flip Clock Banner */}
         <NexathonFlipClockTimer
           isDark={isDark}
-          googleFormLink={googleFormLink}
+          googleFormLink={eventsData[1].registrationLink || ''}
         />
 
         {/* Section Header */}

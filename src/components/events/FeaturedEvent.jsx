@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, animate, useInView } from 'framer-motion';
-import agentic_ai from '../../assets/events/agentic_ai.jpg';
+import nexathon from '../../assets/events/nexathon_event.jpg';
 
 /* Featured event content */
 const featuredEvent = {
-  title: 'Agentic AI',
-  date: '28th September 2026',
+  title: 'Nexathon II',
+  date: '9th October 2026',
   time: '10:00 AM',
   description:
-    'The CSE (Data Science) Department along with DataNexus Club is organizing a 5 hours intensive workshop on Agentic AI for students of FE, SE, TE & BE of CSE (Data Science).The workshop will introduce students to Agentic AI, AI agents, agent-based systems, workflows, and real-world applications through conceptual sessions, live demonstrations, interactive activities, and hands-on exercises.',
+    'NEXATHON II is a celebration of innovation, creativity, and technology, where students come together to transform ideas into impactful solutions and showcase their skills through real-world challenges.',
   image:
-    agentic_ai,
-  registrationLink: 'https://forms.gle/CDV2pfdxm6jYn4uD7',
+    nexathon,
+  registrationLink: 'https://nexathon.aiktc.ac.in/',
 };
 
 
@@ -467,8 +467,13 @@ function FeaturedEvent() {
                 scale: 0.97,
               }}
               href={featuredEvent.registrationLink || '#'}
-              target="_blank"
+              target={featuredEvent.registrationLink ? '_blank' : undefined}
               rel="noopener noreferrer"
+              onClick={(e) => {
+                if (!featuredEvent.registrationLink) {
+                  e.preventDefault();
+                }
+              }}
               className="
                 bg-zinc-950
                 text-white

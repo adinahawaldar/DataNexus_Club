@@ -32,7 +32,7 @@ const upcomingEvents = [
     image: nexathon,
     description:
       'NEXATHON II is a celebration of innovation, creativity, and technology, where students come together to transform ideas into impactful solutions and showcase their skills through real-world challenges.',
-    registrationLink: '',
+    registrationLink: 'https://nexathon.aiktc.ac.in/',
   },
 
   {
